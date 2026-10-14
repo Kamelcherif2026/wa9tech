@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 const liens = [
   { href: "/admin", libelle: "Tableau de bord", icone: Gauge, exact: true },
-  { href: "/admin/evenements", libelle: "Événements", icone: CalendarDays, bientot: true },
+  { href: "/admin/evenements", libelle: "Événements", icone: CalendarDays },
   { href: "/admin/lieux", libelle: "Lieux", icone: MapPin },
   { href: "/admin/organisateurs", libelle: "Organisateurs", icone: Users },
 ];
@@ -17,19 +17,8 @@ export function Navigation() {
 
   return (
     <nav className="flex gap-1 overflow-x-auto px-2 pb-2 md:flex-col md:pb-4">
-      {liens.map(({ href, libelle, icone: Icone, exact, bientot }) => {
+      {liens.map(({ href, libelle, icone: Icone, exact }) => {
         const actif = exact ? chemin === href : chemin.startsWith(href);
-        if (bientot) {
-          return (
-            <span
-              key={href}
-              className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm whitespace-nowrap text-muted-foreground/60"
-              title="Sprint 1 — partie B"
-            >
-              <Icone className="size-4" /> {libelle}
-            </span>
-          );
-        }
         return (
           <Link
             key={href}

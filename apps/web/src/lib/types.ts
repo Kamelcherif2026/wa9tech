@@ -57,3 +57,63 @@ export interface EtatFormulaire {
   erreur?: string;
   champs?: Record<string, string>;
 }
+
+export interface Categorie {
+  id: number;
+  slug: string;
+  parent_id: number | null;
+  libelle_fr: string;
+  libelle_ar: string;
+  ordre: number;
+}
+
+export const STATUTS_EVENEMENT = {
+  brouillon: { libelle: "Brouillon", variante: "neutre" },
+  en_attente: { libelle: "En attente", variante: "alerte" },
+  publie: { libelle: "Publié", variante: "succes" },
+  rejete: { libelle: "Rejeté", variante: "danger" },
+  expire: { libelle: "Expiré", variante: "neutre" },
+  archive: { libelle: "Archivé", variante: "neutre" },
+} as const;
+
+export type StatutEvenement = keyof typeof STATUTS_EVENEMENT;
+
+export const PORTEES = {
+  locale: "Locale",
+  nationale: "Nationale",
+  internationale: "Internationale",
+} as const;
+
+export interface Representation {
+  id?: string;
+  debut: string; // ISO
+  fin: string | null;
+  annulee?: boolean;
+}
+
+export interface Evenement {
+  id: string;
+  slug: string;
+  organisateur_id: string | null;
+  lieu_id: string | null;
+  lieu_texte: string | null;
+  ville_id: number | null;
+  categorie_id: number;
+  titre_fr: string;
+  titre_ar: string | null;
+  description_fr: string | null;
+  description_ar: string | null;
+  images: string[];
+  prix_min: number | null;
+  prix_max: number | null;
+  gratuit: boolean;
+  infos_reservation: string | null;
+  lien_externe: string | null;
+  telephone_reservation: string | null;
+  portee: keyof typeof PORTEES;
+  source: string;
+  statut: StatutEvenement;
+  motif_rejet: string | null;
+  prochaine_date: string | null;
+  representations?: Representation[];
+}

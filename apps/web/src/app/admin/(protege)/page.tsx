@@ -32,8 +32,8 @@ async function Indicateurs() {
   ]);
 
   const tuiles = [
-    { libelle: "En attente de validation", valeur: enAttente, href: "/admin" },
-    { libelle: "Événements publiés", valeur: publies, href: "/admin" },
+    { libelle: "En attente de validation", valeur: enAttente, href: "/admin/evenements?statut=en_attente" },
+    { libelle: "Événements publiés", valeur: publies, href: "/admin/evenements?statut=publie" },
     { libelle: "Lieux actifs", valeur: lieux, href: "/admin/lieux" },
     { libelle: "Organisateurs", valeur: organisateurs, href: "/admin/organisateurs" },
   ];

@@ -1,8 +1,11 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import { connection } from "next/server";
 
 /** Client Supabase côté serveur (Server Components, Server Actions, Route Handlers). */
 export async function createClient() {
+  // Données personnalisées : rendu uniquement au moment de la requête (Cache Components).
+  await connection();
   const cookieStore = await cookies();
 
   return createServerClient(
