@@ -1,0 +1,6 @@
+{
+  "name": "@wa9tech/shared",
+  "version": "0.0.1",
+  "private": true,
+  "types": "./database.types.ts"
+}

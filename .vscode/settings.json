@@ -1,0 +1,5 @@
+{
+  "deno.enablePaths": ["supabase/functions"],
+  "editor.formatOnSave": true,
+  "files.eol": "\n"
+}

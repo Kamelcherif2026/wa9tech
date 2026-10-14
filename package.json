@@ -1,0 +1,16 @@
+{
+  "name": "wa9tech",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:reset": "supabase db reset",
+    "db:test": "supabase test db",
+    "db:types": "supabase gen types typescript --local > packages/shared/database.types.ts",
+    "dev": "pnpm --filter web dev"
+  },
+  "devDependencies": {
+    "supabase": "^2.121.0"
+  }
+}
