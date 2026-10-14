@@ -8,7 +8,8 @@ import { ChargementResultats, lireCriteres, Resultats } from "@/components/publi
 
 export async function generateStaticParams() {
   const { villes } = await referentiels();
-  return villes.map((v) => ({ ville: v.slug }));
+  // Au moins une valeur est exigée par Next.js (même si la base est injoignable pendant le build)
+  return villes.length ? villes.map((v) => ({ ville: v.slug })) : [{ ville: "tunis" }];
 }
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/ville/[ville]">): Promise<Metadata> {

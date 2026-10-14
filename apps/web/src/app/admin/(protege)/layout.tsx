@@ -9,8 +9,9 @@ export default function EspaceAdminLayout({ children }: LayoutProps<"/admin">) {
   return (
     <div className="flex min-h-screen flex-1 flex-col md:flex-row">
       <aside className="border-b bg-card md:w-60 md:shrink-0 md:border-r md:border-b-0">
-        <div className="p-4 text-lg font-bold">
-          WA9TECH <span className="text-primary">وقتاش</span>
+        <div className="p-4">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/marque/logo-wa9tech.svg" alt="WA9TECH" width={130} height={32} className="h-8 w-auto" />
         </div>
         <Navigation />
       </aside>

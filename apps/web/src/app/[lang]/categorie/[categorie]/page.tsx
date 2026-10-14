@@ -8,7 +8,8 @@ import { ChargementResultats, lireCriteres, Resultats } from "@/components/publi
 
 export async function generateStaticParams() {
   const { categories } = await referentiels();
-  return categories.map((c) => ({ categorie: c.slug }));
+  // Au moins une valeur est exigée par Next.js (même si la base est injoignable pendant le build)
+  return categories.length ? categories.map((c) => ({ categorie: c.slug })) : [{ categorie: "musique" }];
 }
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/categorie/[categorie]">): Promise<Metadata> {

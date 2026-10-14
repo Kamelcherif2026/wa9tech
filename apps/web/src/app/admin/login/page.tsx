@@ -6,9 +6,8 @@ export default function PageConnexion({ searchParams }: PageProps<"/admin/login"
     <main className="flex flex-1 items-center justify-center p-6">
       <div className="w-full max-w-sm space-y-6">
         <div className="text-center">
-          <h1 className="text-2xl font-bold">
-            WA9TECH <span className="text-primary">وقتاش</span>
-          </h1>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/marque/logo-wa9tech-bilingue.svg" alt="WA9TECH — وقتاش" width={200} height={90} className="mx-auto h-24 w-auto" />
           <p className="mt-1 text-sm text-muted-foreground">Back-office — connexion</p>
         </div>
         <Suspense>
