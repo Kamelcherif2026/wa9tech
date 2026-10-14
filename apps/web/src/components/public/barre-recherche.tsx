@@ -23,7 +23,7 @@ export function BarreRecherche({
   const parents = categories.filter((c) => c.parent_id === null);
 
   return (
-    <form action={action ?? `/${l}/evenements`} className="grid gap-2 rounded-2xl border bg-card p-3 shadow-sm sm:grid-cols-[2fr_1fr_1fr_auto]">
+    <form action={action ?? `/${l}/evenements`} className="grid gap-2 rounded-2xl border-2 border-encre bg-card p-3 shadow-[5px_5px_0_var(--encre)] sm:grid-cols-[2fr_1fr_1fr_auto] rtl:shadow-[-5px_5px_0_var(--encre)]">
       <label className="sr-only" htmlFor="q">{d.quoi}</label>
       <input id="q" name="q" type="search" placeholder={d.quoi} defaultValue={valeurs.q} className={champ} />
 
@@ -42,7 +42,7 @@ export function BarreRecherche({
         ))}
       </select>
 
-      <button type="submit" className="flex h-11 items-center justify-center gap-2 rounded-lg bg-primary px-5 font-semibold text-primary-foreground hover:bg-primary/90">
+      <button type="submit" className="flex h-11 items-center justify-center gap-2 rounded-lg bg-primary px-5 font-bold text-primary-foreground transition hover:bg-encre">
         <Search className="size-5" /> {d.rechercher}
       </button>
 

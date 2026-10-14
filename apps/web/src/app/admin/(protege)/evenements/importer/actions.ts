@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { exigerStaff } from "@/lib/auth";
 import { lireAffiche, type EvenementLu } from "@/lib/ia/extraction";
+import { composerLieuTexte } from "@/lib/ia/lieu";
 
 export interface EtatImport {
   erreur?: string;
@@ -122,7 +123,7 @@ async function creerFiche(
       titre_ar: e.titre_ar,
       categorie_id: categorieId,
       lieu_id: lieu?.id ?? null,
-      lieu_texte: lieu ? null : [e.lieu_nom, e.adresse].filter(Boolean).join(", ") || null,
+      lieu_texte: lieu ? null : composerLieuTexte(e.lieu_nom, e.adresse),
       ville_id: lieu ? null : villeId,
       description_fr: description || null,
       images: [urlImage],

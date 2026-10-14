@@ -89,10 +89,38 @@ export async function accueil() {
   return {
     aujourdhui: aujourdhui.cartes,
     weekend: weekend.cartes,
-    aLaUne: bientot.cartes.filter((c) => c.featured).slice(0, 4),
+    aLaUne: choisirALaUne(bientot.cartes),
     bientot: bientot.cartes,
     sceneLocale: locale.cartes,
   };
+}
+
+/**
+ * Bandeau « à la une » : les événements mis en avant par l'équipe,
+ * complétés si besoin par les prochains événements qui ont une affiche.
+ */
+function choisirALaUne(cartes: Carte[]) {
+  const misEnAvant = cartes.filter((c) => c.featured);
+  const complement = cartes.filter((c) => !c.featured && c.image);
+  return [...misEnAvant, ...complement].slice(0, 4);
+}
+
+/** Nombre d'événements à venir par ville (pour la carte de la page d'accueil). */
+export async function compteParVille(): Promise<Record<number, number>> {
+  "use cache";
+  cacheLife("minutes");
+  cacheTag(TAG);
+  const { data } = await clientPublic()
+    .from("evenement")
+    .select("ville_id") // rempli automatiquement depuis le lieu par le trigger
+    .eq("statut", "publie")
+    .not("prochaine_date", "is", null)
+    .limit(5000);
+  const comptes: Record<number, number> = {};
+  for (const { ville_id } of data ?? []) {
+    if (ville_id != null) comptes[ville_id] = (comptes[ville_id] ?? 0) + 1;
+  }
+  return comptes;
 }
 
 export interface Fiche {

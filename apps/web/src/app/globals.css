@@ -28,6 +28,8 @@
   --color-bleu: var(--bleu);
   --color-safran: var(--safran);
   --color-encre: var(--encre);
+  --color-terracotta: var(--terracotta);
+  --color-sable: var(--background);
   --font-titre: var(--font-rubik), var(--font-geist-sans), sans-serif;
   --color-warning: var(--warning);
   --radius-sm: calc(var(--radius) - 4px);
@@ -78,5 +80,94 @@
   html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3,
   html[lang="ar"] body {
     font-family: var(--font-arabe), var(--font-geist-sans), sans-serif;
+  }
+}
+
+/* =====================================================================
+   Direction artistique « affiche tunisienne »
+   Motifs géométriques (zellige), arcs de portes, bandes tricolores.
+   ===================================================================== */
+@layer base {
+  body {
+    overflow-x: clip;
+  }
+  ::selection {
+    background: var(--safran);
+    color: var(--encre);
+  }
+}
+
+@layer components {
+  /* Bloc qui sort du conteneur central pour occuper toute la largeur de l'écran */
+  .pleine-largeur {
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+  }
+
+  /* Étoile à huit branches répétée (motif de zellige) — couleur via currentColor */
+  .motif-zellige {
+    position: relative;
+    isolation: isolate;
+  }
+  .motif-zellige::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: currentColor;
+    opacity: var(--motif-opacite, 0.09);
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='black' stroke-width='1.6'%3E%3Crect x='16' y='16' width='24' height='24'/%3E%3Crect x='16' y='16' width='24' height='24' transform='rotate(45 28 28)'/%3E%3Ccircle cx='28' cy='28' r='4'/%3E%3Cpath d='M0 0l8 8M56 0l-8 8M0 56l8-8M56 56l-8-8'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 56px 56px;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='black' stroke-width='1.6'%3E%3Crect x='16' y='16' width='24' height='24'/%3E%3Crect x='16' y='16' width='24' height='24' transform='rotate(45 28 28)'/%3E%3Ccircle cx='28' cy='28' r='4'/%3E%3Cpath d='M0 0l8 8M56 0l-8 8M0 56l8-8M56 56l-8-8'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 56px 56px;
+  }
+
+  /* Arc de porte de Sidi Bou Saïd */
+  .arche {
+    border-start-start-radius: 999px;
+    border-start-end-radius: 999px;
+  }
+
+  /* Liseré terracotta / safran / bleu */
+  .bande-tricolore {
+    height: 6px;
+    background: linear-gradient(90deg, var(--terracotta) 0 33.3%, var(--safran) 33.3% 66.6%, var(--bleu) 66.6%);
+  }
+
+  /* Ruban adhésif d'une affiche collée */
+  .scotch {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    z-index: 2;
+    width: 64px;
+    height: 20px;
+    translate: -50% 0;
+    rotate: -3deg;
+    background: rgb(250 248 245 / 0.75);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.12);
+    backdrop-filter: blur(1px);
+  }
+
+  /* Défilement horizontal avec aimantation (bandeau « à la une ») */
+  .defilement {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .defilement::-webkit-scrollbar {
+    display: none;
+  }
+  .defilement > * {
+    scroll-snap-align: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }

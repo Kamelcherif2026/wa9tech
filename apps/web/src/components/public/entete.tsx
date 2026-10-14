@@ -2,45 +2,85 @@ import { Suspense } from "react";
 import Link from "next/link";
 import { autreLangue, t, type Langue } from "@/lib/i18n";
 import { ChangerLangue } from "./changer-langue";
+import { Etoile } from "./motifs";
+
+const classeLangue = "rounded-full border-2 border-encre px-3.5 py-1 font-semibold transition hover:bg-encre hover:text-sable";
 
 export function Entete({ l }: { l: Langue }) {
   const d = t(l);
   const autre = autreLangue(l);
+  const lien = "rounded-full px-3 py-2 font-medium transition hover:bg-encre/5 hover:text-primary";
   return (
-    <header className="sticky top-0 z-20 border-b bg-background/90 backdrop-blur">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4">
-        <Link href={`/${l}`} className="flex items-center" aria-label="WA9TECH — accueil">
+    <header className="sticky top-0 z-30 bg-background/90 backdrop-blur">
+      <div className="bande-tricolore" />
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
+        <Link href={`/${l}`} className="flex shrink-0 items-center" aria-label="WA9TECH — accueil">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/marque/logo-wa9tech.svg" alt="WA9TECH" width={150} height={36} className="h-11 w-auto" />
+          <img src="/marque/logo-wa9tech.svg" alt="WA9TECH" width={150} height={36} className="h-10 w-auto sm:h-11" />
         </Link>
-        <nav className="flex items-center gap-1 text-sm">
-          <Link href={`/${l}/evenements`} className="rounded-lg px-3 py-2 hover:bg-muted">{d.agenda}</Link>
-          <Suspense
-            fallback={
-              <Link href={`/${autre}`} className="rounded-lg border px-3 py-1.5 font-medium hover:bg-muted">
-                {autre === "ar" ? "العربية" : "Français"}
-              </Link>
-            }
-          >
-            <ChangerLangue vers={autre} />
-          </Suspense>
+        <nav className="flex items-center gap-0.5 text-sm">
+          <Link href={`/${l}/evenements`} className={lien}>{d.agenda}</Link>
+          <Link href={`/${l}#disciplines`} className={`${lien} hidden sm:block`}>{d.navCategories}</Link>
+          <Link href={`/${l}#villes`} className={`${lien} hidden sm:block`}>{d.navVilles}</Link>
+          <span className="ms-1.5">
+            <Suspense
+              fallback={
+                <Link href={`/${autre}`} className={classeLangue}>
+                  {autre === "ar" ? "العربية" : "Français"}
+                </Link>
+              }
+            >
+              <ChangerLangue vers={autre} className={classeLangue} />
+            </Suspense>
+          </span>
         </nav>
       </div>
+      <div className="h-px bg-border" />
     </header>
   );
 }
 
 export function PiedDePage({ l }: { l: Langue }) {
   const d = t(l);
+  const lien = "hover:text-safran transition";
   return (
-    <footer className="mt-16 border-t bg-card">
-      <div className="mx-auto grid max-w-6xl gap-2 px-4 py-8 text-sm text-muted-foreground">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/marque/logo-wa9tech-bilingue.svg" alt="WA9TECH — وقتاش" width={140} height={60} className="mb-2 h-14 w-auto self-start" />
-        <p className="font-semibold text-foreground">{d.slogan}</p>
-        <p>{d.soumettre}</p>
-        <p>{d.apropos}</p>
+    <footer className="mt-24">
+      <div className="bande-tricolore" />
+      <div className="motif-zellige bg-bleu text-white [--motif-opacite:0.12]">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:grid-cols-[2fr_1fr_1fr]">
+          <div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/marque/logo-wa9tech-negatif.svg" alt="WA9TECH" width={170} height={40} className="h-11 w-auto" />
+            <p className="mt-1"><span className="inline-block font-[family-name:var(--font-arabe)] text-2xl font-bold text-safran" lang="ar" dir="rtl">وقتاش ؟</span></p>
+            <p className="mt-4 max-w-sm text-lg font-semibold">{d.slogan}</p>
+            <p className="mt-2 max-w-sm text-sm text-white/75">{d.soumettre}</p>
+          </div>
+          <nav className="grid content-start gap-2 text-sm">
+            <p className="mb-1 flex items-center gap-2 font-bold text-safran"><Etoile className="size-3.5" /> WA9TECH</p>
+            <Link href={`/${l}/evenements`} className={lien}>{d.agenda}</Link>
+            <Link href={`/${l}/evenements?quand=aujourdhui`} className={lien}>{d.quandOptions.aujourdhui}</Link>
+            <Link href={`/${l}/evenements?quand=weekend`} className={lien}>{d.quandOptions.weekend}</Link>
+            <Link href={`/${l}/evenements?gratuit=1`} className={lien}>{d.gratuit}</Link>
+          </nav>
+          <nav className="grid content-start gap-2 text-sm">
+            <p className="mb-1 flex items-center gap-2 font-bold text-safran"><Etoile className="size-3.5" /> {d.navVilles}</p>
+            {(["tunis", "sousse", "sfax", "hammamet", "djerba"] as const).map((v) => (
+              <Link key={v} href={`/${l}/ville/${v}`} className={`${lien} capitalize`}>{NOMS_VILLES[v][l]}</Link>
+            ))}
+          </nav>
+        </div>
+        <div className="border-t border-white/15">
+          <p className="mx-auto max-w-6xl px-4 py-4 text-xs text-white/70">{d.apropos}</p>
+        </div>
       </div>
     </footer>
   );
 }
+
+const NOMS_VILLES = {
+  tunis: { fr: "Tunis", ar: "تونس" },
+  sousse: { fr: "Sousse", ar: "سوسة" },
+  sfax: { fr: "Sfax", ar: "صفاقس" },
+  hammamet: { fr: "Hammamet", ar: "الحمامات" },
+  djerba: { fr: "Djerba", ar: "جربة" },
+} as const;

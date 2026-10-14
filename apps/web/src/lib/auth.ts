@@ -20,13 +20,20 @@ export async function exigerStaff(): Promise<UtilisateurStaff | null> {
   const claims = data?.claims;
   if (!claims) redirect("/admin/login");
 
-  const { data: profil } = await supabase
+  const { data: profil, error } = await supabase
     .from("profil")
     .select("nom, role")
     .eq("id", claims.sub)
     .single();
 
+  // Une panne réseau ou Supabase ne doit pas se déguiser en « Accès refusé »
+  if (error && error.code !== "PGRST116") {
+    console.error("[exigerStaff] lecture du profil impossible :", error.code, error.message);
+    throw new Error(`Supabase injoignable ou en erreur (${error.code || "réseau"}) : ${error.message}`);
+  }
+
   if (!profil || (profil.role !== "moderateur" && profil.role !== "admin")) {
+    console.warn("[exigerStaff] pas de droits staff pour", claims.email, "— rôle :", profil?.role ?? "aucun profil");
     return null;
   }
 

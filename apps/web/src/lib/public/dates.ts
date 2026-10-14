@@ -64,3 +64,9 @@ export function fenetre(periode: Periode, maintenant: Date): { debut: string; fi
       return { debut, fin: null };
   }
 }
+
+/** Morceaux d'une date pour l'étiquette « billet » des cartes : jour, mois abrégé, jour de la semaine. */
+export function morceauxDate(iso: string, l: Langue) {
+  const f = (o: Intl.DateTimeFormatOptions) => new Intl.DateTimeFormat(locale(l), { timeZone: FUSEAU, ...o }).format(new Date(iso));
+  return { jour: f({ day: "numeric" }), mois: f({ month: "short" }).replace(".", ""), semaine: f({ weekday: "short" }).replace(".", "") };
+}

@@ -62,6 +62,16 @@ const fr = {
   apropos: "Un projet de l'Association tunisienne pour l'innovation culturelle.",
   villes: "Villes",
   categories: "Catégories",
+  accroche: "Quand ? Où ? Quoi ?",
+  aLaUneSousTitre: "Les rendez-vous à ne pas manquer",
+  voirEvenement: "Voir l'événement",
+  explorerCategories: "Explorer par discipline",
+  explorerVilles: "La culture, partout en Tunisie",
+  explorerVillesTexte: "Choisissez une ville sur la carte ou dans la liste.",
+  nbEvenements: (n: number) => (n > 1 ? `${n} événements` : n === 1 ? "1 événement" : "Bientôt"),
+  toutesLesVilles: "Toutes les villes",
+  navCategories: "Disciplines",
+  navVilles: "Villes",
 };
 
 type Dictionnaire = typeof fr;
@@ -123,6 +133,16 @@ const ar: Dictionnaire = {
   apropos: "مشروع الجمعية التونسية للابتكار الثقافي.",
   villes: "المدن",
   categories: "الأصناف",
+  accroche: "وقتاش؟ وين؟ شنوّة؟",
+  aLaUneSousTitre: "مواعيد لا تفوّت",
+  voirEvenement: "اكتشف الفعالية",
+  explorerCategories: "استكشف حسب الفنّ",
+  explorerVilles: "الثقافة في كلّ تونس",
+  explorerVillesTexte: "اختر مدينة على الخريطة أو من القائمة.",
+  nbEvenements: (n: number) => (n > 0 ? `${n} فعالية` : "قريبًا"),
+  toutesLesVilles: "كلّ المدن",
+  navCategories: "الفنون",
+  navVilles: "المدن",
 };
 
 export const dictionnaires: Record<Langue, Dictionnaire> = { fr, ar };
