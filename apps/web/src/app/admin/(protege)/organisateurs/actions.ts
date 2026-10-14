@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { revalidateTag } from "next/cache";
 import { z } from "zod";
 import { createClient } from "@/lib/supabase/server";
 import { exigerStaff } from "@/lib/auth";
@@ -46,6 +47,7 @@ export async function enregistrerOrganisateur(
     : await supabase.from("organisateur").insert(ligne);
 
   if (error) return { erreur: `Enregistrement impossible : ${error.message}`, champs: brut };
+  revalidateTag("evenements", { expire: 0 });
 
   redirect("/admin/organisateurs");
 }

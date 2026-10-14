@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { revalidateTag } from "next/cache";
 import { z } from "zod";
 import { createClient } from "@/lib/supabase/server";
 import { exigerStaff } from "@/lib/auth";
@@ -67,6 +68,7 @@ export async function enregistrerLieu(
     : await supabase.from("lieu").insert(ligne);
 
   if (error) return { erreur: `Enregistrement impossible : ${error.message}`, champs: brut };
+  revalidateTag("evenements", { expire: 0 });
 
   redirect("/admin/lieux");
 }
@@ -77,5 +79,6 @@ export async function basculerActifLieu(formData: FormData) {
   const actif = formData.get("actif") === "true";
   const supabase = await createClient();
   await supabase.from("lieu").update({ actif: !actif }).eq("id", id);
+  revalidateTag("evenements", { expire: 0 });
   redirect(`/admin/lieux/${id}`);
 }

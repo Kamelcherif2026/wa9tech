@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { revalidateTag } from "next/cache";
 import { z } from "zod";
 import { createClient } from "@/lib/supabase/server";
 import { exigerStaff } from "@/lib/auth";
@@ -41,6 +42,9 @@ const schemaEvenement = z.object({
 const schemaRepresentations = z
   .array(z.object({ debut: z.string().min(16), fin: z.string().optional() }))
   .min(1, { error: "Ajoutez au moins une date." });
+
+/** Le site public est mis en cache : on l'invalide après chaque changement. */
+const rafraichirSite = () => revalidateTag("evenements", { expire: 0 });
 
 const vide = (v?: string | null) => (v && v.length > 0 ? v : null);
 
@@ -127,6 +131,7 @@ export async function enregistrerEvenement(
   );
   if (errAjout) return { erreur: `Dates : ${errAjout.message}`, champs: brut };
 
+  rafraichirSite();
   redirect(`/admin/evenements/${id}?ok=1`);
 }
 
@@ -135,6 +140,7 @@ export async function publierEvenement(formData: FormData) {
   const id = String(formData.get("id"));
   const supabase = await createClient();
   const { error } = await supabase.rpc("publier_evenement", { p_evenement: id });
+  rafraichirSite();
   redirect(`/admin/evenements/${id}${error ? `?erreur=${encodeURIComponent(error.message)}` : "?publie=1"}`);
 }
 
@@ -144,6 +150,7 @@ export async function rejeterEvenement(formData: FormData) {
   const motif = String(formData.get("motif") ?? "").trim() || "Informations insuffisantes";
   const supabase = await createClient();
   await supabase.rpc("rejeter_evenement", { p_evenement: id, p_motif: motif });
+  rafraichirSite();
   redirect(`/admin/evenements/${id}`);
 }
 
@@ -163,5 +170,6 @@ export async function changerStatut(formData: FormData) {
   if (!["brouillon", "en_attente", "archive"].includes(statut)) return;
   const supabase = await createClient();
   await supabase.from("evenement").update({ statut }).eq("id", id);
+  rafraichirSite();
   redirect(`/admin/evenements/${id}`);
 }

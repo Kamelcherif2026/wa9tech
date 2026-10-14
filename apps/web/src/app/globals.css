@@ -64,4 +64,7 @@
   body {
     @apply bg-background text-foreground;
   }
+  html[lang="ar"] body {
+    font-family: var(--font-arabe), var(--font-geist-sans), sans-serif;
+  }
 }
