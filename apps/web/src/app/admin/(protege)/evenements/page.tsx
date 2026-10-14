@@ -10,6 +10,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { formaterDate } from "@/lib/dates";
 import { STATUTS_EVENEMENT, type StatutEvenement } from "@/lib/types";
 import { cn } from "@/lib/utils";
+import { Sparkles } from "lucide-react";
 
 const ONGLETS: { valeur: string; libelle: string }[] = [
   { valeur: "", libelle: "Tous" },
@@ -27,9 +28,14 @@ export default function PageEvenements({ searchParams }: PageProps<"/admin/evene
       <EntetePage
         titre="Événements"
         actions={
-          <Link href="/admin/evenements/nouveau" className={buttonVariants({ size: "lg" })}>
-            Nouvel événement
-          </Link>
+          <>
+            <Link href="/admin/evenements/importer" className={buttonVariants({ size: "lg" })}>
+              <Sparkles /> Lire une affiche
+            </Link>
+            <Link href="/admin/evenements/nouveau" className={buttonVariants({ size: "lg", variant: "outline" })}>
+              Saisie manuelle
+            </Link>
+          </>
         }
       />
       <Suspense fallback={<Chargement />}>
@@ -68,8 +74,15 @@ async function Liste({ searchParams }: { searchParams: PageProps<"/admin/eveneme
 
   if (error) return <p className="text-sm text-destructive">Erreur : {error.message}</p>;
 
+  const importes = typeof p.importes === "string" ? p.importes : null;
+
   return (
     <div className="space-y-4">
+      {importes && (
+        <p className="rounded-lg border border-primary/30 bg-accent px-4 py-3 text-sm text-accent-foreground">
+          L&apos;affiche annonçait {importes} événements : {importes} fiches ont été créées en attente. Vérifiez-les une par une.
+        </p>
+      )}
       <div className="flex flex-wrap gap-1">
         {ONGLETS.map((o) => (
           <Link

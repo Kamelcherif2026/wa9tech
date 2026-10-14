@@ -1,0 +1,1378 @@
+{
+ "_avertissement": "Vérité terrain établie à la main à partir de vignettes basse résolution ; quelques valeurs incertaines sont signalées dans 'note'.",
+ "affiches": [
+  {
+   "fichier": "affiche01.jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "khomsa",
+    "hadhra",
+    "hadra",
+    "soufi",
+    "حضره",
+    "صوفي",
+    "خمسه"
+   ],
+   "dates": [
+    "2024-03-30"
+   ],
+   "heure": "22:00",
+   "lieu": [
+    "emira"
+   ],
+   "ville": [
+    "hammamet",
+    "الحمامات"
+   ],
+   "categorie": [
+    "musique"
+   ],
+   "prix_min": 35,
+   "gratuit": false,
+   "telephones": [
+    "55888165",
+    "98319282"
+   ]
+  },
+  {
+   "fichier": "images.jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "mare nostrum"
+   ],
+   "dates": [
+    "2026-04-24"
+   ],
+   "heure": [
+    "19:00",
+    "20:00"
+   ],
+   "lieu": [
+    "opera",
+    "اوبرا",
+    "الاوبرا"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "musique"
+   ],
+   "note": "Deux heures différentes sur l'affiche (19h / 20H)"
+  },
+  {
+   "fichier": "images (1).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "tour du monde",
+    "mamadou"
+   ],
+   "dates": [
+    "--04-26"
+   ],
+   "heure": "10:00",
+   "lieu": [
+    "municipal",
+    "البلدي"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "jeune-public",
+    "theatre"
+   ],
+   "telephones": [
+    "51929288"
+   ]
+  },
+  {
+   "fichier": "images (2).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "festival national du theatre",
+    "المسرح التونسي",
+    "theatre tunisien"
+   ],
+   "dates": [
+    "2019-09-20"
+   ],
+   "date_fin": "2019-11-16",
+   "categorie": [
+    "festivals",
+    "theatre"
+   ]
+  },
+  {
+   "fichier": "images (3).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "زياره",
+    "ziara",
+    "zayra",
+    "zeyara",
+    "ziyara",
+    "ezzayra",
+    "zaiara"
+   ],
+   "dates": [
+    "--12-21"
+   ],
+   "heure": "19:30",
+   "lieu": [
+    "municipal",
+    "البلدي"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "musique",
+    "theatre"
+   ]
+  },
+  {
+   "fichier": "images (4).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "adele"
+   ],
+   "dates": [
+    "2022-05-24"
+   ],
+   "lieu": [
+    "municipal",
+    "البلدي"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "musique"
+   ],
+   "telephones": [
+    "53047085"
+   ]
+  },
+  {
+   "fichier": "images (5).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "show off"
+   ],
+   "dates": [
+    "2025-06-17"
+   ],
+   "heure": "20:00",
+   "ville": [
+    "djerba",
+    "jerba",
+    "جربه"
+   ]
+  },
+  {
+   "fichier": "images (6).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "24 parfums",
+    "parfums",
+    "عطر"
+   ],
+   "dates": [
+    "2026-04-22"
+   ],
+   "heure": "19:30",
+   "lieu": [
+    "municipal",
+    "البلدي"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "danse",
+    "musique"
+   ]
+  },
+  {
+   "fichier": "images (7).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "polaris"
+   ],
+   "categorie": [
+    "theatre"
+   ],
+   "note": "Affiche minuscule ; date lue par les modèles (27 août), à confirmer",
+   "dates": [
+    "--08-27"
+   ]
+  },
+  {
+   "fichier": "images (8).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "mamou",
+    "chehyma"
+   ],
+   "dates": [
+    "--02-13"
+   ],
+   "heure": "19:30",
+   "lieu": [
+    "municipal",
+    "البلدي"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "theatre"
+   ]
+  },
+  {
+   "fichier": "images (9).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "arabica",
+    "ارابيكا"
+   ],
+   "dates": [
+    "2025-03-05"
+   ],
+   "heure": "21:30",
+   "lieu": [
+    "municipal",
+    "البلدي"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "musique"
+   ],
+   "telephones": [
+    "52887566"
+   ]
+  },
+  {
+   "fichier": "images (10).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "fete de la musique"
+   ],
+   "dates": [
+    "2024-06-21"
+   ],
+   "heure": "19:00",
+   "lieu": [
+    "regions",
+    "cite de la culture",
+    "الجهات",
+    "مدينه الثقافه"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "musique"
+   ]
+  },
+  {
+   "fichier": "images (11).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "carmen"
+   ],
+   "dates": [
+    "2024-02-14"
+   ],
+   "lieu": [
+    "opera",
+    "اوبرا",
+    "الاوبرا"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "danse",
+    "musique"
+   ]
+  },
+  {
+   "fichier": "images (12).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "show off"
+   ],
+   "dates": [
+    "2025-06-17"
+   ],
+   "heure": "20:00",
+   "ville": [
+    "djerba",
+    "jerba",
+    "جربه"
+   ]
+  },
+  {
+   "fichier": "images (13).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "stand up",
+    "comedy",
+    "bachtarzi"
+   ],
+   "dates": [
+    "--06-06"
+   ],
+   "heure": "19:30",
+   "lieu": [
+    "t-art",
+    "t art",
+    "game art park"
+   ],
+   "ville": [
+    "gammarth",
+    "marsa",
+    "tunis",
+    "قمرت"
+   ],
+   "categorie": [
+    "theatre"
+   ],
+   "prix_min": 30,
+   "telephones": [
+    "23402276",
+    "25989630"
+   ]
+  },
+  {
+   "fichier": "images (14).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "my spectacle",
+    "comedy"
+   ],
+   "dates": [
+    "2026-06-14"
+   ],
+   "heure": "18:00",
+   "lieu": [
+    "africa"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "theatre"
+   ],
+   "telephones": [
+    "25886317",
+    "52991469"
+   ]
+  },
+  {
+   "fichier": "images (15).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "rahbani",
+    "لبنان",
+    "liban"
+   ],
+   "dates": [
+    "2026-06-17"
+   ],
+   "heure": "20:00",
+   "lieu": [
+    "opera",
+    "اوبرا",
+    "الاوبرا"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "musique"
+   ]
+  },
+  {
+   "fichier": "images (16).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "dream come true"
+   ],
+   "dates": [
+    "--07-05"
+   ],
+   "lieu": [
+    "dougga",
+    "دقه"
+   ],
+   "ville": [
+    "dougga",
+    "beja",
+    "teboursouk",
+    "دقه",
+    "باجه"
+   ],
+   "categorie": [
+    "musique",
+    "festivals"
+   ]
+  },
+  {
+   "fichier": "images (17).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "touskie",
+    "bachtarzi"
+   ],
+   "dates": [
+    "2026-07-11"
+   ],
+   "heure": "21:30",
+   "lieu": [
+    "game art park"
+   ],
+   "ville": [
+    "gammarth",
+    "marsa",
+    "tunis",
+    "قمرت"
+   ],
+   "categorie": [
+    "theatre"
+   ],
+   "prix_min": 30,
+   "telephones": [
+    "25989830"
+   ]
+  },
+  {
+   "fichier": "images (18).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "d'jal",
+    "djal",
+    "pleine conscience"
+   ],
+   "dates": [
+    "--05-17"
+   ],
+   "lieu": [
+    "radisson"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "theatre"
+   ]
+  },
+  {
+   "fichier": "images (19).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "michael jackson",
+    "jackson"
+   ],
+   "dates": [
+    "2026-10-29"
+   ],
+   "lieu": [
+    "opera",
+    "اوبرا",
+    "الاوبرا"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "musique"
+   ],
+   "note": "Affiche minuscule"
+  },
+  {
+   "fichier": "images (20).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "club elle",
+    "رحمه",
+    "rahma"
+   ],
+   "dates": [
+    "2024-06-08"
+   ],
+   "heure": "21:00",
+   "lieu": [
+    "municipal",
+    "البلدي"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "musique"
+   ],
+   "telephones": [
+    "24040412",
+    "51515555"
+   ]
+  },
+  {
+   "fichier": "images (21).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "journee internationale de la danse",
+    "danse"
+   ],
+   "dates": [
+    "--04-27"
+   ],
+   "heure": "18:00",
+   "lieu": [
+    "municipal",
+    "البلدي"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "danse",
+    "musique"
+   ]
+  },
+  {
+   "fichier": "images (22).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "fouroussiyat",
+    "فروسيات"
+   ],
+   "dates": [
+    "2022-01-09"
+   ],
+   "lieu": [
+    "zouiten"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "patrimoine",
+    "danse",
+    "theatre"
+   ]
+  },
+  {
+   "fichier": "images (23).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "tunis meets new york",
+    "new york"
+   ],
+   "dates": [
+    "2026-10-15"
+   ],
+   "heure": "20:00",
+   "lieu": [
+    "cite de la culture",
+    "jeunes createurs"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "musique"
+   ],
+   "note": "Affiche minuscule"
+  },
+  {
+   "fichier": "images (24).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "mahfel",
+    "محفل",
+    "جربي",
+    "jerbi"
+   ],
+   "dates": [
+    "--10-17"
+   ],
+   "lieu": [
+    "green golf"
+   ],
+   "ville": [
+    "hammamet",
+    "الحمامات"
+   ],
+   "categorie": [
+    "musique"
+   ],
+   "prix_min": 39,
+   "gratuit": false,
+   "telephones": [
+    "71834404",
+    "98128931",
+    "98128621"
+   ]
+  },
+  {
+   "fichier": "images (25).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "sprint'art",
+    "sprint art",
+    "sprintart"
+   ],
+   "dates": [
+    "2024-02-14"
+   ],
+   "date_fin": "2024-02-17",
+   "heure": "15:00",
+   "lieu": [
+    "institut francais"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "arts-visuels"
+   ]
+  },
+  {
+   "fichier": "images (26).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "joubran",
+    "جبران"
+   ],
+   "dates": [
+    "2026-10-24"
+   ],
+   "categorie": [
+    "musique"
+   ],
+   "note": "Affiche minuscule"
+  },
+  {
+   "fichier": "images (27).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "fin d'annee",
+    "fin d annee",
+    "methni"
+   ],
+   "dates": [
+    "--07-02"
+   ],
+   "heure": "19:00",
+   "lieu": [
+    "regions",
+    "cite de la culture",
+    "الجهات",
+    "مدينه الثقافه"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "musique"
+   ],
+   "telephones": [
+    "27399685",
+    "22141849"
+   ]
+  },
+  {
+   "fichier": "images (28).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 3,
+   "titre": [
+    "evasions theatrales",
+    "lgf",
+    "la cagnotte",
+    "papillons",
+    "un art"
+   ],
+   "dates": [
+    "2025-05-23"
+   ],
+   "heure": "18:30",
+   "lieu": [
+    "4eme art",
+    "4e art",
+    "quatrieme art",
+    "4 eme art",
+    "4ème art",
+    "الفن الرابع"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "theatre"
+   ],
+   "prix_min": 20,
+   "note": "Programme : 3 pièces le même soir"
+  },
+  {
+   "fichier": "images (29).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "nakkache"
+   ],
+   "dates": [
+    "--10-17"
+   ],
+   "categorie": [
+    "musique"
+   ],
+   "note": "Lieu absent"
+  },
+  {
+   "fichier": "images (30).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "revelation",
+    "kalai"
+   ],
+   "dates": [
+    "2026-10-29"
+   ],
+   "heure": [
+    "19:00",
+    "19:30"
+   ],
+   "lieu": [
+    "4eme art",
+    "4e art",
+    "quatrieme art",
+    "4 eme art",
+    "4ème art",
+    "الفن الرابع"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "danse",
+    "theatre"
+   ],
+   "note": "Heure peu lisible (7:00 ou 7:30 PM)"
+  },
+  {
+   "fichier": "images (31).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "au coeur des choeurs",
+    "choeurs"
+   ],
+   "dates": [
+    "2026-10-25"
+   ],
+   "heure": "18:00",
+   "lieu": [
+    "opera",
+    "اوبرا",
+    "الاوبرا"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "musique"
+   ]
+  },
+  {
+   "fichier": "images (32).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "كرتون",
+    "cartoon",
+    "الزمن الجميل"
+   ],
+   "dates": [
+    "2025-01-11"
+   ],
+   "lieu": [
+    "municipal",
+    "البلدي"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "jeune-public",
+    "festivals"
+   ]
+  },
+  {
+   "fichier": "images (33).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "aytac",
+    "dogan"
+   ],
+   "dates": [
+    "2025-12-03"
+   ],
+   "heure": "19:30",
+   "lieu": [
+    "regions",
+    "cite de la culture",
+    "الجهات",
+    "مدينه الثقافه"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "musique"
+   ]
+  },
+  {
+   "fichier": "images (34).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "il pleut",
+    "brecard"
+   ],
+   "dates": [
+    "2026-10-26"
+   ],
+   "heure": [
+    "19:00",
+    "19:30"
+   ],
+   "lieu": [
+    "4eme art",
+    "4e art",
+    "quatrieme art",
+    "4 eme art",
+    "4ème art",
+    "الفن الرابع"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "danse",
+    "theatre"
+   ],
+   "note": "Heure peu lisible (7:00 ou 7:30 PM)"
+  },
+  {
+   "fichier": "images (35).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "didon"
+   ],
+   "dates": [
+    "2026-10-17"
+   ],
+   "heure": "19:00",
+   "lieu": [
+    "regions",
+    "cite de la culture",
+    "الجهات",
+    "مدينه الثقافه"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "danse"
+   ]
+  },
+  {
+   "fichier": "images (36).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "immersion artistique",
+    "dar ya"
+   ],
+   "dates": [
+    "--03-21",
+    "--03-27"
+   ],
+   "lieu": [
+    "dar ya"
+   ],
+   "note": "Affiche minuscule"
+  },
+  {
+   "fichier": "images (37).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "theatre au sahara",
+    "المسرح في الصحراء"
+   ],
+   "dates": [
+    "2021-03-20"
+   ],
+   "date_fin": "2021-03-24",
+   "ville": [
+    "sabria",
+    "kebili",
+    "douz",
+    "الصابريه",
+    "قبلي"
+   ],
+   "categorie": [
+    "festivals",
+    "theatre"
+   ]
+  },
+  {
+   "fichier": "images (38).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "ragheb",
+    "alama",
+    "راغب"
+   ],
+   "dates": [
+    "2026-10-24"
+   ],
+   "ville": [
+    "carthage",
+    "tunis",
+    "قرطاج"
+   ],
+   "categorie": [
+    "musique"
+   ]
+  },
+  {
+   "fichier": "images (39).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "weekend",
+    "ويكاند"
+   ],
+   "dates": [
+    "2026-10-18"
+   ],
+   "heure": "17:00",
+   "lieu": [
+    "municipal",
+    "البلدي"
+   ],
+   "ville": [
+    "sousse",
+    "سوسه"
+   ],
+   "categorie": [
+    "theatre"
+   ],
+   "prix_min": 13,
+   "telephones": [
+    "99999726"
+   ]
+  },
+  {
+   "fichier": "images (40).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "schizophrenie",
+    "eddaikhane"
+   ],
+   "dates": [
+    "--06-26"
+   ],
+   "heure": "20:00",
+   "lieu": [
+    "cite des sciences"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "theatre"
+   ]
+  },
+  {
+   "fichier": "images (41).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "deux lunes"
+   ],
+   "dates": [
+    "--05-11"
+   ],
+   "heure": "19:00",
+   "lieu": [
+    "institut superieur de musique"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "musique",
+    "theatre"
+   ],
+   "gratuit": true
+  },
+  {
+   "fichier": "images (42).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 3,
+   "titre": [
+    "mozart"
+   ],
+   "dates": [
+    "2021-10-08"
+   ],
+   "heure": "20:00",
+   "lieu": [
+    "opera",
+    "اوبرا",
+    "الاوبرا"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "musique"
+   ],
+   "note": "Programme : 3 événements"
+  },
+  {
+   "fichier": "images (43).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "تعبيرات",
+    "ta3birat",
+    "expressions",
+    "ateliers"
+   ],
+   "dates": [
+    "2025-07-01"
+   ],
+   "date_fin": "2025-07-06",
+   "lieu": [
+    "opera",
+    "اوبرا",
+    "الاوبرا"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "ateliers",
+    "theatre"
+   ]
+  },
+  {
+   "fichier": "images (44).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "solak balik",
+    "voix de femmes"
+   ],
+   "categorie": [
+    "musique",
+    "festivals"
+   ],
+   "note": "Aucune date sur l'affiche"
+  },
+  {
+   "fichier": "images (45).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "cinema au sahara",
+    "festival international du cinema",
+    "السينما في الصحراء"
+   ],
+   "dates": [
+    "2024-10-30"
+   ],
+   "date_fin": "2024-11-02",
+   "lieu": [
+    "ksar ghilane",
+    "قصر غيلان"
+   ],
+   "ville": [
+    "kebili",
+    "douz",
+    "ksar ghilane",
+    "قبلي"
+   ],
+   "categorie": [
+    "cinema",
+    "festivals"
+   ]
+  },
+  {
+   "fichier": "images (46).jpg",
+   "est_evenement": true,
+   "en_tunisie": false,
+   "nb_evenements": 1,
+   "titre": [
+    "جرس",
+    "cloche"
+   ],
+   "categorie": [
+    "theatre"
+   ],
+   "note": "Festival hors Tunisie (Zarqa, Jordanie)"
+  },
+  {
+   "fichier": "images (47).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "توارخ",
+    "tawarikh",
+    "twarekh",
+    "tawarekh",
+    "karoui"
+   ],
+   "dates": [
+    "2025-10-30",
+    "2025-10-31",
+    "2025-11-01"
+   ],
+   "heure": "19:30",
+   "lieu": [
+    "theatro",
+    "teatro",
+    "التياترو"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "theatre"
+   ]
+  },
+  {
+   "fichier": "images (48).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "10 ans de mariage",
+    "mariage"
+   ],
+   "dates": [
+    "2024-12-17",
+    "2024-12-18"
+   ],
+   "heure": "19:30",
+   "lieu": [
+    "municipal",
+    "البلدي"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "theatre"
+   ]
+  },
+  {
+   "fichier": "images (49).jpg",
+   "est_evenement": true,
+   "en_tunisie": false,
+   "nb_evenements": 1,
+   "titre": [
+    "harmonies du ramadan"
+   ],
+   "dates": [
+    "--02-21"
+   ],
+   "heure": "21:00",
+   "lieu": [
+    "pavillon habib bourguiba",
+    "maison de tunisie"
+   ],
+   "categorie": [
+    "musique"
+   ],
+   "gratuit": true,
+   "note": "Maison de Tunisie à Paris"
+  },
+  {
+   "fichier": "images (50).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "jazz"
+   ],
+   "dates": [
+    "2024-04-17"
+   ],
+   "heure": "19:00",
+   "lieu": [
+    "opera",
+    "اوبرا",
+    "الاوبرا"
+   ],
+   "ville": [
+    "tunis",
+    "تونس"
+   ],
+   "categorie": [
+    "musique"
+   ],
+   "prix_min": 20
+  },
+  {
+   "fichier": "images (51).jpg",
+   "est_evenement": true,
+   "en_tunisie": true,
+   "nb_evenements": 1,
+   "titre": [
+    "cinemarena",
+    "cinema arena",
+    "سينما ارينا"
+   ],
+   "dates": [
+    "2024-08-13"
+   ],
+   "date_fin": "2024-09-22",
+   "ville": [
+    "jendouba",
+    "kef",
+    "siliana",
+    "kasserine",
+    "kairouan",
+    "gafsa"
+   ],
+   "categorie": [
+    "cinema",
+    "festivals"
+   ]
+  }
+ ]
+}

@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { EntetePage } from "@/components/admin/entete-page";
@@ -10,6 +11,15 @@ import { FormulaireEvenement } from "../formulaire";
 import { chargerOptions } from "../donnees";
 import { changerStatut, dupliquerEvenement, publierEvenement, rejeterEvenement } from "../actions";
 import { STATUTS_EVENEMENT, type Evenement } from "@/lib/types";
+
+const TEXTES_ALERTES: Record<string, string> = {
+  lieu: "Lieu non reconnu dans la base : choisissez-le dans la liste ou créez-le.",
+  date: "Aucune date trouvée sur l'affiche : ajoutez-la.",
+  heure: "Heure absente de l'affiche : 20:00 a été mis par défaut.",
+  annee: "Année absente de l'affiche : l'IA a déduit l'année, vérifiez-la.",
+  hors_tunisie: "L'événement semble avoir lieu hors de Tunisie.",
+  confiance: "Lecture peu sûre (affiche difficile) : vérifiez tout attentivement.",
+};
 
 export default function FicheEvenement({ params, searchParams }: PageProps<"/admin/evenements/[id]">) {
   return (
@@ -40,6 +50,8 @@ async function Contenu({
   if (!evenement) notFound();
 
   const s = STATUTS_EVENEMENT[evenement.statut];
+  const alertes = typeof sp.alertes === "string" ? sp.alertes.split(",") : [];
+  const doublon = typeof sp.doublon === "string" ? sp.doublon : null;
   const message =
     sp.publie ? { ok: true, texte: "Événement publié." }
     : sp.duplique ? { ok: true, texte: "Copie créée (sans les dates) : ajoutez les nouvelles dates puis enregistrez." }
@@ -59,6 +71,26 @@ async function Contenu({
         <p className={`mb-4 max-w-4xl rounded-lg border px-4 py-3 text-sm ${message.ok ? "border-success/30 bg-success/10 text-success" : "border-destructive/30 bg-destructive/10 text-destructive"}`}>
           {message.texte}
         </p>
+      )}
+
+      {typeof sp.import === "string" && (
+        <div className="mb-4 max-w-4xl rounded-lg border border-primary/30 bg-accent px-4 py-3 text-sm text-accent-foreground">
+          <p className="font-medium">
+            Fiche pré-remplie par l&apos;IA ({sp.import}{typeof sp.confiance === "string" ? `, confiance ${sp.confiance} %` : ""}).
+            Vérifiez chaque champ avant de publier.
+          </p>
+          {alertes.length > 0 && (
+            <ul className="mt-2 list-disc ps-5">
+              {alertes.map((a) => <li key={a}>{TEXTES_ALERTES[a] ?? a}</li>)}
+            </ul>
+          )}
+          {doublon && (
+            <p className="mt-2 font-medium text-destructive">
+              Doublon possible :{" "}
+              <Link href={`/admin/evenements/${doublon}`} className="underline">voir l&apos;événement existant</Link>.
+            </p>
+          )}
+        </div>
       )}
 
       {/* Barre d'actions de modération */}

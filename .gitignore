@@ -12,3 +12,6 @@ supabase/.branches/
 supabase/.temp/
 apps/mobile/build/
 apps/mobile/.dart_tool/
+
+# Banc d essai IA
+scripts/benchmark-ia/resultats/
