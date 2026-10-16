@@ -32,7 +32,7 @@ select public.definir_artistes('20000000-0000-0000-0000-0000000000a1', array[pub
 select is((select count(*)::int from public.evenement_artiste where evenement_id = '20000000-0000-0000-0000-0000000000a1'),
           1, 'la liste est remplacée');
 
-select is((select count(*)::int from public.rechercher_artistes('brahem')), 1, 'recherche approximative');
+select is((select nom from public.rechercher_artistes('brahem') limit 1), 'Anouar Brahem', 'recherche approximative');
 
 select * from finish();
 rollback;

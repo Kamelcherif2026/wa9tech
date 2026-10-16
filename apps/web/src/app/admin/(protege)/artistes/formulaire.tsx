@@ -6,8 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
+import { NativeSelect } from "@/components/ui/native-select";
 
-export function FormulaireArtiste({ artiste }: { artiste: { id: string; nom: string; nom_ar: string | null; lien: string | null } }) {
+export function FormulaireArtiste({
+  artiste,
+  disciplines,
+}: {
+  artiste: { id: string; nom: string; nom_ar: string | null; lien: string | null; discipline_id: number | null };
+  disciplines: { id: number; libelle_fr: string }[];
+}) {
   const [etat, action, enCours] = useActionState(enregistrerArtiste, {});
   const c = etat.champs;
   return (
@@ -23,7 +30,16 @@ export function FormulaireArtiste({ artiste }: { artiste: { id: string; nom: str
             <Label htmlFor="nom_ar">Nom en arabe</Label>
             <Input id="nom_ar" name="nom_ar" dir="rtl" defaultValue={c?.nom_ar ?? artiste.nom_ar ?? ""} />
           </div>
-          <div className="space-y-2 sm:col-span-2">
+          <div className="space-y-2">
+            <Label htmlFor="discipline_id">Discipline principale</Label>
+            <NativeSelect id="discipline_id" name="discipline_id" defaultValue={c?.discipline_id ?? (artiste.discipline_id ? String(artiste.discipline_id) : "")}>
+              <option value="">— Non précisée —</option>
+              {disciplines.map((d) => (
+                <option key={d.id} value={d.id}>{d.libelle_fr}</option>
+              ))}
+            </NativeSelect>
+          </div>
+          <div className="space-y-2">
             <Label htmlFor="lien">Lien (page officielle, Facebook, Instagram…)</Label>
             <Input id="lien" name="lien" type="url" placeholder="https://" defaultValue={c?.lien ?? artiste.lien ?? ""} />
           </div>

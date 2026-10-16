@@ -42,7 +42,7 @@ async function Liste({ searchParams }: { searchParams: PageProps<"/admin/artiste
       evenement_artiste: [{ count: a.nb_evenements }],
     }));
   } else {
-    const { data } = await supabase.from("artiste").select("id, nom, nom_ar, evenement_artiste(count)").order("nom").limit(300).returns<Ligne[]>();
+    const { data } = await supabase.from("artiste").select("id, nom, nom_ar, evenement_artiste(count)").order("nom").limit(1000).returns<Ligne[]>();
     lignes = data ?? [];
   }
 

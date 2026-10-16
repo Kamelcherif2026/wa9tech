@@ -210,6 +210,7 @@ export interface ArtistePublic {
   nom: string;
   nom_ar: string | null;
   lien: string | null;
+  discipline_id: number | null;
 }
 
 /** Page artiste : fiche + événements publiés à venir. */
@@ -218,7 +219,7 @@ export async function artistePublic(slug: string): Promise<{ artiste: ArtistePub
   cacheLife("minutes");
   cacheTag(TAG, "artistes");
   const sb = clientPublic();
-  const { data: artiste } = await sb.from("artiste").select("id, slug, nom, nom_ar, lien").eq("slug", slug).maybeSingle<ArtistePublic>();
+  const { data: artiste } = await sb.from("artiste").select("id, slug, nom, nom_ar, lien, discipline_id").eq("slug", slug).maybeSingle<ArtistePublic>();
   if (!artiste) return null;
   const { data: evts } = await sb
     .from("evenement")

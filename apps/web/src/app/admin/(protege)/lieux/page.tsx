@@ -48,7 +48,7 @@ async function ListeLieux({ searchParams }: { searchParams: PageProps<"/admin/li
     .from("lieu")
     .select("id, nom, type, actif, lat, ville:ville_id(nom_fr)")
     .order("nom")
-    .limit(300);
+    .limit(1000);
   if (q) requete = requete.ilike("nom", `%${q}%`);
   if (ville) requete = requete.eq("ville_id", Number(ville));
 

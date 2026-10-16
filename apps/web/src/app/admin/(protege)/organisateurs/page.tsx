@@ -36,7 +36,7 @@ async function Liste({ searchParams }: { searchParams: PageProps<"/admin/organis
     .from("organisateur")
     .select("id, nom, telephone, email, lien")
     .order("nom")
-    .limit(300);
+    .limit(1000);
   if (q) requete = requete.ilike("nom", `%${q}%`);
   const { data, error } = await requete.returns<Organisateur[]>();
 

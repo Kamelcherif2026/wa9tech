@@ -162,8 +162,13 @@ export function FormulaireEvenement({ evenement: e, categories, lieux, organisat
             <>
               <NativeSelect name="lieu_id" defaultValue={c?.lieu_id ?? e?.lieu_id ?? ""}>
                 <option value="">Choisir un lieu…</option>
-                {lieux.map((l) => (
-                  <option key={l.id} value={l.id}>{l.nom} — {l.ville}</option>
+                {/* Lieux regroupés par ville (plusieurs centaines de lieux) */}
+                {[...new Set(lieux.map((l) => l.ville))].sort((a, b) => a.localeCompare(b, "fr")).map((ville) => (
+                  <optgroup key={ville} label={ville}>
+                    {lieux.filter((l) => l.ville === ville).map((l) => (
+                      <option key={l.id} value={l.id}>{l.nom}</option>
+                    ))}
+                  </optgroup>
                 ))}
               </NativeSelect>
               <p className="text-xs text-muted-foreground">

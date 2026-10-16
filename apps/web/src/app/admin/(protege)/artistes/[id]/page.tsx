@@ -22,7 +22,10 @@ export default function ModifierArtiste({ params, searchParams }: PageProps<"/ad
 async function Contenu({ params, searchParams }: { params: PageProps<"/admin/artistes/[id]">["params"]; searchParams: PageProps<"/admin/artistes/[id]">["searchParams"] }) {
   const [{ id }, sp] = await Promise.all([params, searchParams]);
   const supabase = await createClient();
-  const { data: artiste } = await supabase.from("artiste").select("id, slug, nom, nom_ar, lien").eq("id", id).maybeSingle();
+  const [{ data: artiste }, { data: disciplines }] = await Promise.all([
+    supabase.from("artiste").select("id, slug, nom, nom_ar, lien, discipline_id").eq("id", id).maybeSingle(),
+    supabase.from("categorie").select("id, libelle_fr").is("parent_id", null).order("ordre"),
+  ]);
   if (!artiste) notFound();
 
   const [{ data: liens }, { data: proches }] = await Promise.all([
@@ -60,7 +63,7 @@ async function Contenu({ params, searchParams }: { params: PageProps<"/admin/art
       )}
 
       <div className="grid max-w-2xl gap-6">
-        <FormulaireArtiste artiste={artiste} />
+        <FormulaireArtiste artiste={artiste} disciplines={disciplines ?? []} />
 
         <Card>
           <CardHeader><CardTitle>Événements ({liens?.length ?? 0})</CardTitle></CardHeader>

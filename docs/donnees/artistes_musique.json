@@ -1,0 +1,1738 @@
+[
+  {
+    "nom": "Lotfi Bouchnak",
+    "nom_ar": "لطفي بوشناق",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D9%84%D8%B7%D9%81%D9%8A_%D8%A8%D9%88%D8%B4%D9%86%D8%A7%D9%82",
+    "source": "https://ar.wikipedia.org/wiki/%D9%84%D8%B7%D9%81%D9%8A_%D8%A8%D9%88%D8%B4%D9%86%D8%A7%D9%82"
+  },
+  {
+    "nom": "Saber Rebaï",
+    "nom_ar": "صابر الرباعي",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D8%B5%D8%A7%D8%A8%D8%B1_%D8%A7%D9%84%D8%B1%D8%A8%D8%A7%D8%B9%D9%8A",
+    "source": "https://ar.wikipedia.org/wiki/%D8%B5%D8%A7%D8%A8%D8%B1_%D8%A7%D9%84%D8%B1%D8%A8%D8%A7%D8%B9%D9%8A"
+  },
+  {
+    "nom": "Latifa Arfaoui",
+    "nom_ar": "لطيفة العرفاوي",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D9%84%D8%B7%D9%8A%D9%81%D8%A9_(%D9%85%D8%BA%D9%86%D9%8A%D8%A9)",
+    "source": "https://www.tuniscope.com/ar/article/409413/arabe/culture-arabe/lrm-festival-international-de-carthage-200013"
+  },
+  {
+    "nom": "Sonia Mbarek",
+    "nom_ar": "سنية مبارك",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D8%B3%D9%86%D9%8A%D8%A9_%D9%85%D8%A8%D8%A7%D8%B1%D9%83",
+    "source": "https://ar.wikipedia.org/wiki/%D8%B3%D9%86%D9%8A%D8%A9_%D9%85%D8%A8%D8%A7%D8%B1%D9%83"
+  },
+  {
+    "nom": "Dorsaf Hamdani",
+    "nom_ar": "درصاف الحمداني",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D8%AF%D8%B1%D8%B5%D8%A7%D9%81_%D8%A7%D9%84%D8%AD%D9%85%D8%AF%D8%A7%D9%86%D9%8A",
+    "source": "https://ar.wikipedia.org/wiki/%D8%AF%D8%B1%D8%B5%D8%A7%D9%81_%D8%A7%D9%84%D8%AD%D9%85%D8%AF%D8%A7%D9%86%D9%8A"
+  },
+  {
+    "nom": "Nabiha Karaouli",
+    "nom_ar": "نبيهة كراولي",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D9%86%D8%A8%D9%8A%D9%87%D8%A9_%D9%83%D8%B1%D8%A7%D9%88%D9%84%D9%8A",
+    "source": "https://ar.wikipedia.org/wiki/%D9%86%D8%A8%D9%8A%D9%87%D8%A9_%D9%83%D8%B1%D8%A7%D9%88%D9%84%D9%8A"
+  },
+  {
+    "nom": "Amina Fakhet",
+    "nom_ar": "أمينة فاخت",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D8%A3%D9%85%D9%8A%D9%86%D8%A9_%D9%81%D8%A7%D8%AE%D8%AA",
+    "source": "https://ar.wikipedia.org/wiki/%D8%A3%D9%85%D9%8A%D9%86%D8%A9_%D9%81%D8%A7%D8%AE%D8%AA"
+  },
+  {
+    "nom": "Zied Gharsa",
+    "nom_ar": "زياد غرسة",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D8%B2%D9%8A%D8%A7%D8%AF_%D8%BA%D8%B1%D8%B3%D8%A9",
+    "source": "https://ar.wikipedia.org/wiki/%D8%B2%D9%8A%D8%A7%D8%AF_%D8%BA%D8%B1%D8%B3%D8%A9"
+  },
+  {
+    "nom": "Mounir Troudi",
+    "nom_ar": "منير الطرودي",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D9%85%D9%86%D9%8A%D8%B1_%D8%A7%D9%84%D8%B7%D8%B1%D9%88%D8%AF%D9%8A",
+    "source": "https://ar.wikipedia.org/wiki/%D9%85%D9%86%D9%8A%D8%B1_%D8%A7%D9%84%D8%B7%D8%B1%D9%88%D8%AF%D9%8A"
+  },
+  {
+    "nom": "Hedi Habbouba",
+    "nom_ar": "الهادي حبوبة",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%87%D8%A7%D8%AF%D9%8A_%D8%AD%D8%A8%D9%88%D8%A8%D8%A9",
+    "source": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%87%D8%A7%D8%AF%D9%8A_%D8%AD%D8%A8%D9%88%D8%A8%D8%A9"
+  },
+  {
+    "nom": "Sofia Sadok",
+    "nom_ar": "صوفية صادق",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D8%B5%D9%88%D9%81%D9%8A%D8%A9_%D8%B5%D8%A7%D8%AF%D9%82",
+    "source": "https://ar.wikipedia.org/wiki/%D8%B5%D9%88%D9%81%D9%8A%D8%A9_%D8%B5%D8%A7%D8%AF%D9%82"
+  },
+  {
+    "nom": "Najet Attia",
+    "nom_ar": "نجاة عطية",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D9%86%D8%AC%D8%A7%D8%A9_%D8%B9%D8%B7%D9%8A%D8%A9",
+    "source": "https://ar.wikipedia.org/wiki/%D9%86%D8%AC%D8%A7%D8%A9_%D8%B9%D8%B7%D9%8A%D8%A9"
+  },
+  {
+    "nom": "Nawel Ghachem",
+    "nom_ar": "نوال غشام",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D9%86%D9%88%D8%A7%D9%84_%D8%BA%D8%B4%D8%A7%D9%85",
+    "source": "https://ar.wikipedia.org/wiki/%D9%86%D9%88%D8%A7%D9%84_%D8%BA%D8%B4%D8%A7%D9%85"
+  },
+  {
+    "nom": "Manel Amara",
+    "nom_ar": "منال عمارة",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D9%85%D9%86%D8%A7%D9%84_%D8%B9%D9%85%D8%A7%D8%B1%D8%A9",
+    "source": "https://ar.wikipedia.org/wiki/%D9%85%D9%86%D8%A7%D9%84_%D8%B9%D9%85%D8%A7%D8%B1%D8%A9"
+  },
+  {
+    "nom": "Chokri Bouzayen",
+    "nom_ar": "شكري بوزيان",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D8%B4%D9%83%D8%B1%D9%8A_%D8%A8%D9%88%D8%B2%D9%8A%D8%A7%D9%86",
+    "source": "https://ar.wikipedia.org/wiki/%D8%B4%D9%83%D8%B1%D9%8A_%D8%A8%D9%88%D8%B2%D9%8A%D8%A7%D9%86"
+  },
+  {
+    "nom": "Sabri Mosbah",
+    "nom_ar": "صبري مصباح",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D8%B5%D8%A8%D8%B1%D9%8A_%D9%85%D8%B5%D8%A8%D8%A7%D8%AD",
+    "source": "https://ar.wikipedia.org/wiki/%D8%B5%D8%A8%D8%B1%D9%8A_%D9%85%D8%B5%D8%A8%D8%A7%D8%AD"
+  },
+  {
+    "nom": "Mohamed Jebali",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": null
+  },
+  {
+    "nom": "Mohamed Ali Kammoun",
+    "nom_ar": "محمد علي كمون",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://kapitalis.com/anbaa-tounes/?p=6110505"
+  },
+  {
+    "nom": "Olfa Ben Romdhane",
+    "nom_ar": "ألفة بن رمضان",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.mosaiquefm.net/mobile/ar/actualites/موسيقى-تونس-العالم/9/35"
+  },
+  {
+    "nom": "Samir Loussif",
+    "nom_ar": "سمير لوصيف",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.mosaiquefm.net/mobile/ar/actualites/موسيقى-تونس-العالم/9/35"
+  },
+  {
+    "nom": "Walid Tounsi",
+    "nom_ar": "وليد التونسي",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.mosaiquefm.net/mobile/ar/actualites/موسيقى-تونس-العالم/9/35"
+  },
+  {
+    "nom": "Yosra Mahnouch",
+    "nom_ar": "يسرا محنوش",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.mosaiquefm.net/mobile/ar/actualites/موسيقى-تونس-العالم/9/35"
+  },
+  {
+    "nom": "Zohra Lajnef",
+    "nom_ar": "زهرة لجنف",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.mosaiquefm.net/mobile/ar/actualites/موسيقى-تونس-العالم/9/29"
+  },
+  {
+    "nom": "Ryma Nakkache",
+    "nom_ar": "ريما النقاش",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.mosaiquefm.net/mobile/ar/actualites/موسيقى-تونس-العالم/9/29"
+  },
+  {
+    "nom": "Mortadha Ftiti",
+    "nom_ar": "مرتضى الفتيتي",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.mosaiquefm.net/mobile/ar/actualites/موسيقى-تونس-العالم/9/21"
+  },
+  {
+    "nom": "Chahrazed Helal",
+    "nom_ar": "شهرزاد هلال",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.mosaiquefm.net/mobile/ar/actualites/موسيقى-تونس-العالم/9/21"
+  },
+  {
+    "nom": "Sirine Miled",
+    "nom_ar": "سيرين ميلاد",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.mosaiquefm.net/mobile/ar/actualites/موسيقى-تونس-العالم/9/21"
+  },
+  {
+    "nom": "Mehdi Ayachi",
+    "nom_ar": "مهدي العياشي",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.mosaiquefm.net/mobile/ar/actualites/موسيقى-تونس-العالم/9/21"
+  },
+  {
+    "nom": "Oumaima Taleb",
+    "nom_ar": "أميمة طالب",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.mosaiquefm.net/mobile/ar/actualites/موسيقى-تونس-العالم/9/21"
+  },
+  {
+    "nom": "Aïda Niati",
+    "nom_ar": "عائدة النياطي",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.mosaiquefm.net/mobile/ar/actualites/موسيقى-تونس-العالم/9/21"
+  },
+  {
+    "nom": "Nour Kamar",
+    "nom_ar": "نور قمر",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.mosaiquefm.net/mobile/ar/actualites/موسيقى-تونس-العالم/9/21"
+  },
+  {
+    "nom": "Fawzi Ben Gamra",
+    "nom_ar": "فوزي بن ڤمرة",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Ichraq Qamar",
+    "nom_ar": "إشراق قمر",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Najwa Amor",
+    "nom_ar": "نجوى عمر",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Hamza Fadhlaoui",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://fr.allafrica.com/stories/202507130112.html"
+  },
+  {
+    "nom": "Chokri Omar Hanachi",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://fr.allafrica.com/stories/202507130112.html"
+  },
+  {
+    "nom": "Karim Chouaïeb",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://fr.allafrica.com/stories/202507130112.html"
+  },
+  {
+    "nom": "Moncef Abla",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://fr.allafrica.com/stories/202507130112.html"
+  },
+  {
+    "nom": "Sondes Taga",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://fr.allafrica.com/stories/202507130112.html"
+  },
+  {
+    "nom": "Mohsen Raies",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://fr.allafrica.com/stories/202507130112.html"
+  },
+  {
+    "nom": "Karim Thlibi",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.lapresse.tn/2025/07/08/carthage-2025-decouvrez-le-programme-complet-de-la-59e-edition/"
+  },
+  {
+    "nom": "Najla Ettounsia",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Raouf Maher",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Asma Othmani",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://en.wikipedia.org/wiki/Music_of_Tunisia"
+  },
+  {
+    "nom": "Ghada Maatouk",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://en.wikipedia.org/wiki/Music_of_Tunisia"
+  },
+  {
+    "nom": "Imen Mehrzi",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://en.wikipedia.org/wiki/Music_of_Tunisia"
+  },
+  {
+    "nom": "Nour Chiba",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://en.wikipedia.org/wiki/Music_of_Tunisia"
+  },
+  {
+    "nom": "Asma Ben Ahmed",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Walid Salhi",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Aymen Ghzel",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Meriem Nourddine",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Imen Cherif",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Shayma Helali",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Amani Swissi",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Chirine Lajmi",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Emna Fakher",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Nadia Khaless",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Afef Salem",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Rayen Youssef",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Amal Fathi",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Houssem Ben Romdhane",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Nermine Sfar",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Wassila",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Zahra Fares",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Youssef Mounes",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Mehdi Mouelhi",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Lamia Jamel",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Marwa Kiraa",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Chamseddine Bacha",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Soudeni",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Laazara",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Aymen Lessigue",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Marwa Ben Sghaier",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Houssein Ettounsi",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Mahdi Baccouch",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Mondher Ben Ammar",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Sami Dorbez",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Slayder",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Mustapha Dellagi",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Chedi Amir",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Selim Arjoun",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Dorra Fourti",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Badria Essaied",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Baha Kefi",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Wiem Yahia",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Houcine Ameur El Efrit",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Momo Zarzis",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Nassim Raissi",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Cheb Bachir",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Cheb Nadir22",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Soumaya JP",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Hamouda",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Lamia Bedioui",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://worldmusiccentral.org/?p=52498"
+  },
+  {
+    "nom": "Salah Farzit",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://en.wikipedia.org/wiki/Music_of_Tunisia"
+  },
+  {
+    "nom": "Hedi Donia",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://en.wikipedia.org/wiki/Music_of_Tunisia"
+  },
+  {
+    "nom": "Zina Gasriniya",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://en.wikipedia.org/wiki/Music_of_Tunisia"
+  },
+  {
+    "nom": "Fatma Bousseha",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://en.wikipedia.org/wiki/Music_of_Tunisia"
+  },
+  {
+    "nom": "Mohamed Garfi",
+    "nom_ar": "محمد القرفي",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.tuniscope.com/ar/article/409413/arabe/culture-arabe/lrm-festival-international-de-carthage-200013"
+  },
+  {
+    "nom": "Youssef Belhani",
+    "nom_ar": "يوسف بالهاني",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.tuniscope.com/ar/article/409413/arabe/culture-arabe/lrm-festival-international-de-carthage-200013"
+  },
+  {
+    "nom": "Orchestre national tunisien",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://fr.allafrica.com/stories/202507130112.html"
+  },
+  {
+    "nom": "Troupe nationale des arts populaires",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://fr.allafrica.com/stories/202507130112.html"
+  },
+  {
+    "nom": "Club Abid de musique",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://fr.allafrica.com/stories/202603090144.html"
+  },
+  {
+    "nom": "Riadh Fehri",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://fr.allafrica.com/stories/202507130112.html"
+  },
+  {
+    "nom": "Anouar Brahem",
+    "nom_ar": "أنور ابراهم",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D8%A3%D9%86%D9%88%D8%B1_%D8%A7%D8%A8%D8%B1%D8%A7%D9%87%D9%85",
+    "source": "https://ar.wikipedia.org/wiki/%D8%A3%D9%86%D9%88%D8%B1_%D8%A7%D8%A8%D8%B1%D8%A7%D9%87%D9%85"
+  },
+  {
+    "nom": "Dhafer Youssef",
+    "nom_ar": "ظافر يوسف",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D8%B8%D8%A7%D9%81%D8%B1_%D9%8A%D9%88%D8%B3%D9%81",
+    "source": "https://ar.wikipedia.org/wiki/%D8%B8%D8%A7%D9%81%D8%B1_%D9%8A%D9%88%D8%B3%D9%81"
+  },
+  {
+    "nom": "Jasser Haj Youssef",
+    "nom_ar": "جاسر حاج يوسف",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D8%AC%D8%A7%D8%B3%D8%B1_%D8%AD%D8%A7%D8%AC_%D9%8A%D9%88%D8%B3%D9%81",
+    "source": "https://ar.wikipedia.org/wiki/%D8%AC%D8%A7%D8%B3%D8%B1_%D8%AD%D8%A7%D8%AC_%D9%8A%D9%88%D8%B3%D9%81"
+  },
+  {
+    "nom": "Zied Zouari",
+    "nom_ar": "زياد الزواري",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D8%B2%D9%8A%D8%A7%D8%AF_%D8%A7%D9%84%D8%B2%D9%88%D8%A7%D8%B1%D9%8A",
+    "source": "https://ar.wikipedia.org/wiki/%D8%B2%D9%8A%D8%A7%D8%AF_%D8%A7%D9%84%D8%B2%D9%88%D8%A7%D8%B1%D9%8A"
+  },
+  {
+    "nom": "Ghalia Benali",
+    "nom_ar": "غالية بنعلي",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D8%BA%D8%A7%D9%84%D9%8A%D8%A9_%D8%A8%D9%86%D8%B9%D9%84%D9%8A",
+    "source": "https://ar.wikipedia.org/wiki/%D8%BA%D8%A7%D9%84%D9%8A%D8%A9_%D8%A8%D9%86%D8%B9%D9%84%D9%8A"
+  },
+  {
+    "nom": "Amine & Hamza M'Raihi",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://worldmusiccentral.org/?p=52498"
+  },
+  {
+    "nom": "Belhassen Mihoub",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://fr.allafrica.com/stories/202501230541.html"
+  },
+  {
+    "nom": "Amine Bouhafa",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Yacine Boularès",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": null
+  },
+  {
+    "nom": "Kamel Cherif",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": null
+  },
+  {
+    "nom": "Bargou 08",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": null
+  },
+  {
+    "nom": "Emel Mathlouthi",
+    "nom_ar": "آمال المثلوثي",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D8%A2%D9%85%D8%A7%D9%84_%D8%A7%D9%84%D9%85%D8%AB%D9%84%D9%88%D8%AB%D9%8A",
+    "source": "https://ar.wikipedia.org/wiki/%D8%A2%D9%85%D8%A7%D9%84_%D8%A7%D9%84%D9%85%D8%AB%D9%84%D9%88%D8%AB%D9%8A"
+  },
+  {
+    "nom": "Myrath",
+    "nom_ar": "ميراث",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://ar.wikipedia.org/wiki/%D9%85%D9%88%D8%B3%D9%8A%D9%82%D9%89_%D8%AA%D9%88%D9%86%D8%B3%D9%8A%D8%A9"
+  },
+  {
+    "nom": "Ÿuma",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Bendir Man",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Gultrah Sound System",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Badiaa Bouhrizi",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": null
+  },
+  {
+    "nom": "Nawel Ben Kraïem",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Nader Guirat",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Znous",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Persona",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://en.wikipedia.org/wiki/Music_of_Tunisia"
+  },
+  {
+    "nom": "Checkpoint 303",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://en.wikipedia.org/wiki/Music_of_Tunisia"
+  },
+  {
+    "nom": "Artmasta",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Mr-SKiLLS",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "African Winners 1995",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Noor Arjoun",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Riadh Baccar",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Dhalma",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "AWA",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Balti",
+    "nom_ar": "بلطي",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D8%A8%D9%84%D8%B7%D9%8A_(%D9%85%D8%BA%D9%86%D9%8A)",
+    "source": "https://ar.wikipedia.org/wiki/%D8%A8%D9%84%D8%B7%D9%8A_(%D9%85%D8%BA%D9%86%D9%8A)"
+  },
+  {
+    "nom": "Klay BBJ",
+    "nom_ar": "كلاي ببج",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D9%83%D9%84%D8%A7%D9%8A_%D8%A8%D8%A8%D8%AC_(%D9%85%D8%BA%D9%86%D9%8A)",
+    "source": "https://ar.wikipedia.org/wiki/%D9%83%D9%84%D8%A7%D9%8A_%D8%A8%D8%A8%D8%AC_(%D9%85%D8%BA%D9%86%D9%8A)"
+  },
+  {
+    "nom": "Kafon",
+    "nom_ar": "كافون",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D9%83%D8%A7%D9%81%D9%88%D9%86",
+    "source": "https://ar.wikipedia.org/wiki/%D9%83%D8%A7%D9%81%D9%88%D9%86"
+  },
+  {
+    "nom": "El General",
+    "nom_ar": "الجنرال",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D8%B1%D9%8A%D8%B3_%D9%84%D8%A8%D9%84%D8%A7%D8%AF",
+    "source": "https://ar.wikipedia.org/wiki/%D8%B1%D9%8A%D8%B3_%D9%84%D8%A8%D9%84%D8%A7%D8%AF"
+  },
+  {
+    "nom": "Akram Mag",
+    "nom_ar": "أكرم ماغ",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D8%A3%D9%83%D8%B1%D9%85_%D9%85%D8%A7%D8%BA",
+    "source": "https://ar.wikipedia.org/wiki/%D8%A3%D9%83%D8%B1%D9%85_%D9%85%D8%A7%D8%BA"
+  },
+  {
+    "nom": "Mohamed Amine Hamzaoui",
+    "nom_ar": "محمد أمين حمزاوي",
+    "discipline": "musique",
+    "lien": "https://ar.wikipedia.org/wiki/%D9%85%D8%AD%D9%85%D8%AF_%D8%A3%D9%85%D9%8A%D9%86_%D8%AD%D9%85%D8%B2%D8%A7%D9%88%D9%8A",
+    "source": "https://ar.wikipedia.org/wiki/%D9%85%D8%AD%D9%85%D8%AF_%D8%A3%D9%85%D9%8A%D9%86_%D8%AD%D9%85%D8%B2%D8%A7%D9%88%D9%8A"
+  },
+  {
+    "nom": "Sanfara",
+    "nom_ar": "سنفارا",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.mosaiquefm.net/mobile/ar/actualites/موسيقى-تونس-العالم/9/29"
+  },
+  {
+    "nom": "Gati",
+    "nom_ar": "ڤاتي",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.mosaiquefm.net/mobile/ar/actualites/موسيقى-تونس-العالم/9/35"
+  },
+  {
+    "nom": "Yousfi",
+    "nom_ar": "يوسفي",
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.mosaiquefm.net/mobile/ar/actualites/موسيقى-تونس-العالم/9/21"
+  },
+  {
+    "nom": "FBK (Faten Ben Khaled)",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://fr.allafrica.com/stories/202501230541.html"
+  },
+  {
+    "nom": "Samara",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "A.L.A",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Nordo",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Kaso",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Young Rz",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "JenJoon",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Master Sina",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "G.G.A",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Junior Hassen",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "El Castro",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Stou",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Redstar Radi",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "RedStar",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "EMP1RE",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Ktybon",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "D-Boy",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Mouka",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Tati G13",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Khaled L'artiste",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Anis Dziri",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "4LFA",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "K2Rhym",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "4BDOU",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Omar Laya",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Scara Ko",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Tchiggy",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Si Lemhaf",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Esserpent",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "IN-S",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "El Katiba",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Tokamak",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "ZDEFF",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "XIIVI",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Psyco M",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Phénix BBJ",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Joujma",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Dhaf",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "SC Papi",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Aveyro Ave",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Linko Benz",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "NumbXiller",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Naqqa",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Ta9chira",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "NVST",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "O.G Gang",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Cosmic",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Vipa",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "2Two",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Samach",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Weld El 15",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Zomra",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Blvck 7050",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "HWB",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Seif Omrane",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Hanta",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Falleg Man",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Akaross",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Dr. Guech",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Shark",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Nader GH",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Mizo-H",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Guito'n",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Dabl De",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Brotherhood Family",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Shvdy",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Haroon",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Sami Lmc",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "DvrkBoy",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "28 Beats",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Ruka",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "BadBoy 7low",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Trippy Boyz",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Mahdi Machfar",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "SKI7",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Piratemc",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Bilel Rj",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Dekka",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "TBRL",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Khorma",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "GAL3Y",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Hedi L'artiste",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://en.wikipedia.org/wiki/Music_of_Tunisia"
+  },
+  {
+    "nom": "Raf",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://en.wikipedia.org/wiki/Music_of_Tunisia"
+  },
+  {
+    "nom": "Amriano",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://en.wikipedia.org/wiki/Music_of_Tunisia"
+  },
+  {
+    "nom": "L'arabe",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://en.wikipedia.org/wiki/Music_of_Tunisia"
+  },
+  {
+    "nom": "Arslén",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://en.wikipedia.org/wiki/Music_of_Tunisia"
+  },
+  {
+    "nom": "Ferr",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://en.wikipedia.org/wiki/Music_of_Tunisia"
+  },
+  {
+    "nom": "Deena Abdelwahed",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Azu Tiwaline",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Wail Bouri",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Eya Daghnouj",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Khaled Bougatfa",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Dekra",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Chedly",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Oussema Saffar",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Jawora",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "HearThuG",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Samy Chelly",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Mehdi Maghraoui",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "DJ Danjer",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Rami Dahmane",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Dj Jok3r",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  },
+  {
+    "nom": "Skander Besbes",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": null
+  },
+  {
+    "nom": "Amine K",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": null
+  },
+  {
+    "nom": "Ghoula",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": null
+  },
+  {
+    "nom": "Hassen Doss",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://en.wikipedia.org/wiki/Music_of_Tunisia"
+  },
+  {
+    "nom": "Yosra Zekri",
+    "nom_ar": null,
+    "discipline": "musique",
+    "lien": null,
+    "source": "https://www.viberate.com/music-charts/top-artists-from-tunisia/"
+  }
+]

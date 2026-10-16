@@ -30,6 +30,7 @@ const schemaArtiste = z.object({
   nom: z.string().trim().min(2, { error: "Le nom est obligatoire." }).max(120),
   nom_ar: z.string().trim().max(120).optional(),
   lien: z.string().trim().url({ error: "Le lien doit commencer par https://" }).optional().or(z.literal("")),
+  discipline_id: z.string().optional(),
 });
 
 export async function enregistrerArtiste(_etat: EtatFormulaire, formData: FormData): Promise<EtatFormulaire> {
@@ -37,12 +38,12 @@ export async function enregistrerArtiste(_etat: EtatFormulaire, formData: FormDa
   const brut = Object.fromEntries(Array.from(formData.entries()).map(([k, v]) => [k, String(v)]));
   const r = schemaArtiste.safeParse(brut);
   if (!r.success) return { erreur: r.error.issues[0]?.message, champs: brut };
-  const { id, nom, nom_ar, lien } = r.data;
+  const { id, nom, nom_ar, lien, discipline_id } = r.data;
 
   const supabase = await createClient();
   const { error } = await supabase
     .from("artiste")
-    .update({ nom, nom_ar: nom_ar || null, lien: lien || null })
+    .update({ nom, nom_ar: nom_ar || null, lien: lien || null, discipline_id: discipline_id ? Number(discipline_id) : null })
     .eq("id", id);
   if (error) return { erreur: `Enregistrement impossible : ${error.message}`, champs: brut };
 

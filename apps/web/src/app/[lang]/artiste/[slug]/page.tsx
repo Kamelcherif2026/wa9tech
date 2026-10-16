@@ -44,7 +44,8 @@ async function Contenu({ params }: { params: PageProps<"/[lang]/artiste/[slug]">
     const p = parente(categories, c.categorie_id);
     if (p) frequences.set(p.id, (frequences.get(p.id) ?? 0) + 1);
   }
-  const principale = [...frequences.entries()].sort((a, b) => b[1] - a[1])[0]?.[0];
+  // À défaut d'événements à venir : la discipline renseignée sur la fiche de l'artiste
+  const principale = [...frequences.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? artiste.discipline_id ?? undefined;
   const discipline = categories.find((c) => c.id === principale);
   const autreNom = l === "ar" ? (artiste.nom_ar && artiste.nom !== artiste.nom_ar ? artiste.nom : null) : (artiste.nom_ar !== artiste.nom ? artiste.nom_ar : null);
 

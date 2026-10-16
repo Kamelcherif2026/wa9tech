@@ -7,7 +7,7 @@ import { createClient as creer } from "@supabase/supabase-js";
  */
 export function clientAdmin() {
   const cle = process.env.SUPABASE_SECRET_KEY;
-  if (!cle) throw new Error("SUPABASE_SECRET_KEY manquante dans .env.local (clé secrète Supabase).");
+  if (!cle) throw new Error("SUPABASE_SECRET_KEY manquante (clé secrète Supabase) : .env.local en local, onglet Variables sur Railway.");
   return creer(process.env.NEXT_PUBLIC_SUPABASE_URL!, cle, {
     auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
   });
