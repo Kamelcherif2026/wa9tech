@@ -1,28 +1,37 @@
 import { Suspense } from "react";
 import Link from "next/link";
+import { Plus } from "lucide-react";
 import { autreLangue, t, type Langue } from "@/lib/i18n";
 import { ChangerLangue } from "./changer-langue";
 import { Etoile } from "./motifs";
 
-const classeLangue = "rounded-full border-2 border-encre px-3.5 py-1 font-semibold transition hover:bg-encre hover:text-sable";
+const classeLangue = "rounded-full border-2 border-encre px-2.5 py-1 font-semibold sm:px-3.5 transition hover:bg-encre hover:text-sable";
 
 export function Entete({ l }: { l: Langue }) {
   const d = t(l);
   const autre = autreLangue(l);
-  const lien = "rounded-full px-3 py-2 font-medium transition hover:bg-encre/5 hover:text-primary";
+  const lien = "rounded-full px-2 py-2 font-medium sm:px-3 transition hover:bg-encre/5 hover:text-primary";
   return (
     <header className="sticky top-0 z-30 bg-background/90 backdrop-blur">
       <div className="bande-tricolore" />
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-4 sm:gap-4">
         <Link href={`/${l}`} className="flex shrink-0 items-center" aria-label="WA9TECH — accueil">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/marque/logo-wa9tech.svg" alt="WA9TECH" width={150} height={36} className="h-10 w-auto sm:h-11" />
+          <img src="/marque/logo-wa9tech.svg" alt="WA9TECH" width={150} height={36} className="h-8 w-auto sm:h-11" />
         </Link>
         <nav className="flex items-center gap-0.5 text-sm">
           <Link href={`/${l}/evenements`} className={lien}>{d.agenda}</Link>
           <Link href={`/${l}#disciplines`} className={`${lien} hidden sm:block`}>{d.navCategories}</Link>
           <Link href={`/${l}#villes`} className={`${lien} hidden sm:block`}>{d.navVilles}</Link>
-          <span className="ms-1.5">
+          <Link
+            href={`/${l}/proposer`}
+            className="ms-1 inline-flex items-center gap-1 rounded-full bg-primary px-2.5 py-1.5 sm:gap-1.5 sm:px-3.5 font-bold text-primary-foreground transition hover:bg-encre"
+          >
+            <Plus className="size-4" strokeWidth={2.5} />
+            <span className="hidden sm:inline">{d.proposer}</span>
+            <span className="sm:hidden">{d.proposerCourt}</span>
+          </Link>
+          <span className="ms-1 sm:ms-1.5">
             <Suspense
               fallback={
                 <Link href={`/${autre}`} className={classeLangue}>
@@ -53,7 +62,9 @@ export function PiedDePage({ l }: { l: Langue }) {
             <img src="/marque/logo-wa9tech-negatif.svg" alt="WA9TECH" width={170} height={40} className="h-11 w-auto" />
             <p className="mt-1"><span className="inline-block font-[family-name:var(--font-arabe)] text-2xl font-bold text-safran" lang="ar" dir="rtl">وقتاش ؟</span></p>
             <p className="mt-4 max-w-sm text-lg font-semibold">{d.slogan}</p>
-            <p className="mt-2 max-w-sm text-sm text-white/75">{d.soumettre}</p>
+            <Link href={`/${l}/proposer`} className="mt-3 inline-flex items-center gap-2 rounded-full bg-safran px-4 py-2 text-sm font-bold text-encre transition hover:bg-white">
+              <Plus className="size-4" strokeWidth={2.5} /> {d.soumettre}
+            </Link>
           </div>
           <nav className="grid content-start gap-2 text-sm">
             <p className="mb-1 flex items-center gap-2 font-bold text-safran"><Etoile className="size-3.5" /> WA9TECH</p>

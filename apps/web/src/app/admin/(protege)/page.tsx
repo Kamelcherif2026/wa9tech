@@ -24,8 +24,9 @@ async function Indicateurs() {
     return requete.then(({ count }) => count ?? 0);
   };
 
-  const [enAttente, publies, lieux, organisateurs] = await Promise.all([
+  const [enAttente, recues, publies, lieux, organisateurs] = await Promise.all([
     compter("evenement", ["statut", "en_attente"]),
+    compter("soumission", ["canal", "formulaire"]),
     compter("evenement", ["statut", "publie"]),
     compter("lieu", ["actif", "true"]),
     compter("organisateur"),
@@ -33,13 +34,14 @@ async function Indicateurs() {
 
   const tuiles = [
     { libelle: "En attente de validation", valeur: enAttente, href: "/admin/evenements?statut=en_attente" },
+    { libelle: "Affiches reçues via le site", valeur: recues, href: "/admin/soumissions" },
     { libelle: "Événements publiés", valeur: publies, href: "/admin/evenements?statut=publie" },
     { libelle: "Lieux actifs", valeur: lieux, href: "/admin/lieux" },
     { libelle: "Organisateurs", valeur: organisateurs, href: "/admin/organisateurs" },
   ];
 
   return (
-    <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+    <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
       {tuiles.map((t) => (
         <Link key={t.libelle} href={t.href}>
           <Card className="transition-colors hover:border-primary/40">
