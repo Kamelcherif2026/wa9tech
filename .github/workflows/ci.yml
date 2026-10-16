@@ -24,3 +24,29 @@ jobs:
 
       - name: Tests pgTAP
         run: supabase test db
+
+  web:
+    name: Site web (types + lint)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Version de pnpm lue dans « packageManager » (package.json)
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Installer les dépendances
+        run: pnpm install --frozen-lockfile
+
+      - name: Générer les types des routes Next.js
+        run: pnpm --filter web exec next typegen
+
+      - name: Vérifier les types TypeScript
+        run: pnpm --filter web exec tsc --noEmit
+
+      - name: Lint
+        run: pnpm --filter web lint
