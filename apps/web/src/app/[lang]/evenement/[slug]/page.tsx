@@ -62,7 +62,9 @@ async function FicheEvenement({ params }: { params: PageProps<"/[lang]/evenement
   const dates = e.representations.filter((r) => !r.annulee);
   const url = `${SITE}/${l}/evenement/${e.slug}`;
   const nomLieu = e.lieu ? ((l === "ar" && e.lieu.nom_ar) || e.lieu.nom) : e.lieu_texte;
-  const nomVille = e.ville ? (l === "ar" ? e.ville.nom_ar : e.ville.nom_fr) : null;
+  const villeBrute = e.ville ? (l === "ar" ? e.ville.nom_ar : e.ville.nom_fr) : null;
+  // Pas de « Tunis · Tunis » quand le texte du lieu contient déjà la ville
+  const nomVille = villeBrute && !nomLieu?.toLowerCase().includes(villeBrute.toLowerCase()) ? villeBrute : null;
 
   const jsonLd = {
     "@context": "https://schema.org",
