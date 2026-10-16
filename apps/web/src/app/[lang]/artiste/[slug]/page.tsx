@@ -1,13 +1,15 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { ExternalLink, Mic2 } from "lucide-react";
+import { ExternalLink, UserStar } from "lucide-react";
 import { artistePublic, referentiels } from "@/lib/public/requetes";
 import { langue } from "@/lib/public/langue";
 import { t } from "@/lib/i18n";
 import { BandeauPage } from "@/components/public/bandeau-page";
 import { GrilleEvenements } from "@/components/public/carte-evenement";
 import { Section } from "@/components/public/section";
+import { ICONES } from "@/components/public/disciplines";
+import { parente, teinteCategorie } from "@/lib/public/teintes";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/artiste/[slug]">): Promise<Metadata> {
   const [{ slug }, l] = await Promise.all([params, langue()]);
@@ -36,23 +38,31 @@ async function Contenu({ params }: { params: PageProps<"/[lang]/artiste/[slug]">
   const { artiste, cartes } = r;
   const d = t(l);
   const nom = (l === "ar" && artiste.nom_ar) || artiste.nom;
+  // Discipline principale de l'artiste (la plus fréquente dans ses événements) : donne l'icône et la couleur
+  const frequences = new Map<number, number>();
+  for (const c of cartes) {
+    const p = parente(categories, c.categorie_id);
+    if (p) frequences.set(p.id, (frequences.get(p.id) ?? 0) + 1);
+  }
+  const principale = [...frequences.entries()].sort((a, b) => b[1] - a[1])[0]?.[0];
+  const discipline = categories.find((c) => c.id === principale);
   const autreNom = l === "ar" ? (artiste.nom_ar && artiste.nom !== artiste.nom_ar ? artiste.nom : null) : (artiste.nom_ar !== artiste.nom ? artiste.nom_ar : null);
 
   return (
     <>
       <BandeauPage
-        surtitre={d.artiste}
+        surtitre={discipline ? `${d.artiste} · ${l === "ar" ? discipline.libelle_ar : discipline.libelle_fr}` : d.artiste}
         titre={nom}
         titreSecondaire={autreNom ? { texte: autreNom, lang: l === "ar" ? "fr" : "ar" } : undefined}
-        teinte="bg-safran text-encre"
-        illustration={<Mic2 className="size-36 opacity-85 lg:size-44" strokeWidth={1.25} />}
+        teinte={discipline ? teinteCategorie(categories, discipline.id) : "bg-safran text-encre"}
+        illustration={<IconeDiscipline slug={discipline?.slug} />}
       >
         {artiste.lien && (
           <a
             href={artiste.lien}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex h-10 items-center gap-2 rounded-full border-2 border-current px-4 text-sm font-semibold transition hover:bg-encre hover:text-sable hover:border-encre"
+            className="inline-flex h-10 items-center gap-2 rounded-full border-2 border-current px-4 text-sm font-semibold transition hover:bg-sable hover:text-encre hover:border-sable"
           >
             <ExternalLink className="size-4" /> {d.siteArtiste}
           </a>
@@ -68,4 +78,10 @@ async function Contenu({ params }: { params: PageProps<"/[lang]/artiste/[slug]">
       </Section>
     </>
   );
+}
+
+/** Icône de la discipline principale ; à défaut, une silhouette étoilée valable pour tous les arts. */
+function IconeDiscipline({ slug }: { slug?: string }) {
+  const Icone = (slug && ICONES[slug]) || UserStar;
+  return <Icone className="size-36 opacity-85 lg:size-44" strokeWidth={1.25} />;
 }

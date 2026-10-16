@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BadgeCheck, CalendarDays, Mic2, CalendarPlus, ExternalLink, MapPin, Navigation, Phone, Ticket } from "lucide-react";
+import { BadgeCheck, CalendarDays, CalendarPlus, ExternalLink, MapPin, Navigation, Phone, Ticket } from "lucide-react";
 import { fiche, referentiels, similaires } from "@/lib/public/requetes";
 import { langue } from "@/lib/public/langue";
 import { dateLongue, heure, morceauxDate } from "@/lib/public/dates";
@@ -156,7 +156,7 @@ async function FicheEvenement({ params }: { params: PageProps<"/[lang]/evenement
                       i === 0 && "bg-sable text-encre border-sable",
                     )}
                   >
-                    <Mic2 className="size-3.5" />
+                    <Etoile className="size-3" />
                     <span dir="auto">{(l === "ar" && a.nom_ar) || a.nom}</span>
                   </Link>
                 ))}

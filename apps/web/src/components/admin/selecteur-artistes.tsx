@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, useTransition } from "react";
-import { ArrowDown, ArrowUp, Loader2, Mic2, Plus, Star, X } from "lucide-react";
+import { ArrowDown, ArrowUp, Loader2, Plus, Star, UserStar, X } from "lucide-react";
 import { chercherArtistes, type ArtisteTrouve } from "@/app/admin/(protege)/artistes/actions";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -86,7 +86,7 @@ export function SelecteurArtistes({ initiaux, nom = "artistes" }: { initiaux: Ar
       )}
 
       <div className="relative">
-        <Mic2 className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
+        <UserStar className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
         <Input
           ref={champ}
           value={saisie}
