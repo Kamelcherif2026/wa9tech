@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BadgeCheck, CalendarDays, CalendarPlus, ExternalLink, MapPin, Navigation, Phone, Ticket } from "lucide-react";
+import { BadgeCheck, CalendarDays, Mic2, CalendarPlus, ExternalLink, MapPin, Navigation, Phone, Ticket } from "lucide-react";
 import { fiche, referentiels, similaires } from "@/lib/public/requetes";
 import { langue } from "@/lib/public/langue";
 import { dateLongue, heure, morceauxDate } from "@/lib/public/dates";
@@ -62,6 +62,7 @@ async function FicheEvenement({ params }: { params: PageProps<"/[lang]/evenement
   const dates = e.representations.filter((r) => !r.annulee);
   const url = `${SITE}/${l}/evenement/${e.slug}`;
   const nomLieu = e.lieu ? ((l === "ar" && e.lieu.nom_ar) || e.lieu.nom) : e.lieu_texte;
+  const artistes = [...(e.artistes ?? [])].sort((a, b) => a.ordre - b.ordre).flatMap((x) => (x.artiste ? [x.artiste] : []));
   const villeBrute = e.ville ? (l === "ar" ? e.ville.nom_ar : e.ville.nom_fr) : null;
   // Pas de « Tunis · Tunis » quand le texte du lieu contient déjà la ville
   const nomVille = villeBrute && !nomLieu?.toLowerCase().includes(villeBrute.toLowerCase()) ? villeBrute : null;
@@ -90,6 +91,7 @@ async function FicheEvenement({ params }: { params: PageProps<"/[lang]/evenement
       url: e.lien_externe ?? url,
       availability: "https://schema.org/InStock",
     },
+    ...(artistes.length ? { performer: artistes.map((a) => ({ "@type": "PerformingGroup", name: a.nom, url: `${SITE}/${l}/artiste/${a.slug}` })) } : {}),
     ...(e.organisateur ? { organizer: { "@type": "Organization", name: e.organisateur.nom, url: e.organisateur.lien ?? undefined } } : {}),
   };
 
@@ -141,6 +143,24 @@ async function FicheEvenement({ params }: { params: PageProps<"/[lang]/evenement
             <h1 dir="auto" className="mt-4 text-4xl leading-[1.05] font-extrabold tracking-tight text-balance sm:text-5xl lg:text-6xl">{titre}</h1>
             {l === "fr" && e.titre_ar && (
               <p className="mt-2"><span className="inline-block font-[family-name:var(--font-arabe)] text-2xl font-bold opacity-80" dir="rtl" lang="ar">{e.titre_ar}</span></p>
+            )}
+            {artistes.length > 0 && (
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-2 md:justify-start">
+                <span className="text-sm font-semibold opacity-80">{d.avec}</span>
+                {artistes.map((a, i) => (
+                  <Link
+                    key={a.slug}
+                    href={`/${l}/artiste/${a.slug}`}
+                    className={cn(
+                      "inline-flex items-center gap-1.5 rounded-full border-2 border-current px-3 py-1 text-sm font-bold transition hover:bg-sable hover:text-encre hover:border-sable",
+                      i === 0 && "bg-sable text-encre border-sable",
+                    )}
+                  >
+                    <Mic2 className="size-3.5" />
+                    <span dir="auto">{(l === "ar" && a.nom_ar) || a.nom}</span>
+                  </Link>
+                ))}
+              </div>
             )}
             {e.verifie && (
               <p className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-black/15 px-3 py-1 text-sm font-semibold"><BadgeCheck className="size-4" /> {d.verifie}</p>

@@ -103,6 +103,11 @@ const fr = {
   erreurTrop: "Vous avez déjà envoyé plusieurs affiches : merci de réessayer dans une heure.",
   erreurServeur: "L'envoi n'a pas abouti. Réessayez dans un instant.",
   gratuitPourTous: "Publication gratuite",
+  avec: "Avec",
+  artiste: "Artiste",
+  prochainesDates: "Prochaines dates",
+  aucuneDateArtiste: "Aucune date annoncée pour le moment. Revenez bientôt !",
+  siteArtiste: "Site / réseaux",
 };
 
 type Dictionnaire = typeof fr;
@@ -205,6 +210,11 @@ const ar: Dictionnaire = {
   erreurTrop: "أرسلت عدّة معلّقات: يرجى المحاولة بعد ساعة.",
   erreurServeur: "لم يتمّ الإرسال. أعد المحاولة بعد قليل.",
   gratuitPourTous: "نشر مجاني",
+  avec: "بمشاركة",
+  artiste: "فنان",
+  prochainesDates: "المواعيد القادمة",
+  aucuneDateArtiste: "لا توجد مواعيد معلنة حاليًا. عُد قريبًا!",
+  siteArtiste: "الموقع / الشبكات",
 };
 
 export const dictionnaires: Record<Langue, Dictionnaire> = { fr, ar };

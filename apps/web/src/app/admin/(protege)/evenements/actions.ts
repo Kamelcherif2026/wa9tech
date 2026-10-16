@@ -37,7 +37,12 @@ const schemaEvenement = z.object({
   portee: z.enum(Object.keys(PORTEES) as [keyof typeof PORTEES]),
   images: z.string(),
   representations: z.string(),
+  artistes: z.string().optional(),
 });
+
+const schemaArtistes = z
+  .array(z.object({ id: z.string().uuid().optional(), nom: z.string().trim().min(1).max(120) }))
+  .max(30, { error: "30 artistes au maximum." });
 
 const schemaRepresentations = z
   .array(z.object({ debut: z.string().min(16), fin: z.string().optional() }))
@@ -73,7 +78,9 @@ export async function enregistrerEvenement(
 
   let images: string[];
   let representations: z.infer<typeof schemaRepresentations>;
+  let artistes: z.infer<typeof schemaArtistes>;
   try {
+    artistes = schemaArtistes.parse(JSON.parse(d.artistes || "[]"));
     images = z.array(z.string().url()).max(5).parse(JSON.parse(d.images));
     representations = schemaRepresentations.parse(
       (JSON.parse(d.representations) as { debut: string; fin?: string }[]).filter((x) => x.debut),
@@ -130,6 +137,19 @@ export async function enregistrerEvenement(
     })),
   );
   if (errAjout) return { erreur: `Dates : ${errAjout.message}`, champs: brut };
+
+  // Artistes : les nouveaux sont créés (ou retrouvés s'ils existent déjà), puis la liste est remplacée dans l'ordre
+  const ids: string[] = [];
+  for (const a of artistes) {
+    if (a.id) ids.push(a.id);
+    else {
+      const { data: nouvelId, error: errArtiste } = await supabase.rpc("rapprocher_artiste", { p_nom: a.nom });
+      if (errArtiste) return { erreur: `Artiste « ${a.nom} » : ${errArtiste.message}`, champs: brut };
+      if (nouvelId) ids.push(nouvelId as string);
+    }
+  }
+  const { error: errArtistes } = await supabase.rpc("definir_artistes", { p_evenement: id, p_artistes: ids });
+  if (errArtistes) return { erreur: `Artistes : ${errArtistes.message}`, champs: brut };
 
   rafraichirSite();
   redirect(`/admin/evenements/${id}?ok=1`);

@@ -146,6 +146,7 @@ export interface Fiche {
   ville: { slug: string; nom_fr: string; nom_ar: string } | null;
   organisateur: { nom: string; lien: string | null } | null;
   representations: { debut: string; fin: string | null; annulee: boolean }[];
+  artistes: { ordre: number; artiste: { slug: string; nom: string; nom_ar: string | null } | null }[];
 }
 
 export async function fiche(slug: string): Promise<Fiche | null> {
@@ -160,7 +161,8 @@ export async function fiche(slug: string): Promise<Fiche | null> {
       lieu:lieu_id(slug, nom, nom_ar, adresse, lat, lng),
       ville:ville_id(slug, nom_fr, nom_ar),
       organisateur:organisateur_id(nom, lien),
-      representations:representation(debut, fin, annulee)`)
+      representations:representation(debut, fin, annulee),
+      artistes:evenement_artiste(ordre, artiste:artiste_id(slug, nom, nom_ar))`)
     .eq("slug", slug)
     .order("debut", { referencedTable: "representation" })
     .maybeSingle();
@@ -202,15 +204,46 @@ export async function lieuPublic(slug: string) {
   }, cartes };
 }
 
+export interface ArtistePublic {
+  id: string;
+  slug: string;
+  nom: string;
+  nom_ar: string | null;
+  lien: string | null;
+}
+
+/** Page artiste : fiche + événements publiés à venir. */
+export async function artistePublic(slug: string): Promise<{ artiste: ArtistePublic; cartes: Carte[] } | null> {
+  "use cache";
+  cacheLife("minutes");
+  cacheTag(TAG, "artistes");
+  const sb = clientPublic();
+  const { data: artiste } = await sb.from("artiste").select("id, slug, nom, nom_ar, lien").eq("slug", slug).maybeSingle<ArtistePublic>();
+  if (!artiste) return null;
+  const { data: evts } = await sb
+    .from("evenement")
+    .select("id, slug, titre_fr, titre_ar, images, categorie_id, ville_id, prochaine_date, gratuit, prix_min, featured, lieu_texte, lieu:lieu_id(nom), evenement_artiste!inner(artiste_id)")
+    .eq("evenement_artiste.artiste_id", artiste.id)
+    .eq("statut", "publie")
+    .not("prochaine_date", "is", null)
+    .order("prochaine_date")
+    .limit(48);
+  const cartes: Carte[] = ((evts ?? []) as unknown as (Omit<Carte, "image" | "lieu_nom"> & { images: string[]; lieu_texte: string | null; lieu: { nom: string } | null })[]).map(
+    ({ images, lieu, lieu_texte, ...e }) => ({ ...e, image: images?.[0] ?? null, lieu_nom: lieu?.nom ?? lieu_texte }),
+  );
+  return { artiste, cartes };
+}
+
 /** Données du plan du site. */
 export async function pourSitemap() {
   "use cache";
   cacheLife("hours");
   cacheTag(TAG);
   const sb = clientPublic();
-  const [evts, lieux] = await Promise.all([
+  const [evts, lieux, artistes] = await Promise.all([
     sb.from("evenement").select("slug, modifie_le").eq("statut", "publie").limit(5000),
     sb.from("lieu").select("slug").eq("actif", true).limit(2000),
+    sb.from("artiste").select("slug").limit(5000),
   ]);
-  return { evenements: evts.data ?? [], lieux: lieux.data ?? [] };
+  return { evenements: evts.data ?? [], lieux: lieux.data ?? [], artistes: artistes.data ?? [] };
 }

@@ -116,4 +116,5 @@ export interface Evenement {
   motif_rejet: string | null;
   prochaine_date: string | null;
   representations?: Representation[];
+  artistes?: { ordre: number; artiste: { id: string; nom: string; nom_ar: string | null } | null }[];
 }

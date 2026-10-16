@@ -108,9 +108,7 @@ async function creerFiche(
     doublon = (data as { id: string }[] | null)?.[0]?.id;
   }
 
-  const description = [e.description_courte, e.artistes.length ? `Avec : ${e.artistes.join(", ")}.` : null]
-    .filter(Boolean)
-    .join("\n\n");
+  const description = e.description_courte ?? "";
 
   const { data: evt, error } = await supabase
     .from("evenement")
@@ -136,6 +134,17 @@ async function creerFiche(
   if (error || !evt) {
     console.error("Import affiche :", error?.message);
     return null;
+  }
+
+  // Artistes lus sur l'affiche : retrouvés ou créés, dans l'ordre de l'affiche (8 au maximum)
+  const ids: string[] = [];
+  for (const nom of e.artistes.slice(0, 8)) {
+    const { data } = await supabase.rpc("rapprocher_artiste", { p_nom: nom });
+    if (data && !ids.includes(data as string)) ids.push(data as string);
+  }
+  if (ids.length) {
+    const { error: errArt } = await supabase.rpc("definir_artistes", { p_evenement: evt.id, p_artistes: ids });
+    if (errArt) console.error("Import affiche, artistes :", errArt.message);
   }
 
   if (reps.length) {

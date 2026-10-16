@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { NativeSelect } from "@/components/ui/native-select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { SelecteurArtistes, type ArtisteChoisi } from "@/components/admin/selecteur-artistes";
 
 export interface OptionLieu {
   id: string;
@@ -55,6 +56,11 @@ export function FormulaireEvenement({ evenement: e, categories, lieux, organisat
   const [gratuit, setGratuit] = useState(c ? c.gratuit === "on" : (e?.gratuit ?? false));
 
   const parents = categories.filter((x) => x.parent_id === null);
+  const artistesInitiaux: ArtisteChoisi[] = c?.artistes
+    ? JSON.parse(c.artistes)
+    : [...(e?.artistes ?? [])]
+        .sort((a, b) => a.ordre - b.ordre)
+        .flatMap((x) => (x.artiste ? [{ id: x.artiste.id, nom: x.artiste.nom, nom_ar: x.artiste.nom_ar }] : []));
 
   async function ajouterImages(fichiers: FileList | null) {
     if (!fichiers?.length) return;
@@ -129,6 +135,14 @@ export function FormulaireEvenement({ evenement: e, categories, lieux, organisat
           <Champ label="Description en arabe" id="description_ar" large>
             <Textarea id="description_ar" name="description_ar" dir="rtl" rows={4} defaultValue={c?.description_ar ?? e?.description_ar ?? ""} />
           </Champ>
+        </CardContent>
+      </Card>
+
+      {/* --- Artistes --- */}
+      <Card>
+        <CardHeader><CardTitle>Artistes</CardTitle></CardHeader>
+        <CardContent>
+          <SelecteurArtistes initiaux={artistesInitiaux} />
         </CardContent>
       </Card>
 

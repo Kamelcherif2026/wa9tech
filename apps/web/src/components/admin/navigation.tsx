@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CalendarDays, Gauge, Inbox, MapPin, Users } from "lucide-react";
+import { CalendarDays, Gauge, Inbox, MapPin, Mic2, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const liens = [
   { href: "/admin", libelle: "Tableau de bord", icone: Gauge, exact: true },
   { href: "/admin/evenements", libelle: "Événements", icone: CalendarDays },
   { href: "/admin/soumissions", libelle: "Soumissions", icone: Inbox },
+  { href: "/admin/artistes", libelle: "Artistes", icone: Mic2 },
   { href: "/admin/lieux", libelle: "Lieux", icone: MapPin },
   { href: "/admin/organisateurs", libelle: "Organisateurs", icone: Users },
 ];

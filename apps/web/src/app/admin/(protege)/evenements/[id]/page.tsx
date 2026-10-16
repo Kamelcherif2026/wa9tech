@@ -41,7 +41,7 @@ async function Contenu({
   const [{ data: evenement }, options] = await Promise.all([
     supabase
       .from("evenement")
-      .select("*, representations:representation(id, debut, fin, annulee)")
+      .select("*, representations:representation(id, debut, fin, annulee), artistes:evenement_artiste(ordre, artiste:artiste_id(id, nom, nom_ar))")
       .eq("id", id)
       .order("debut", { referencedTable: "representation" })
       .maybeSingle<Evenement>(),
