@@ -5,9 +5,10 @@ import {
 import type { CategoriePub } from "@/lib/public/requetes";
 import type { Langue } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { TEINTES } from "@/lib/public/teintes";
 import { Etoile, Porte } from "./motifs";
 
-const ICONES: Record<string, LucideIcon> = {
+export const ICONES: Record<string, LucideIcon> = {
   musique: Music,
   theatre: Drama,
   cinema: Clapperboard,
@@ -19,15 +20,6 @@ const ICONES: Record<string, LucideIcon> = {
   patrimoine: Landmark,
   "jeune-public": Baby,
 };
-
-/** Couleurs des tuiles, en alternance (contrastes vérifiés : texte blanc sur foncé, encre sur safran). */
-const TEINTES = [
-  "bg-terracotta text-white",
-  "bg-bleu text-white",
-  "bg-safran text-encre",
-  "bg-encre text-sable",
-  "bg-[#2e7d6b] text-white", // vert céramique de Nabeul
-];
 
 /** Tuiles illustrées des disciplines (catégories parentes). */
 export function Disciplines({ categories, l }: { categories: CategoriePub[]; l: Langue }) {

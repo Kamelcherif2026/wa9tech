@@ -5,6 +5,8 @@ import { langue } from "@/lib/public/langue";
 import { referentiels } from "@/lib/public/requetes";
 import { t } from "@/lib/i18n";
 import { ChargementResultats, lireCriteres, Resultats } from "@/components/public/resultats";
+import { BandeauPage } from "@/components/public/bandeau-page";
+import { MiniCarte } from "@/components/public/mini-carte";
 
 export async function generateStaticParams() {
   const { villes } = await referentiels();
@@ -35,13 +37,22 @@ async function Entete({ params, searchParams }: { params: PageProps<"/[lang]/vil
   const [{ ville }, l, { villes }] = await Promise.all([params, langue(), referentiels()]);
   const v = villes.find((x) => x.slug === ville);
   if (!v) notFound();
+  const d = t(l);
   return (
-    <div className="pt-8">
-      <h1 className="mb-4 text-2xl font-bold sm:text-3xl">{t(l).agendaDe(l === "ar" ? v.nom_ar : v.nom_fr)}</h1>
+    <>
+      <BandeauPage
+        surtitre={d.agendaCulturel}
+        titre={l === "ar" ? v.nom_ar : v.nom_fr}
+        titreSecondaire={l === "ar" ? { texte: v.nom_fr, lang: "fr" } : { texte: v.nom_ar, lang: "ar" }}
+        teinte="bg-bleu text-white"
+        illustration={<MiniCarte ville={v.slug} className="h-44 w-auto text-white" />}
+      >
+        {v.gouvernorat !== v.nom_fr && <p className="text-sm opacity-80">{v.gouvernorat}</p>}
+      </BandeauPage>
       <Suspense fallback={<ChargementResultats />}>
         <Contenu ville={ville} searchParams={searchParams} />
       </Suspense>
-    </div>
+    </>
   );
 }
 

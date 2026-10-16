@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { langue } from "@/lib/public/langue";
 import { t } from "@/lib/i18n";
 import { ChargementResultats, lireCriteres, Resultats } from "@/components/public/resultats";
+import { BandeauPage } from "@/components/public/bandeau-page";
 
 export async function generateMetadata(): Promise<Metadata> {
   const l = await langue();
@@ -11,13 +12,24 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function PageAgenda({ searchParams }: PageProps<"/[lang]/evenements">) {
   const l = await langue();
+  const d = t(l);
   return (
-    <div className="pt-8">
-      <h1 className="mb-4 text-2xl font-bold sm:text-3xl">{t(l).agenda}</h1>
+    <>
+      <BandeauPage surtitre={d.accroche} titre={d.agenda} teinte="bg-bleu text-white" illustration={<Calligraphie />}>
+        <p className="max-w-xl text-base opacity-85 sm:text-lg">{d.sousSlogan}</p>
+      </BandeauPage>
       <Suspense fallback={<ChargementResultats />}>
         <Contenu searchParams={searchParams} />
       </Suspense>
-    </div>
+    </>
+  );
+}
+
+function Calligraphie() {
+  return (
+    <p lang="ar" dir="rtl" className="font-[family-name:var(--font-arabe)] text-7xl font-bold opacity-90 lg:text-8xl">
+      وقتاش<span className="text-safran">؟</span>
+    </p>
   );
 }
 

@@ -72,6 +72,12 @@ const fr = {
   toutesLesVilles: "Toutes les villes",
   navCategories: "Disciplines",
   navVilles: "Villes",
+  agendaCulturel: "Agenda culturel",
+  discipline: "Discipline",
+  lieuCulturel: "Lieu culturel",
+  billet: "Votre sortie",
+  autresDates: (n: number) => (n > 1 ? `${n} dates` : "1 date"),
+  surLaCarte: "Voir sur la carte",
 };
 
 type Dictionnaire = typeof fr;
@@ -143,6 +149,12 @@ const ar: Dictionnaire = {
   toutesLesVilles: "كلّ المدن",
   navCategories: "الفنون",
   navVilles: "المدن",
+  agendaCulturel: "الأجندة الثقافية",
+  discipline: "الفنّ",
+  lieuCulturel: "فضاء ثقافي",
+  billet: "خرجتك",
+  autresDates: (n: number) => (n > 1 ? `${n} مواعيد` : "موعد واحد"),
+  surLaCarte: "على الخريطة",
 };
 
 export const dictionnaires: Record<Langue, Dictionnaire> = { fr, ar };

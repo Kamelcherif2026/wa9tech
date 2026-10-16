@@ -2,13 +2,17 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BadgeCheck, CalendarPlus, ExternalLink, MapPin, Navigation, Phone, Ticket } from "lucide-react";
+import { BadgeCheck, CalendarDays, CalendarPlus, ExternalLink, MapPin, Navigation, Phone, Ticket } from "lucide-react";
 import { fiche, referentiels, similaires } from "@/lib/public/requetes";
 import { langue } from "@/lib/public/langue";
-import { dateLongue, heure } from "@/lib/public/dates";
+import { dateLongue, heure, morceauxDate } from "@/lib/public/dates";
+import { teinteCategorie } from "@/lib/public/teintes";
+import { cn } from "@/lib/utils";
 import { t, type Langue } from "@/lib/i18n";
 import { GrilleEvenements } from "@/components/public/carte-evenement";
 import { Partage } from "@/components/public/partage";
+import { Section } from "@/components/public/section";
+import { Etoile, Porte } from "@/components/public/motifs";
 import { CompteurVue, LienReservation } from "@/components/public/statistiques";
 
 const SITE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://wa9tech.tn";
@@ -87,150 +91,212 @@ async function FicheEvenement({ params }: { params: PageProps<"/[lang]/evenement
     ...(e.organisateur ? { organizer: { "@type": "Organization", name: e.organisateur.nom, url: e.organisateur.lien ?? undefined } } : {}),
   };
 
+  const teinte = teinteCategorie(categories, e.categorie?.id);
+  // Date mise à jour par la base (pas de new Date() ici : la page reste pré-rendable)
+  const prochaine = e.prochaine_date ?? dates[0]?.debut;
+
   return (
-    <article className="pt-6">
+    <article>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <CompteurVue id={e.id} />
 
-      <div className="grid gap-8 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
-        {/* Affiche */}
-        <div className="space-y-3">
-          {e.images[0] && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={e.images[0]} alt={titre} className="w-full rounded-2xl border object-contain shadow-sm" />
-          )}
-          {e.images.length > 1 && (
-            <div className="grid grid-cols-4 gap-2">
-              {e.images.slice(1).map((src) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img key={src} src={src} alt="" loading="lazy" className="aspect-square w-full rounded-lg border object-cover" />
-              ))}
-            </div>
-          )}
-        </div>
-
-        {/* Informations */}
-        <div className="space-y-6">
-          <div>
-            {e.categorie && (
-              <Link href={`/${l}/categorie/${e.categorie.slug}`} className="text-sm font-medium text-primary hover:underline">
-                {l === "ar" ? e.categorie.libelle_ar : e.categorie.libelle_fr}
-              </Link>
+      {/* En-tête coloré selon la discipline */}
+      <header className={cn("pleine-largeur motif-zellige relative overflow-hidden [--motif-opacite:0.12]", teinte)}>
+        <Porte className="pointer-events-none absolute -start-12 -bottom-28 h-96 w-64 opacity-10" />
+        <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 pt-10 pb-14 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:pb-16">
+          {/* Affiche collée au mur, entière (jamais recadrée) */}
+          <div className="relative mx-auto w-full max-w-64 sm:max-w-sm">
+            {e.images[0] ? (
+              <a href={e.images[0]} target="_blank" rel="noreferrer" className="group relative block -rotate-[1.5deg] transition duration-300 hover:rotate-0">
+                <span className="scotch" aria-hidden="true" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={e.images[0]} alt={titre} className="w-full rounded-md border-[6px] border-sable bg-sable shadow-2xl" />
+              </a>
+            ) : (
+              <div className="arche motif-zellige aspect-[4/5] border-[6px] border-sable bg-sable text-primary shadow-2xl [--motif-opacite:0.15]" />
             )}
-            <h1 dir="auto" className="mt-1 text-3xl font-bold leading-tight tracking-tight sm:text-4xl">{titre}</h1>
-            {l === "fr" && e.titre_ar && <p className="mt-1 text-xl text-muted-foreground" dir="rtl" lang="ar">{e.titre_ar}</p>}
-            {e.verifie && (
-              <p className="mt-2 flex items-center gap-1.5 text-sm text-success"><BadgeCheck className="size-4" /> {d.verifie}</p>
+            {e.images.length > 1 && (
+              <div className="mt-5 grid grid-cols-4 gap-2">
+                {e.images.slice(1).map((src) => (
+                  <a key={src} href={src} target="_blank" rel="noreferrer">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={src} alt="" loading="lazy" className="aspect-square w-full rounded-md border-2 border-sable object-cover" />
+                  </a>
+                ))}
+              </div>
             )}
           </div>
 
-          {/* Dates */}
-          <Bloc titre={d.dates}>
-            <ul className="space-y-1.5">
-              {dates.map((r) => (
-                <li key={r.debut} className="flex items-baseline justify-between gap-4 border-b border-dashed pb-1.5 last:border-0">
-                  <span className="font-medium first-letter:uppercase">{dateLongue(r.debut, l)}</span>
-                  <span className="tabular-nums text-primary">{heure(r.debut, l)}</span>
-                </li>
-              ))}
+          <div className="text-center md:text-start">
+            {e.categorie && (
+              <Link
+                href={`/${l}/categorie/${e.categorie.slug}`}
+                className="inline-block -rotate-2 rounded-sm bg-sable px-2.5 py-1 text-xs font-extrabold tracking-wider text-encre uppercase transition hover:rotate-0"
+              >
+                {l === "ar" ? e.categorie.libelle_ar : e.categorie.libelle_fr}
+              </Link>
+            )}
+            <h1 dir="auto" className="mt-4 text-4xl leading-[1.05] font-extrabold tracking-tight text-balance sm:text-5xl lg:text-6xl">{titre}</h1>
+            {l === "fr" && e.titre_ar && (
+              <p className="mt-2"><span className="inline-block font-[family-name:var(--font-arabe)] text-2xl font-bold opacity-80" dir="rtl" lang="ar">{e.titre_ar}</span></p>
+            )}
+            {e.verifie && (
+              <p className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-black/15 px-3 py-1 text-sm font-semibold"><BadgeCheck className="size-4" /> {d.verifie}</p>
+            )}
+
+            <div className="mt-6 space-y-2 text-base sm:text-lg">
+              {prochaine && (
+                <p className="flex items-center justify-center gap-2 md:justify-start">
+                  <CalendarDays className="size-5 shrink-0" />
+                  <span className="first-letter:uppercase">{dateLongue(prochaine, l)}</span>
+                  <span className="font-bold tabular-nums">· {heure(prochaine, l)}</span>
+                </p>
+              )}
+              {nomLieu && (
+                <p className="flex items-center justify-center gap-2 md:justify-start">
+                  <MapPin className="size-5 shrink-0" />
+                  <span dir="auto">{[nomLieu, nomVille].filter(Boolean).join(" · ")}</span>
+                </p>
+              )}
+              <p className="flex items-center justify-center gap-2 font-bold md:justify-start">
+                <Ticket className="size-5 shrink-0" />
+                <Prix e={e} l={l} />
+              </p>
+            </div>
+
+            <div className="mt-7 flex flex-wrap justify-center gap-3 md:justify-start">
+              <a href="#reserver" className="inline-flex h-12 items-center gap-2 rounded-full bg-sable px-6 font-bold text-encre shadow-lg transition hover:bg-safran">
+                <Ticket className="size-5" /> {d.commentReserver}
+              </a>
+              <a href={`/api/ics/${e.slug}`} className="inline-flex h-12 items-center gap-2 rounded-full border-2 border-current px-5 font-semibold transition hover:bg-black/10">
+                <CalendarPlus className="size-5" /> {d.ajouterCalendrier}
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+        <div className="space-y-8">
+          {/* Dates en billets */}
+          <section>
+            <h2 className="mb-4 flex items-center gap-2.5 text-2xl font-extrabold"><Etoile className="size-5 text-safran" /> {d.dates}</h2>
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {dates.map((r) => {
+                const m = morceauxDate(r.debut, l);
+                return (
+                  <li key={r.debut} className="flex overflow-hidden rounded-xl bg-card shadow-sm ring-1 ring-border">
+                    <div className="flex w-20 shrink-0 flex-col items-center justify-center border-e-2 border-dashed border-background bg-safran py-3 text-encre">
+                      <span className="text-xs font-semibold uppercase">{m.semaine}</span>
+                      <span className="font-[family-name:var(--font-titre)] text-3xl leading-none font-extrabold tabular-nums">{m.jour}</span>
+                      <span className="text-xs font-bold uppercase">{m.mois}</span>
+                    </div>
+                    <div className="flex flex-1 flex-col justify-center px-4 py-3">
+                      <span className="text-sm text-muted-foreground first-letter:uppercase">{dateLongue(r.debut, l)}</span>
+                      <span className="font-[family-name:var(--font-titre)] text-2xl font-extrabold tabular-nums text-primary">{heure(r.debut, l)}</span>
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
-            <a href={`/api/ics/${e.slug}`} className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline">
-              <CalendarPlus className="size-4" /> {d.ajouterCalendrier}
-            </a>
-          </Bloc>
+          </section>
+
+          {description && (
+            <section className="rounded-2xl bg-card p-6 shadow-sm ring-1 ring-border">
+              <p dir="auto" className="text-lg leading-relaxed whitespace-pre-line">{description}</p>
+              {e.organisateur && (
+                <p className="mt-5 border-t pt-4 text-sm text-muted-foreground">
+                  {d.organisePar} : <span className="font-semibold text-foreground">{e.organisateur.nom}</span>
+                </p>
+              )}
+            </section>
+          )}
+          {!description && e.organisateur && (
+            <p className="text-sm text-muted-foreground">
+              {d.organisePar} : <span className="font-semibold text-foreground">{e.organisateur.nom}</span>
+            </p>
+          )}
 
           {/* Lieu */}
           {nomLieu && (
-            <Bloc titre={d.lieu}>
-              <p className="flex items-start gap-2 font-medium">
-                <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
-                <span>
-                  {e.lieu ? <Link href={`/${l}/lieu/${e.lieu.slug}`} className="hover:underline">{nomLieu}</Link> : nomLieu}
-                  {nomVille && <span className="text-muted-foreground"> · {nomVille}</span>}
-                  {e.lieu?.adresse && <span dir="auto" className="block text-sm font-normal text-muted-foreground">{e.lieu.adresse}</span>}
-                </span>
-              </p>
-              {e.lieu?.lat != null && e.lieu?.lng != null && (
-                <>
+            <section>
+              <h2 className="mb-4 flex items-center gap-2.5 text-2xl font-extrabold"><Etoile className="size-5 text-safran" /> {d.lieu}</h2>
+              <div className="overflow-hidden rounded-2xl bg-card shadow-sm ring-1 ring-border">
+                {e.lieu?.lat != null && e.lieu?.lng != null && (
                   <iframe
                     title={nomLieu}
                     loading="lazy"
-                    className="mt-3 h-52 w-full rounded-lg border"
+                    className="h-60 w-full border-b"
                     src={`https://www.openstreetmap.org/export/embed.html?bbox=${e.lieu.lng - 0.006},${e.lieu.lat - 0.004},${e.lieu.lng + 0.006},${e.lieu.lat + 0.004}&layer=mapnik&marker=${e.lieu.lat},${e.lieu.lng}`}
                   />
-                  <a
-                    href={`https://www.google.com/maps/dir/?api=1&destination=${e.lieu.lat},${e.lieu.lng}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-                  >
-                    <Navigation className="size-4" /> {d.itineraire}
-                  </a>
-                </>
-              )}
-            </Bloc>
+                )}
+                <div className="flex flex-wrap items-center justify-between gap-4 p-5">
+                  <p className="flex items-start gap-2 font-semibold">
+                    <MapPin className="mt-0.5 size-5 shrink-0 text-primary" />
+                    <span>
+                      {e.lieu ? <Link href={`/${l}/lieu/${e.lieu.slug}`} className="hover:text-primary hover:underline">{nomLieu}</Link> : nomLieu}
+                      {nomVille && <span className="font-normal text-muted-foreground"> · {nomVille}</span>}
+                      {e.lieu?.adresse && <span dir="auto" className="block text-sm font-normal text-muted-foreground">{e.lieu.adresse}</span>}
+                    </span>
+                  </p>
+                  {e.lieu?.lat != null && e.lieu?.lng != null && (
+                    <a
+                      href={`https://www.google.com/maps/dir/?api=1&destination=${e.lieu.lat},${e.lieu.lng}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex h-10 items-center gap-2 rounded-full border-2 border-encre px-4 text-sm font-semibold transition hover:bg-encre hover:text-sable"
+                    >
+                      <Navigation className="size-4" /> {d.itineraire}
+                    </a>
+                  )}
+                </div>
+              </div>
+            </section>
           )}
+        </div>
 
-          {/* Réservation */}
-          <Bloc titre={d.commentReserver}>
-            <p className="flex items-center gap-2 text-lg font-semibold">
-              <Ticket className="size-5 text-primary" />
-              <Prix e={e} l={l} />
-            </p>
-            {e.infos_reservation && <p dir="auto" className="mt-2 whitespace-pre-line text-sm">{e.infos_reservation}</p>}
-            <div className="mt-3 flex flex-wrap gap-2">
+        {/* Colonne réservation */}
+        <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
+          <section id="reserver" className="motif-zellige scroll-mt-24 overflow-hidden rounded-2xl bg-terracotta p-6 text-white shadow-lg [--motif-opacite:0.1]">
+            <p className="flex items-center gap-2 text-xs font-extrabold tracking-[0.2em] uppercase opacity-85"><Etoile className="size-3.5 text-safran" /> {d.billet}</p>
+            <p className="mt-2 font-[family-name:var(--font-titre)] text-3xl font-extrabold"><Prix e={e} l={l} clair /></p>
+            {e.infos_reservation && <p dir="auto" className="mt-3 text-sm whitespace-pre-line opacity-90">{e.infos_reservation}</p>}
+            <div className="mt-5 grid gap-2">
               {e.telephone_reservation && (
                 <LienReservation id={e.id} href={`tel:+216${e.telephone_reservation.replace(/\D/g, "").replace(/^216/, "")}`}
-                  className="inline-flex h-11 items-center gap-2 rounded-lg bg-primary px-4 font-semibold text-primary-foreground hover:bg-primary/90">
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-sable px-5 font-bold text-encre transition hover:bg-safran">
                   <Phone className="size-4" /> {d.appeler} <span dir="ltr">{e.telephone_reservation}</span>
                 </LienReservation>
               )}
               {e.lien_externe && (
                 <LienReservation id={e.id} href={e.lien_externe}
-                  className="inline-flex h-11 items-center gap-2 rounded-lg border bg-card px-4 font-semibold hover:bg-muted">
+                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full border-2 border-white/70 px-5 font-semibold transition hover:bg-white hover:text-terracotta">
                   <ExternalLink className="size-4" /> {d.plusInfos}
                 </LienReservation>
               )}
             </div>
-          </Bloc>
+          </section>
 
-          {description && <p dir="auto" className="whitespace-pre-line leading-relaxed">{description}</p>}
-
-          {e.organisateur && (
-            <p className="text-sm text-muted-foreground">
-              {d.organisePar} : <span className="font-medium text-foreground">{e.organisateur.nom}</span>
-            </p>
-          )}
-
-          <Bloc titre={d.partager}>
+          <section className="rounded-2xl bg-card p-5 shadow-sm ring-1 ring-border">
+            <h2 className="mb-3 text-xs font-extrabold tracking-[0.2em] text-muted-foreground uppercase">{d.partager}</h2>
             <Partage url={url} titre={titre} libelles={{ partager: d.partager, copier: d.copierLien, copie: d.lienCopie }} />
-          </Bloc>
-        </div>
+          </section>
+        </aside>
       </div>
 
       {autres.length > 0 && (
-        <section className="mt-14">
-          <h2 className="mb-4 text-xl font-bold">{d.similaires}</h2>
+        <Section titre={d.similaires}>
           <GrilleEvenements cartes={autres} l={l} villes={villes} categories={categories} />
-        </section>
+        </Section>
       )}
     </article>
   );
 }
 
-function Bloc({ titre, children }: { titre: string; children: React.ReactNode }) {
-  return (
-    <section className="rounded-xl border bg-card p-4">
-      <h2 className="mb-3 text-xs font-semibold tracking-wide text-muted-foreground uppercase">{titre}</h2>
-      {children}
-    </section>
-  );
-}
-
-function Prix({ e, l }: { e: { gratuit: boolean; prix_min: number | null; prix_max: number | null }; l: Langue }) {
+function Prix({ e, l, clair }: { e: { gratuit: boolean; prix_min: number | null; prix_max: number | null }; l: Langue; clair?: boolean }) {
   const d = t(l);
-  if (e.gratuit) return <span className="text-success">{d.gratuit}</span>;
-  if (e.prix_min == null) return <span className="text-muted-foreground">{d.prixNonCommunique}</span>;
+  if (e.gratuit) return <span>{d.gratuit}</span>;
+  if (e.prix_min == null) return <span className={clair ? "text-xl opacity-85" : "font-normal opacity-85"}>{d.prixNonCommunique}</span>;
   const nb = (n: number) => Number(n).toLocaleString(l === "ar" ? "ar-TN-u-nu-latn" : "fr-FR");
   if (e.prix_max != null && e.prix_max !== e.prix_min) return <span>{nb(e.prix_min)} – {nb(e.prix_max)} {d.dt}</span>;
   return <span>{nb(e.prix_min)} {d.dt}</span>;

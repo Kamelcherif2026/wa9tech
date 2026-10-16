@@ -6,6 +6,9 @@ import { lieuPublic, referentiels } from "@/lib/public/requetes";
 import { langue } from "@/lib/public/langue";
 import { t } from "@/lib/i18n";
 import { GrilleEvenements } from "@/components/public/carte-evenement";
+import { BandeauPage } from "@/components/public/bandeau-page";
+import { MiniCarte } from "@/components/public/mini-carte";
+import { Section } from "@/components/public/section";
 
 export async function generateMetadata({ params }: PageProps<"/[lang]/lieu/[slug]">): Promise<Metadata> {
   const [{ slug }, l] = await Promise.all([params, langue()]);
@@ -35,39 +38,60 @@ async function Contenu({ params }: { params: PageProps<"/[lang]/lieu/[slug]">["p
   const d = t(l);
   const nom = (l === "ar" && lieu.nom_ar) || lieu.nom;
 
-  return (
-    <div className="pt-8">
-      <h1 className="text-3xl font-bold tracking-tight">{nom}</h1>
-      <div className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
-        {(lieu.adresse || lieu.ville) && (
-          <span className="flex items-center gap-1.5">
-            <MapPin className="size-4" />
-            {[lieu.adresse, lieu.ville && (l === "ar" ? lieu.ville.nom_ar : lieu.ville.nom_fr)].filter(Boolean).join(" · ")}
-          </span>
-        )}
-        {lieu.telephone && (
-          <a href={`tel:+216${lieu.telephone.replace(/\D/g, "").replace(/^216/, "")}`} className="flex items-center gap-1.5 hover:text-primary">
-            <Phone className="size-4" /> <span dir="ltr">{lieu.telephone}</span>
-          </a>
-        )}
-        {lieu.lien && (
-          <a href={lieu.lien} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-primary">
-            <ExternalLink className="size-4" /> {d.plusInfos}
-          </a>
-        )}
-        {lieu.lat != null && (
-          <a href={`https://www.google.com/maps/dir/?api=1&destination=${lieu.lat},${lieu.lng}`} target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-primary">
-            <Navigation className="size-4" /> {d.itineraire}
-          </a>
-        )}
-      </div>
+  const lienInfo = "inline-flex h-10 items-center gap-2 rounded-full border-2 border-current px-4 text-sm font-semibold transition hover:bg-sable hover:text-encre hover:border-sable";
 
-      <h2 className="mt-10 mb-4 text-xl font-bold">{d.aVenirIci}</h2>
-      {cartes.length ? (
-        <GrilleEvenements cartes={cartes} l={l} villes={villes} categories={categories} />
-      ) : (
-        <p className="rounded-xl border bg-card p-8 text-center text-muted-foreground">{d.aucunResultat}</p>
+  return (
+    <>
+      <BandeauPage
+        surtitre={d.lieuCulturel}
+        titre={nom}
+        titreSecondaire={l === "fr" && lieu.nom_ar ? { texte: lieu.nom_ar, lang: "ar" } : undefined}
+        teinte="bg-encre text-sable"
+        illustration={lieu.ville ? <MiniCarte ville={lieu.ville.slug} className="h-44 w-auto text-sable" /> : undefined}
+      >
+        {(lieu.adresse || lieu.ville) && (
+          <p className="flex items-center gap-2 opacity-85">
+            <MapPin className="size-4 shrink-0 text-safran" />
+            <span dir="auto">{[lieu.adresse, lieu.ville && (l === "ar" ? lieu.ville.nom_ar : lieu.ville.nom_fr)].filter(Boolean).join(" · ")}</span>
+          </p>
+        )}
+        <div className="mt-5 flex flex-wrap gap-2">
+          {lieu.telephone && (
+            <a href={`tel:+216${lieu.telephone.replace(/\D/g, "").replace(/^216/, "")}`} className={lienInfo}>
+              <Phone className="size-4" /> <span dir="ltr">{lieu.telephone}</span>
+            </a>
+          )}
+          {lieu.lien && (
+            <a href={lieu.lien} target="_blank" rel="noreferrer" className={lienInfo}>
+              <ExternalLink className="size-4" /> {d.plusInfos}
+            </a>
+          )}
+          {lieu.lat != null && (
+            <a href={`https://www.google.com/maps/dir/?api=1&destination=${lieu.lat},${lieu.lng}`} target="_blank" rel="noreferrer" className={lienInfo}>
+              <Navigation className="size-4" /> {d.itineraire}
+            </a>
+          )}
+        </div>
+      </BandeauPage>
+
+      <Section titre={d.aVenirIci}>
+        {cartes.length ? (
+          <GrilleEvenements cartes={cartes} l={l} villes={villes} categories={categories} />
+        ) : (
+          <p className="rounded-3xl border-2 border-dashed border-encre/15 bg-card p-10 text-center text-muted-foreground">{d.aucunResultat}</p>
+        )}
+      </Section>
+
+      {lieu.lat != null && lieu.lng != null && (
+        <Section titre={d.surLaCarte}>
+          <iframe
+            title={nom}
+            loading="lazy"
+            className="h-72 w-full rounded-2xl shadow-sm ring-1 ring-border"
+            src={`https://www.openstreetmap.org/export/embed.html?bbox=${lieu.lng - 0.008},${lieu.lat - 0.005},${lieu.lng + 0.008},${lieu.lat + 0.005}&layer=mapnik&marker=${lieu.lat},${lieu.lng}`}
+          />
+        </Section>
       )}
-    </div>
+    </>
   );
 }
