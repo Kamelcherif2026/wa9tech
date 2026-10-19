@@ -9,7 +9,7 @@ import { composerLieuTexte } from "./lieu";
  * Les fiches créées ont toujours le statut « en_attente » : un humain valide avant publication.
  */
 
-type Source = "admin" | "formulaire" | "whatsapp" | "email" | "ambassadeur" | "organisateur";
+type Source = "admin" | "formulaire" | "application" | "whatsapp" | "email" | "ambassadeur" | "organisateur";
 
 export interface FicheCreee {
   id: string;

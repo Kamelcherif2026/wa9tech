@@ -1,7 +1,13 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
 import 'package:wa9tech/data/dates.dart';
 import 'package:wa9tech/data/favoris.dart';
 import 'package:wa9tech/data/modeles.dart';
+import 'package:wa9tech/data/proposition.dart';
 import 'package:wa9tech/services/rappels.dart';
 
 void main() {
@@ -79,5 +85,70 @@ void main() {
     expect(p.nomLieu('fr'), 'Théâtre municipal');
     expect(p.distanceKm, 1.2);
     expect(p.lat, 34.7406);
+  });
+
+  // Proposer un événement
+  final jpeg = Uint8List.fromList([0xFF, 0xD8, 0xFF, 0xE0, 0, 0x10, 0x4A, 0x46]);
+
+  test('type d\'image reconnu par ses premiers octets', () {
+    expect(typeImage(jpeg), 'image/jpeg');
+    expect(typeImage(Uint8List.fromList([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A])), 'image/png');
+    expect(typeImage(Uint8List.fromList(ascii.encode('RIFF0000WEBPVP8 '))), 'image/webp');
+    expect(typeImage(Uint8List.fromList(ascii.encode('<html>pas une image'))), isNull);
+  });
+
+  test('vérification avant envoi : mêmes règles que le site', () {
+    expect(verifierProposition(nom: 'Kamel', contact: '+216 55 55 05 05', consentement: true, affiche: jpeg), isEmpty);
+    expect(verifierProposition(nom: 'Kamel', contact: 'kamel@wa9tech.tn', consentement: true, affiche: jpeg), isEmpty);
+    expect(
+      verifierProposition(nom: 'K', contact: 'abc', consentement: false),
+      {'nom', 'contact', 'consentement', 'affiche'},
+    );
+  });
+
+  test('envoi : champs du formulaire et réponse ok', () async {
+    late http.Request recue;
+    final client = MockClient((r) async {
+      recue = r;
+      return http.Response('{"ok":true}', 200, headers: {'content-type': 'application/json'});
+    });
+    final r = await envoyerProposition(affiche: jpeg, nom: ' Kamel ', contact: '55550505', message: 'Entrée libre', client: client);
+    expect(r.ok, isTrue);
+    expect(recue.url.path, '/api/proposer');
+    final corps = utf8.decode(recue.bodyBytes, allowMalformed: true);
+    expect(corps, contains('name="nom"'));
+    expect(corps, contains('Kamel'));
+    expect(corps, contains('name="consentement"'));
+    expect(corps, contains('filename="affiche.jpg"'));
+    expect(corps, contains('content-type: image/jpeg'));
+  });
+
+  test('envoi : erreurs du serveur et coupure réseau', () async {
+    final trop = await envoyerProposition(
+      affiche: jpeg,
+      nom: 'Kamel',
+      contact: '55550505',
+      client: MockClient((_) async => http.Response('{"erreur":"trop"}', 429)),
+    );
+    expect(trop.erreur, ErreurProposition.trop);
+
+    final champs = await envoyerProposition(
+      affiche: jpeg,
+      nom: 'Kamel',
+      contact: '55550505',
+      client: MockClient((_) async => http.Response('{"erreur":"champs","champs":{"contact":true}}', 400)),
+    );
+    expect(champs.champs, {'contact'});
+
+    final coupure = await envoyerProposition(
+      affiche: jpeg,
+      nom: 'Kamel',
+      contact: '55550505',
+      client: MockClient((_) async => throw http.ClientException('hors ligne')),
+    );
+    expect(coupure.erreur, ErreurProposition.serveur);
+
+    final pasImage = await envoyerProposition(affiche: Uint8List.fromList([1, 2, 3]), nom: 'Kamel', contact: '55550505');
+    expect(pasImage.erreur, ErreurProposition.image);
   });
 }

@@ -54,8 +54,47 @@ class AccueilPage extends ConsumerWidget {
             SliverToBoxAdapter(child: TitreSection(t.villes)),
             SliverToBoxAdapter(child: _Villes(refs: refs.value!)),
           ],
+          const SliverToBoxAdapter(child: _AppelProposer()),
           const SliverToBoxAdapter(child: SizedBox(height: 32)),
         ],
+      ),
+    );
+  }
+}
+
+/// Bas de l'accueil : invitation aux organisateurs à envoyer leur affiche.
+class _AppelProposer extends StatelessWidget {
+  const _AppelProposer();
+
+  @override
+  Widget build(BuildContext context) {
+    final t = T.of(context);
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 28, 16, 0),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: FondZellige(
+          couleur: Couleurs.encre,
+          motif: Couleurs.safran,
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(t.proposerAppel, style: styleTitre(context, taille: 22, couleur: Couleurs.safran)),
+                const SizedBox(height: 6),
+                Text(t.proposerIntro, style: const TextStyle(color: Couleurs.sable, height: 1.4)),
+                const SizedBox(height: 14),
+                FilledButton.icon(
+                  style: FilledButton.styleFrom(backgroundColor: Couleurs.safran, foregroundColor: Couleurs.encre),
+                  onPressed: () => context.push('/proposer'),
+                  icon: const Icon(Icons.add_photo_alternate_outlined),
+                  label: Text(t.proposer, style: const TextStyle(fontWeight: FontWeight.w700)),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -75,14 +114,27 @@ class _Ouverture extends ConsumerWidget {
           children: [
             Row(
               children: [
-                Text('WA9TECH', style: styleTitre(context, taille: 24)),
-                const Spacer(),
+                Expanded(child: Text('WA9TECH', maxLines: 1, overflow: TextOverflow.clip, style: styleTitre(context, taille: 24))),
+                FilledButton.icon(
+                  onPressed: () => context.push('/proposer'),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: Couleurs.terracotta,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(horizontal: 14),
+                    visualDensity: VisualDensity.compact,
+                  ),
+                  icon: const Icon(Icons.add, size: 18),
+                  label: Text(t.proposerCourt, style: const TextStyle(fontWeight: FontWeight.w700)),
+                ),
+                const SizedBox(width: 8),
                 OutlinedButton(
                   onPressed: () => ref.read(langueProvider.notifier).basculer(),
                   style: OutlinedButton.styleFrom(
                     foregroundColor: Couleurs.encre,
                     side: const BorderSide(color: Couleurs.encre, width: 2),
                     shape: const StadiumBorder(),
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    visualDensity: VisualDensity.compact,
                   ),
                   child: Text(t.langue, style: const TextStyle(fontWeight: FontWeight.w700)),
                 ),

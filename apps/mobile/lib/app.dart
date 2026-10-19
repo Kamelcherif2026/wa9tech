@@ -11,6 +11,7 @@ import 'ui/pages/agenda_page.dart';
 import 'ui/pages/autour_page.dart';
 import 'ui/pages/fiche_page.dart';
 import 'ui/pages/liste_page.dart';
+import 'ui/pages/proposer_page.dart';
 import 'ui/pages/sorties_page.dart';
 
 /// Routeur de l'application (aussi utilisé pour ouvrir une fiche depuis un rappel).
@@ -31,6 +32,7 @@ final routeur = GoRouter(
         ),
       ],
     ),
+    GoRoute(path: '/proposer', builder: (context, s) => const ProposerPage()),
     GoRoute(path: '/evenement/:slug', builder: (context, s) => FichePage(slug: s.pathParameters['slug']!)),
     GoRoute(path: '/ville/:slug', builder: (context, s) => PageVille(slug: s.pathParameters['slug']!)),
     GoRoute(path: '/categorie/:id', builder: (context, s) => PageCategorie(id: int.parse(s.pathParameters['id']!))),

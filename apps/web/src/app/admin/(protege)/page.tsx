@@ -18,15 +18,15 @@ export default function TableauDeBord() {
 
 async function Indicateurs() {
   const supabase = await createClient();
-  const compter = (table: string, filtre?: [string, string]) => {
+  const compter = (table: string, filtre?: [string, string | string[]]) => {
     let requete = supabase.from(table).select("*", { count: "exact", head: true });
-    if (filtre) requete = requete.eq(filtre[0], filtre[1]);
+    if (filtre) requete = Array.isArray(filtre[1]) ? requete.in(filtre[0], filtre[1]) : requete.eq(filtre[0], filtre[1]);
     return requete.then(({ count }) => count ?? 0);
   };
 
   const [enAttente, recues, publies, lieux, organisateurs] = await Promise.all([
     compter("evenement", ["statut", "en_attente"]),
-    compter("soumission", ["canal", "formulaire"]),
+    compter("soumission", ["canal", ["formulaire", "application"]]),
     compter("evenement", ["statut", "publie"]),
     compter("lieu", ["actif", "true"]),
     compter("organisateur"),
@@ -34,7 +34,7 @@ async function Indicateurs() {
 
   const tuiles = [
     { libelle: "En attente de validation", valeur: enAttente, href: "/admin/evenements?statut=en_attente" },
-    { libelle: "Affiches reçues via le site", valeur: recues, href: "/admin/soumissions" },
+    { libelle: "Affiches reçues (site et application)", valeur: recues, href: "/admin/soumissions" },
     { libelle: "Événements publiés", valeur: publies, href: "/admin/evenements?statut=publie" },
     { libelle: "Lieux actifs", valeur: lieux, href: "/admin/lieux" },
     { libelle: "Organisateurs", valeur: organisateurs, href: "/admin/organisateurs" },

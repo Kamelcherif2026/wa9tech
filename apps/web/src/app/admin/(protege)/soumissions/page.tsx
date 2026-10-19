@@ -18,6 +18,7 @@ const STATUTS = {
 
 const CANAUX: Record<string, string> = {
   formulaire: "Site",
+  application: "Application",
   whatsapp: "WhatsApp",
   email: "E-mail",
   admin: "Back-office",
@@ -25,8 +26,12 @@ const CANAUX: Record<string, string> = {
   organisateur: "Organisateur",
 };
 
+/** « public » : propositions venues du site et de l'application. */
+const PUBLIC = ["formulaire", "application"];
 const FILTRES = [
-  { valeur: "formulaire", libelle: "Site (public)" },
+  { valeur: "public", libelle: "Public (site + application)" },
+  { valeur: "formulaire", libelle: "Site" },
+  { valeur: "application", libelle: "Application" },
   { valeur: "", libelle: "Toutes" },
 ];
 
@@ -62,7 +67,7 @@ export default function PageSoumissions({ searchParams }: PageProps<"/admin/soum
 
 async function Liste({ searchParams }: { searchParams: PageProps<"/admin/soumissions">["searchParams"] }) {
   const p = await searchParams;
-  const canal = typeof p.canal === "string" ? p.canal : "formulaire";
+  const canal = typeof p.canal === "string" ? p.canal : "public";
 
   const supabase = await createClient();
   let requete = supabase
@@ -70,7 +75,8 @@ async function Liste({ searchParams }: { searchParams: PageProps<"/admin/soumiss
     .select("id, canal, contact_nom, expediteur, texte_brut, images, statut, erreur, confiance_ia, evenement_id, doublon_de, recue_le, evenement:evenement_id(titre_fr, statut)")
     .order("recue_le", { ascending: false })
     .limit(100);
-  if (canal) requete = requete.eq("canal", canal);
+  if (canal === "public") requete = requete.in("canal", PUBLIC);
+  else if (canal) requete = requete.eq("canal", canal);
   const { data, error } = await requete.returns<Ligne[]>();
   if (error) return <p className="text-sm text-destructive">Erreur : {error.message}</p>;
 

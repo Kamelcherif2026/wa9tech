@@ -81,6 +81,51 @@ class T {
   String nbAutour(int n, int km) => ar
       ? '$n فعالية على بعد $km كم'
       : '$n ${n > 1 ? 'événements' : 'événement'} à moins de $km km';
+  // Proposer un événement (mêmes textes que le site)
+  String get proposer => _t('Proposer un événement', 'اقترح فعالية');
+  String get proposerCourt => _t('Proposer', 'اقترح');
+  String get proposerSurtitre => _t('Organisateurs, artistes, lieux', 'منظّمون، فنانون، فضاءات');
+  String get proposerIntro => _t(
+        "Envoyez-nous l'affiche de votre événement : notre équipe la lit, vérifie les informations et la publie gratuitement sur WA9TECH.",
+        'أرسل لنا معلّقة فعاليتك: يقرأها فريقنا، يتثبّت من المعلومات وينشرها مجانًا على وقتاش.',
+      );
+  String get proposerAppel => _t('Vous organisez un événement ?', 'تنظّم فعالية؟');
+  String get champAffiche => _t("L'affiche", 'المعلّقة');
+  String get choisirAffiche => _t("Choisir l'affiche", 'اختر المعلّقة');
+  String get formatsAffiche => _t('Une photo nette suffit', 'صورة واضحة تكفي');
+  String get changerAffiche => _t("Changer d'image", 'تغيير الصورة');
+  String get galerie => _t('Galerie', 'المعرض');
+  String get appareilPhoto => _t('Appareil photo', 'الكاميرا');
+  String get champMessage => _t('Informations complémentaires (facultatif)', 'معلومات إضافية (اختياري)');
+  String get aideMessage =>
+      _t('Prix, réservation, lien de la billetterie, précisions sur le lieu…', 'السعر، الحجز، رابط التذاكر، تفاصيل عن المكان…');
+  String get champNom => _t('Votre nom ou celui de la structure', 'اسمك أو اسم الهيكل');
+  String get champContact => _t('Téléphone ou e-mail', 'الهاتف أو البريد الإلكتروني');
+  String get aideContact =>
+      _t('Uniquement pour vous joindre en cas de question. Jamais publié.', 'للتواصل معك عند الحاجة فقط. لا يُنشر أبدًا.');
+  String get consentement => _t(
+        "J'accepte que WA9TECH utilise cette affiche et ces informations pour publier l'événement. Mes coordonnées sont supprimées après 6 mois.",
+        'أوافق على أن تستعمل وقتاش هذه المعلّقة وهذه المعلومات لنشر الفعالية. تُحذف بياناتي بعد 6 أشهر.',
+      );
+  String get envoyer => _t("Envoyer l'affiche", 'أرسل المعلّقة');
+  String get envoiEnCours => _t('Envoi en cours…', 'جارٍ الإرسال…');
+  String get merciTitre => _t('Merci, affiche bien reçue !', 'شكرًا، وصلتنا المعلّقة!');
+  String get merciTexte => _t(
+        "Notre équipe va vérifier les informations. L'événement apparaîtra dans l'agenda dès sa validation, en général sous 48 heures.",
+        'سيتثبّت فريقنا من المعلومات. ستظهر الفعالية في الأجندة فور المصادقة عليها، عادةً خلال 48 ساعة.',
+      );
+  String get proposerAutre => _t('Proposer un autre événement', 'اقترح فعالية أخرى');
+  String get retourAccueil => _t("Retour à l'accueil", 'العودة إلى الرئيسية');
+  String get erreurChamps => _t('Merci de vérifier les champs signalés.', 'يرجى مراجعة الخانات المشار إليها.');
+  String get erreurImage => _t(
+        "Cette image n'est pas acceptée (JPG, PNG ou WebP de moins de 3 Mo).",
+        'هذه الصورة غير مقبولة (JPG أو PNG أو WebP أقل من 3 ميغابايت).',
+      );
+  String get erreurTrop => _t(
+        'Vous avez déjà envoyé plusieurs affiches : merci de réessayer dans une heure.',
+        'أرسلت عدّة معلّقات: يرجى المحاولة بعد ساعة.',
+      );
+  String get erreurServeur => _t("L'envoi n'a pas abouti. Réessayez dans un instant.", 'لم يتمّ الإرسال. أعد المحاولة بعد قليل.');
   String nbEvenements(int n) => ar ? '$n فعالية' : (n > 1 ? '$n événements' : '$n événement');
 
   String periode(int i) => [
