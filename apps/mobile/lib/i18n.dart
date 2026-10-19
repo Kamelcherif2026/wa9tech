@@ -68,6 +68,19 @@ class T {
         'الإشعارات مرفوضة: فعّلها من إعدادات الهاتف.',
       );
   String get sansDate => _t('Pas de date à venir', 'لا يوجد موعد قادم');
+  String get autourDeMoi => _t('Autour de moi', 'حولي');
+  String get rechercherZone => _t('Rechercher dans cette zone', 'ابحث في هذه المنطقة');
+  String get maPosition => _t('Ma position', 'موقعي');
+  String get positionIndisponible =>
+      _t('Position indisponible : la carte est centrée sur Tunis.', 'الموقع غير متاح: الخريطة على تونس العاصمة.');
+  String get aucunAutour => _t('Aucun événement dans cette zone pour cette période.', 'لا توجد فعاليات في هذه المنطقة لهذه الفترة.');
+  String get voirLieu => _t('Voir le lieu', 'صفحة المكان');
+  String distance(double km) => ar
+      ? '${km < 10 ? km.toStringAsFixed(1) : km.round()} كم'
+      : '${km < 10 ? km.toStringAsFixed(1).replaceAll('.', ',') : km.round()} km';
+  String nbAutour(int n, int km) => ar
+      ? '$n فعالية على بعد $km كم'
+      : '$n ${n > 1 ? 'événements' : 'événement'} à moins de $km km';
   String nbEvenements(int n) => ar ? '$n فعالية' : (n > 1 ? '$n événements' : '$n événement');
 
   String periode(int i) => [

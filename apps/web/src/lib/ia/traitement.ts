@@ -84,10 +84,14 @@ async function creerFiche(
   const alertes: string[] = [];
 
   const { data: villeId } = e.ville ? await supabase.rpc("rapprocher_ville", { p_nom: e.ville }) : { data: null };
-  const { data: lieux } = e.lieu_nom
-    ? await supabase.rpc("rapprocher_lieu", { p_nom: e.lieu_nom, p_ville_id: villeId })
-    : { data: null };
-  const lieu = (lieux as { id: string }[] | null)?.[0];
+  // Lieu de la base : d'abord le nom lu, sinon le texte complet (nom + adresse).
+  // La fonction SQL ne rattache que si la correspondance est sûre (sinon alerte « lieu »).
+  let lieu: { id: string } | undefined;
+  for (const texte of new Set([e.lieu_nom, composerLieuTexte(e.lieu_nom, e.adresse)])) {
+    if (!texte || lieu) continue;
+    const { data } = await supabase.rpc("rapprocher_lieu", { p_nom: texte, p_ville_id: villeId });
+    lieu = (data as { id: string }[] | null)?.[0];
+  }
 
   if (!lieu) alertes.push("lieu");
   if (e.en_tunisie === false) alertes.push("hors_tunisie");

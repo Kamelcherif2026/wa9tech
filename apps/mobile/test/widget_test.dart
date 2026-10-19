@@ -55,4 +55,29 @@ void main() {
     expect(g.carte.gratuit, true);
     expect(g.rappels, {Rappel.veille});
   });
+
+  test('événement proche : lecture de la réponse de evenements_proches', () {
+    final p = Proche.depuis({
+      'id': 'x',
+      'slug': 'concert',
+      'titre_fr': 'Concert',
+      'image': 'https://exemple.tn/a.jpg',
+      'categorie_id': 1,
+      'lieu_nom': 'Théâtre municipal',
+      'lieu_nom_ar': 'المسرح البلدي',
+      'lieu_slug': 'theatre-municipal-sfax',
+      'prochaine_date': '2026-10-23T18:00:00+00:00',
+      'gratuit': true,
+      'distance_km': 1.2,
+      'lat': 34.7406,
+      'lng': 10.7603,
+      'ville_id': 3,
+    });
+    expect(p.carte.image, 'https://exemple.tn/a.jpg');
+    expect(p.carte.villeId, 3);
+    expect(p.nomLieu('ar'), 'المسرح البلدي');
+    expect(p.nomLieu('fr'), 'Théâtre municipal');
+    expect(p.distanceKm, 1.2);
+    expect(p.lat, 34.7406);
+  });
 }

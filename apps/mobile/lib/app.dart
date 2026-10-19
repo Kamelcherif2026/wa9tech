@@ -8,6 +8,7 @@ import 'providers.dart';
 import 'theme.dart';
 import 'ui/pages/accueil_page.dart';
 import 'ui/pages/agenda_page.dart';
+import 'ui/pages/autour_page.dart';
 import 'ui/pages/fiche_page.dart';
 import 'ui/pages/liste_page.dart';
 import 'ui/pages/sorties_page.dart';
@@ -19,6 +20,7 @@ final routeur = GoRouter(
       builder: (context, state, child) => _Coquille(chemin: state.uri.path, child: child),
       routes: [
         GoRoute(path: '/', builder: (context, state) => const AccueilPage()),
+        GoRoute(path: '/autour', builder: (context, state) => const AutourPage()),
         GoRoute(path: '/sorties', builder: (context, state) => const SortiesPage()),
         GoRoute(
           path: '/agenda',
@@ -59,8 +61,8 @@ class WaApp extends ConsumerWidget {
   }
 }
 
-/// Barre de navigation du bas (Accueil, Agenda, Mes sorties). Les onglets Autour de moi et Proposer
-/// arriveront aux étapes suivantes.
+/// Barre de navigation du bas (Accueil, Agenda, Autour de moi, Mes sorties). L'onglet Proposer
+/// arrivera à l'étape suivante.
 class _Coquille extends StatelessWidget {
   const _Coquille({required this.chemin, required this.child});
   final String chemin;
@@ -69,19 +71,17 @@ class _Coquille extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = T.of(context);
-    final index = chemin.startsWith('/agenda')
-        ? 1
-        : chemin.startsWith('/sorties')
-            ? 2
-            : 0;
+    const onglets = ['/', '/agenda', '/autour', '/sorties'];
+    final index = onglets.lastIndexWhere((o) => o != '/' && chemin.startsWith(o)).clamp(0, onglets.length - 1);
     return Scaffold(
       body: child,
       bottomNavigationBar: NavigationBar(
         selectedIndex: index,
-        onDestinationSelected: (i) => context.go(const ['/', '/agenda', '/sorties'][i]),
+        onDestinationSelected: (i) => context.go(onglets[i]),
         destinations: [
           NavigationDestination(icon: const Icon(Icons.home_outlined), selectedIcon: const Icon(Icons.home), label: t.accueil),
           NavigationDestination(icon: const Icon(Icons.calendar_month_outlined), selectedIcon: const Icon(Icons.calendar_month), label: t.agenda),
+          NavigationDestination(icon: const Icon(Icons.map_outlined), selectedIcon: const Icon(Icons.map), label: t.autourDeMoi),
           NavigationDestination(icon: const Icon(Icons.favorite_border), selectedIcon: const Icon(Icons.favorite), label: t.mesSorties),
         ],
       ),

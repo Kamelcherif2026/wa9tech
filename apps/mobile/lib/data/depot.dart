@@ -87,6 +87,20 @@ class Depot {
     return (aLaUne: aLaUne, aujourdhui: r[0], weekend: r[1], bientot: bientot);
   }
 
+  /// Événements autour d'un point, du plus proche au plus lointain (100 au plus).
+  Future<List<Proche>> proches({required double lat, required double lng, required int rayonKm, required Periode periode}) async {
+    final f = fenetre(periode);
+    final data = await _sb.rpc('evenements_proches', params: {
+      'p_lat': lat,
+      'p_lng': lng,
+      'p_rayon_km': rayonKm,
+      'p_debut': f.debut.toIso8601String(),
+      'p_fin': f.fin?.toIso8601String(),
+      'p_limite': 100,
+    });
+    return (data as List).cast<Map<String, dynamic>>().where((j) => j['lat'] != null && j['lng'] != null).map(Proche.depuis).toList();
+  }
+
   /// Cartes à jour des événements mis de côté (Mes sorties). Seuls les événements encore publiés reviennent.
   Future<List<Carte>> cartesParIds(List<String> ids) async {
     if (ids.isEmpty) return [];

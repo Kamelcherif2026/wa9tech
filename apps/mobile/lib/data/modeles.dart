@@ -236,6 +236,25 @@ class Fiche {
   }
 }
 
+/// Événement autour d'un point (carte « Autour de moi »), avec son lieu et la distance.
+class Proche {
+  Proche({required this.carte, required this.distanceKm, required this.lat, required this.lng, this.lieuSlug, this.lieuNomAr});
+  final Carte carte;
+  final double distanceKm, lat, lng;
+  final String? lieuSlug, lieuNomAr;
+
+  String? nomLieu(String l) => (l == 'ar' && (lieuNomAr ?? '').isNotEmpty) ? lieuNomAr : carte.lieuNom;
+
+  factory Proche.depuis(Map<String, dynamic> j) => Proche(
+        carte: Carte.depuis(j),
+        distanceKm: (j['distance_km'] as num?)?.toDouble() ?? 0,
+        lat: (j['lat'] as num).toDouble(),
+        lng: (j['lng'] as num).toDouble(),
+        lieuSlug: j['lieu_slug'] as String?,
+        lieuNomAr: j['lieu_nom_ar'] as String?,
+      );
+}
+
 /// En-tête d'une page lieu ou artiste.
 class Entite {
   Entite({required this.id, required this.slug, required this.nom, this.nomAr, this.adresse, this.telephone, this.lien, this.lat, this.lng, this.villeId, this.disciplineId});

@@ -13,5 +13,12 @@ class Config {
     defaultValue: 'https://wa9tech-staging.up.railway.app',
   );
 
+  /// Fond de carte (« Autour de moi »). Par défaut OpenStreetMap, suffisant pour les essais ;
+  /// pour la production, un fournisseur avec clé (MapTiler, Stadia…) via --dart-define=TUILES_URL=...
+  static const tuilesUrl = String.fromEnvironment(
+    'TUILES_URL',
+    defaultValue: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+  );
+
   static bool get estConfigure => supabaseUrl.isNotEmpty && supabaseCle.isNotEmpty;
 }
