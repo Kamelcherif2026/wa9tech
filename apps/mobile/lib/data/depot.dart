@@ -87,6 +87,13 @@ class Depot {
     return (aLaUne: aLaUne, aujourdhui: r[0], weekend: r[1], bientot: bientot);
   }
 
+  /// Cartes à jour des événements mis de côté (Mes sorties). Seuls les événements encore publiés reviennent.
+  Future<List<Carte>> cartesParIds(List<String> ids) async {
+    if (ids.isEmpty) return [];
+    final data = await _sb.from('evenement').select(_selectCarte).inFilter('id', ids);
+    return data.map(Carte.depuis).toList();
+  }
+
   Future<Fiche?> fiche(String slug) async {
     final j = await _sb
         .from('evenement')

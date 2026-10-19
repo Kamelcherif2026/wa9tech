@@ -7,6 +7,7 @@ import '../../data/modeles.dart';
 import '../../i18n.dart';
 import '../../providers.dart';
 import '../../theme.dart';
+import 'bouton_favori.dart';
 import 'image_reseau.dart';
 import 'motifs.dart';
 
@@ -75,6 +76,7 @@ class CarteEvenement extends ConsumerWidget {
                       ),
                     ),
                   if (m != null) PositionedDirectional(start: 10, bottom: -14, child: _Billet(m: m)),
+                  PositionedDirectional(top: 6, start: 6, child: BoutonFavori(carte: carte, pastille: true)),
                 ],
               ),
             ),

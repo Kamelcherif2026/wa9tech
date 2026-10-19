@@ -170,6 +170,20 @@ class Fiche {
   String? description(String l) => (l == 'ar' && (descriptionAr ?? '').isNotEmpty) ? descriptionAr : descriptionFr;
   String? nomLieu(String l) => lieuNom != null ? ((l == 'ar' && (lieuNomAr ?? '').isNotEmpty) ? lieuNomAr : lieuNom) : lieuTexte;
 
+  /// Version « carte » de la fiche (pour Mes sorties).
+  Carte versCarte() => Carte(
+        id: id,
+        slug: slug,
+        titreFr: titreFr,
+        titreAr: titreAr,
+        image: images.isEmpty ? null : images.first,
+        categorieId: categorieId,
+        villeId: villeId,
+        lieuNom: lieuNom ?? lieuTexte,
+        prochaineDate: prochaineDate,
+        gratuit: gratuit,
+      );
+
   factory Fiche.depuis(Map<String, dynamic> j) {
     final lieu = j['lieu'] as Map<String, dynamic>?;
     final ville = j['ville'] as Map<String, dynamic>?;

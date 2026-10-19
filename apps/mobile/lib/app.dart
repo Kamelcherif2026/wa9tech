@@ -10,13 +10,16 @@ import 'ui/pages/accueil_page.dart';
 import 'ui/pages/agenda_page.dart';
 import 'ui/pages/fiche_page.dart';
 import 'ui/pages/liste_page.dart';
+import 'ui/pages/sorties_page.dart';
 
-final _routeur = GoRouter(
+/// Routeur de l'application (aussi utilisé pour ouvrir une fiche depuis un rappel).
+final routeur = GoRouter(
   routes: [
     ShellRoute(
       builder: (context, state, child) => _Coquille(chemin: state.uri.path, child: child),
       routes: [
         GoRoute(path: '/', builder: (context, state) => const AccueilPage()),
+        GoRoute(path: '/sorties', builder: (context, state) => const SortiesPage()),
         GoRoute(
           path: '/agenda',
           builder: (context, state) => AgendaPage(
@@ -51,12 +54,12 @@ class WaApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       theme: construireTheme(arabe: langue == 'ar'),
-      routerConfig: _routeur,
+      routerConfig: routeur,
     );
   }
 }
 
-/// Barre de navigation du bas (Accueil, Agenda). Les onglets Autour de moi, Favoris et Proposer
+/// Barre de navigation du bas (Accueil, Agenda, Mes sorties). Les onglets Autour de moi et Proposer
 /// arriveront aux étapes suivantes.
 class _Coquille extends StatelessWidget {
   const _Coquille({required this.chemin, required this.child});
@@ -66,15 +69,20 @@ class _Coquille extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = T.of(context);
-    final index = chemin.startsWith('/agenda') ? 1 : 0;
+    final index = chemin.startsWith('/agenda')
+        ? 1
+        : chemin.startsWith('/sorties')
+            ? 2
+            : 0;
     return Scaffold(
       body: child,
       bottomNavigationBar: NavigationBar(
         selectedIndex: index,
-        onDestinationSelected: (i) => context.go(i == 0 ? '/' : '/agenda'),
+        onDestinationSelected: (i) => context.go(const ['/', '/agenda', '/sorties'][i]),
         destinations: [
           NavigationDestination(icon: const Icon(Icons.home_outlined), selectedIcon: const Icon(Icons.home), label: t.accueil),
           NavigationDestination(icon: const Icon(Icons.calendar_month_outlined), selectedIcon: const Icon(Icons.calendar_month), label: t.agenda),
+          NavigationDestination(icon: const Icon(Icons.favorite_border), selectedIcon: const Icon(Icons.favorite), label: t.mesSorties),
         ],
       ),
     );

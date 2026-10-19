@@ -9,7 +9,10 @@ import '../../data/dates.dart';
 import '../../data/modeles.dart';
 import '../../i18n.dart';
 import '../../providers.dart';
+import '../../services/rappels.dart';
 import '../../theme.dart';
+import '../../data/favoris.dart';
+import '../widgets/bouton_favori.dart';
 import '../widgets/carte_evenement.dart';
 import '../widgets/communs.dart';
 import '../widgets/image_reseau.dart';
@@ -90,6 +93,7 @@ class _Contenu extends ConsumerWidget {
                       children: [
                         BackButton(color: texte),
                         const Spacer(),
+                        BoutonFavori(carte: f.versCarte(), couleur: texte),
                         IconButton(
                           icon: Icon(Icons.share_outlined, color: texte),
                           tooltip: t.partager,
@@ -182,21 +186,11 @@ class _Contenu extends ConsumerWidget {
                             ),
                           ),
                           for (final (i, a) in f.artistes.indexed)
-                            ActionChip(
-                              label: Text(a.nomAffiche(l)),
-                              labelStyle: TextStyle(
-                                color: i == 0 ? Couleurs.encre : texte,
-                                fontWeight: FontWeight.w700,
-                              ),
-                              color: WidgetStatePropertyAll(
-                                i == 0 ? Couleurs.sable : Colors.transparent,
-                              ),
-                              side: BorderSide(
-                                color: i == 0 ? Couleurs.sable : texte,
-                                width: 1.5,
-                              ),
-                              onPressed: () =>
-                                  context.push('/artiste/${a.slug}'),
+                            _PastilleArtiste(
+                              nom: a.nomAffiche(l),
+                              principal: i == 0,
+                              couleur: texte,
+                              surAppui: () => context.push('/artiste/${a.slug}'),
                             ),
                         ],
                       ),
@@ -349,6 +343,10 @@ class _Contenu extends ConsumerWidget {
                           couleur: Colors.white,
                         ),
                       ),
+                      if (f.prochaineDate != null) ...[
+                        const SizedBox(height: 12),
+                        _BoutonRappel(carte: f.versCarte()),
+                      ],
                       if ((f.infosReservation ?? '').isNotEmpty) ...[
                         const SizedBox(height: 8),
                         Text(
@@ -501,8 +499,9 @@ class _Contenu extends ConsumerWidget {
     if (f.prixMin == null) return t.prixNonCommunique;
     String nb(double v) =>
         v == v.roundToDouble() ? v.toStringAsFixed(0) : v.toStringAsFixed(1);
-    if (f.prixMax != null && f.prixMax != f.prixMin)
+    if (f.prixMax != null && f.prixMax != f.prixMin) {
       return '${nb(f.prixMin!)} – ${nb(f.prixMax!)} ${t.dt}';
+    }
     return '${nb(f.prixMin!)} ${t.dt}';
   }
 }
@@ -540,4 +539,120 @@ class _Info extends StatelessWidget {
       ],
     ),
   );
+}
+
+/// « Me rappeler » : choix des rappels (la veille, 3 heures avant) pour la prochaine date.
+class _BoutonRappel extends ConsumerWidget {
+  const _BoutonRappel({required this.carte});
+  final Carte carte;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = T.of(context);
+    final actuels = ref.watch(favorisProvider.select((m) => m[carte.id]?.rappels ?? const <Rappel>{}));
+    final libelle = actuels.isEmpty
+        ? t.meRappeler
+        : [
+            if (actuels.contains(Rappel.veille)) t.rappelVeille,
+            if (actuels.contains(Rappel.avant3h)) t.rappel3h,
+          ].join(' · ');
+
+    return OutlinedButton.icon(
+      style: OutlinedButton.styleFrom(
+        foregroundColor: Colors.white,
+        side: const BorderSide(color: Colors.white70, width: 2),
+        minimumSize: const Size.fromHeight(48),
+      ),
+      icon: Icon(actuels.isEmpty ? Icons.notifications_none : Icons.notifications_active),
+      label: Text(libelle, maxLines: 1, overflow: TextOverflow.ellipsis),
+      onPressed: () => _choisir(context, ref, actuels),
+    );
+  }
+
+  Future<void> _choisir(BuildContext context, WidgetRef ref, Set<Rappel> actuels) async {
+    final t = T.of(context);
+    final choix = await showModalBottomSheet<Set<Rappel>>(
+      context: context,
+      showDragHandle: true,
+      builder: (context) {
+        final s = {...actuels};
+        return StatefulBuilder(
+          builder: (context, maj) => SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(8, 0, 8, 16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: Text(t.rappels, style: styleTitre(context, taille: 22)),
+                  ),
+                  for (final (r, texte) in [(Rappel.veille, t.rappelVeille), (Rappel.avant3h, t.rappel3h)])
+                    CheckboxListTile(
+                      value: s.contains(r),
+                      title: Text(texte),
+                      activeColor: Couleurs.terracotta,
+                      onChanged: (v) => maj(() => v == true ? s.add(r) : s.remove(r)),
+                    ),
+                  const SizedBox(height: 8),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: FilledButton(
+                      style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(48)),
+                      onPressed: () => Navigator.pop(context, s),
+                      child: Text(t.valider),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+    if (choix == null || !context.mounted) return;
+
+    final rappels = ref.read(rappelsProvider);
+    final messager = ScaffoldMessenger.of(context);
+    var message = choix.isEmpty ? t.rappelsAnnules : t.rappelsProgrammes;
+    if (choix.isNotEmpty) {
+      if (!rappels.disponible) {
+        message = t.rappelsTelephone;
+      } else if (!await rappels.demanderAutorisation()) {
+        message = t.autorisationRefusee;
+      }
+    }
+    await ref.read(favorisProvider.notifier).definirRappels(carte, choix, ref.read(langueProvider));
+    messager
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(message)));
+  }
+}
+
+/// Nom d'artiste cliquable. Le premier (principal) est plein, les suivants seulement bordés.
+/// Dessiné à la main : les « chips » Material reprenaient le fond clair du thème et le texte devenait invisible.
+class _PastilleArtiste extends StatelessWidget {
+  const _PastilleArtiste({required this.nom, required this.principal, required this.couleur, required this.surAppui});
+  final String nom;
+  final bool principal;
+  final Color couleur;
+  final VoidCallback surAppui;
+
+  @override
+  Widget build(BuildContext context) => Material(
+        color: principal ? Couleurs.sable : Colors.transparent,
+        shape: StadiumBorder(side: BorderSide(color: principal ? Couleurs.sable : couleur, width: 1.5)),
+        child: InkWell(
+          customBorder: const StadiumBorder(),
+          onTap: surAppui,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
+            child: Text(
+              nom,
+              style: TextStyle(color: principal ? Couleurs.encre : couleur, fontWeight: FontWeight.w700, fontSize: 14),
+            ),
+          ),
+        ),
+      );
 }

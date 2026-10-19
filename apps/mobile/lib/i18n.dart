@@ -45,6 +45,29 @@ class T {
   String get toutes => _t('Toutes', 'الكلّ');
   String get langue => _t('العربية', 'Français');
   String get verifie => _t('Information vérifiée', 'معلومة موثّقة');
+  String get mesSorties => _t('Mes sorties', 'خرجاتي');
+  String get ajouterSorties => _t('Ajouter à mes sorties', 'أضف إلى خرجاتي');
+  String get retirerSorties => _t('Retirer de mes sorties', 'احذف من خرجاتي');
+  String get ajoute => _t('Ajouté à vos sorties', 'تمت الإضافة إلى خرجاتك');
+  String get retire => _t('Retiré de vos sorties', 'تم الحذف من خرجاتك');
+  String get sortiesVide =>
+      _t('Touchez le cœur d\'un événement pour le retrouver ici.', 'اضغط على القلب في أي فعالية لتجدها هنا.');
+  String get aVenirSorties => _t('À venir', 'القادمة');
+  String get passees => _t('Passées ou sans date', 'منتهية أو بلا تاريخ');
+  String get meRappeler => _t('Me rappeler', 'ذكّرني');
+  String get rappels => _t('Rappels', 'التذكير');
+  String get rappelVeille => _t('La veille, à 18 h', 'في اليوم السابق، على 18:00');
+  String get rappel3h => _t('3 heures avant', 'قبل 3 ساعات');
+  String get valider => _t('Valider', 'تأكيد');
+  String get rappelsProgrammes => _t('Rappel programmé', 'تمّت برمجة التذكير');
+  String get rappelsAnnules => _t('Rappels désactivés', 'تمّ إلغاء التذكير');
+  String get rappelsTelephone =>
+      _t("Les rappels fonctionnent dans l'application Android.", 'التذكير يعمل في تطبيق أندرويد.');
+  String get autorisationRefusee => _t(
+        "Notifications refusées : autorisez-les dans les réglages du téléphone.",
+        'الإشعارات مرفوضة: فعّلها من إعدادات الهاتف.',
+      );
+  String get sansDate => _t('Pas de date à venir', 'لا يوجد موعد قادم');
   String nbEvenements(int n) => ar ? '$n فعالية' : (n > 1 ? '$n événements' : '$n événement');
 
   String periode(int i) => [
