@@ -62,6 +62,32 @@ class Rappels {
     }
   }
 
+  static NotificationDetails _details(bool ar) => NotificationDetails(
+        android: AndroidNotificationDetails(
+          'rappels_sorties',
+          ar ? 'تذكير بالخرجات' : 'Rappels de sorties',
+          channelDescription: ar ? 'تذكير قبل الفعاليات التي اخترتها' : 'Rappels avant les événements que vous avez choisis',
+          importance: Importance.high,
+          priority: Priority.high,
+        ),
+      );
+
+  /// Essai sur le téléphone (appui long sur le titre « Mes sorties ») : une notification programmée
+  /// dans 30 secondes, par le même chemin que les vrais rappels. false si indisponible ou refusé.
+  Future<bool> tester(String langue) async {
+    if (!_pret || !await demanderAutorisation()) return false;
+    final ar = langue == 'ar';
+    await _plugin.zonedSchedule(
+      id: 1,
+      title: 'WA9TECH',
+      body: ar ? 'تجربة التذكير: يعمل ✓' : 'Test des rappels : ça fonctionne ✓',
+      scheduledDate: tz.TZDateTime.now(tz.UTC).add(const Duration(seconds: 30)),
+      notificationDetails: _details(ar),
+      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+    );
+    return true;
+  }
+
   /// (Re)programme les rappels d'une sortie pour sa prochaine date.
   Future<void> programmer(Favori f, String langue) async {
     if (!_pret) return;
@@ -71,15 +97,7 @@ class Rappels {
     final ar = langue == 'ar';
     final titre = f.carte.titre(langue);
     final lieu = f.carte.lieuNom;
-    final details = NotificationDetails(
-      android: AndroidNotificationDetails(
-        'rappels_sorties',
-        ar ? 'تذكير بالخرجات' : 'Rappels de sorties',
-        channelDescription: ar ? 'تذكير قبل الفعاليات التي اخترتها' : 'Rappels avant les événements que vous avez choisis',
-        importance: Importance.high,
-        priority: Priority.high,
-      ),
-    );
+    final details = _details(ar);
     for (final (:rappel, :quand) in instantsRappel(debut, f.rappels)) {
       final quandTexte = switch (rappel) {
         Rappel.veille => ar ? 'غدًا على ${heure(debut)}' : 'Demain à ${heure(debut)}',

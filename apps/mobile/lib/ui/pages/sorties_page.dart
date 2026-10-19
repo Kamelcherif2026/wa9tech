@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/favoris.dart';
 import '../../i18n.dart';
 import '../../providers.dart';
+import '../../services/rappels.dart';
 import '../../theme.dart';
 import '../widgets/carte_evenement.dart';
 import '../widgets/communs.dart';
@@ -26,6 +27,16 @@ class _SortiesPageState extends ConsumerState<SortiesPage> {
   }
 
   Future<void> _rafraichir() => ref.read(favorisProvider.notifier).synchroniser(ref.read(langueProvider));
+
+  Future<void> _testerRappels() async {
+    final t = T.of(context);
+    final messager = ScaffoldMessenger.of(context);
+    final rappels = ref.read(rappelsProvider);
+    final ok = rappels.disponible && await rappels.tester(ref.read(langueProvider));
+    messager.showSnackBar(SnackBar(
+      content: Text(!rappels.disponible ? t.rappelsTelephone : (ok ? t.rappelTest : t.autorisationRefusee)),
+    ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +65,13 @@ class _SortiesPageState extends ConsumerState<SortiesPage> {
                     children: [
                       const Icon(Icons.favorite, color: Colors.white, size: 28),
                       const SizedBox(width: 10),
-                      Expanded(child: Text(t.mesSorties, style: styleTitre(context, taille: 32, couleur: Colors.white))),
+                      Expanded(
+                        // Appui long (caché) : notification d'essai, pour vérifier les rappels sur un téléphone
+                        child: GestureDetector(
+                          onLongPress: _testerRappels,
+                          child: Text(t.mesSorties, style: styleTitre(context, taille: 32, couleur: Colors.white)),
+                        ),
+                      ),
                     ],
                   ),
                 ),

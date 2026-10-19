@@ -67,6 +67,8 @@ class T {
         "Notifications refusées : autorisez-les dans les réglages du téléphone.",
         'الإشعارات مرفوضة: فعّلها من إعدادات الهاتف.',
       );
+  String get rappelTest =>
+      _t('Notification de test dans 30 secondes environ (parfois 1 à 2 minutes).', 'إشعار تجريبي بعد 30 ثانية تقريبًا (أحيانًا دقيقة أو دقيقتين).');
   String get sansDate => _t('Pas de date à venir', 'لا يوجد موعد قادم');
   String get autourDeMoi => _t('Autour de moi', 'حولي');
   String get rechercherZone => _t('Rechercher dans cette zone', 'ابحث في هذه المنطقة');
