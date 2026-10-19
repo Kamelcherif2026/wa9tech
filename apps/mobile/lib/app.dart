@@ -1,0 +1,82 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
+import 'i18n.dart';
+import 'providers.dart';
+import 'theme.dart';
+import 'ui/pages/accueil_page.dart';
+import 'ui/pages/agenda_page.dart';
+import 'ui/pages/fiche_page.dart';
+import 'ui/pages/liste_page.dart';
+
+final _routeur = GoRouter(
+  routes: [
+    ShellRoute(
+      builder: (context, state, child) => _Coquille(chemin: state.uri.path, child: child),
+      routes: [
+        GoRoute(path: '/', builder: (context, state) => const AccueilPage()),
+        GoRoute(
+          path: '/agenda',
+          builder: (context, state) => AgendaPage(
+            q: state.uri.queryParameters['q'],
+            periode: state.uri.queryParameters['quand'],
+          ),
+        ),
+      ],
+    ),
+    GoRoute(path: '/evenement/:slug', builder: (context, s) => FichePage(slug: s.pathParameters['slug']!)),
+    GoRoute(path: '/ville/:slug', builder: (context, s) => PageVille(slug: s.pathParameters['slug']!)),
+    GoRoute(path: '/categorie/:id', builder: (context, s) => PageCategorie(id: int.parse(s.pathParameters['id']!))),
+    GoRoute(path: '/lieu/:slug', builder: (context, s) => PageLieu(slug: s.pathParameters['slug']!)),
+    GoRoute(path: '/artiste/:slug', builder: (context, s) => PageArtiste(slug: s.pathParameters['slug']!)),
+  ],
+);
+
+class WaApp extends ConsumerWidget {
+  const WaApp({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final langue = ref.watch(langueProvider);
+    return MaterialApp.router(
+      title: 'WA9TECH',
+      debugShowCheckedModeBanner: false,
+      locale: Locale(langue),
+      supportedLocales: const [Locale('fr'), Locale('ar')],
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      theme: construireTheme(arabe: langue == 'ar'),
+      routerConfig: _routeur,
+    );
+  }
+}
+
+/// Barre de navigation du bas (Accueil, Agenda). Les onglets Autour de moi, Favoris et Proposer
+/// arriveront aux étapes suivantes.
+class _Coquille extends StatelessWidget {
+  const _Coquille({required this.chemin, required this.child});
+  final String chemin;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final t = T.of(context);
+    final index = chemin.startsWith('/agenda') ? 1 : 0;
+    return Scaffold(
+      body: child,
+      bottomNavigationBar: NavigationBar(
+        selectedIndex: index,
+        onDestinationSelected: (i) => context.go(i == 0 ? '/' : '/agenda'),
+        destinations: [
+          NavigationDestination(icon: const Icon(Icons.home_outlined), selectedIcon: const Icon(Icons.home), label: t.accueil),
+          NavigationDestination(icon: const Icon(Icons.calendar_month_outlined), selectedIcon: const Icon(Icons.calendar_month), label: t.agenda),
+        ],
+      ),
+    );
+  }
+}
