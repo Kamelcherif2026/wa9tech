@@ -37,6 +37,11 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
+            // Pas de réduction R8 : elle supprimait des fonctions natives appelées par
+            // shared_preferences (NoSuchMethodError ... SharedPreferencesApiRegistrar.getAll)
+            // et l'application ne démarrait pas. Coût : APK un peu plus lourde.
+            isMinifyEnabled = false
+            isShrinkResources = false
         }
     }
 }
