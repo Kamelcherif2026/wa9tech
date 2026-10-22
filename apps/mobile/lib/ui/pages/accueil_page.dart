@@ -114,7 +114,12 @@ class _Ouverture extends ConsumerWidget {
           children: [
             Row(
               children: [
-                Expanded(child: Text('WA9TECH', maxLines: 1, overflow: TextOverflow.clip, style: styleTitre(context, taille: 24))),
+                Expanded(
+                  child: Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: Image.asset('assets/images/logo-wa9tech.png', height: 30, semanticLabel: 'WA9TECH'),
+                  ),
+                ),
                 FilledButton.icon(
                   onPressed: () => context.push('/proposer'),
                   style: FilledButton.styleFrom(

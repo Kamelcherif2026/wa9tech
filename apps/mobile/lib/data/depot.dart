@@ -88,7 +88,7 @@ class Depot {
   }
 
   /// Événements autour d'un point, du plus proche au plus lointain (100 au plus).
-  Future<List<Proche>> proches({required double lat, required double lng, required int rayonKm, required Periode periode}) async {
+  Future<List<Proche>> proches({required double lat, required double lng, required int rayonKm, required Periode periode, int limite = 100}) async {
     final f = fenetre(periode);
     final data = await _sb.rpc('evenements_proches', params: {
       'p_lat': lat,
@@ -96,7 +96,7 @@ class Depot {
       'p_rayon_km': rayonKm,
       'p_debut': f.debut.toIso8601String(),
       'p_fin': f.fin?.toIso8601String(),
-      'p_limite': 100,
+      'p_limite': limite,
     });
     return (data as List).cast<Map<String, dynamic>>().where((j) => j['lat'] != null && j['lng'] != null).map(Proche.depuis).toList();
   }

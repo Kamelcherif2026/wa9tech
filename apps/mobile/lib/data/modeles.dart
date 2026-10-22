@@ -245,6 +245,10 @@ class Proche {
 
   String? nomLieu(String l) => (l == 'ar' && (lieuNomAr ?? '').isNotEmpty) ? lieuNomAr : carte.lieuNom;
 
+  /// Même événement, distance recalculée (depuis la position de l'utilisateur ou le centre de la carte).
+  Proche avecDistance(double km) =>
+      Proche(carte: carte, distanceKm: km, lat: lat, lng: lng, lieuSlug: lieuSlug, lieuNomAr: lieuNomAr);
+
   factory Proche.depuis(Map<String, dynamic> j) => Proche(
         carte: Carte.depuis(j),
         distanceKm: (j['distance_km'] as num?)?.toDouble() ?? 0,

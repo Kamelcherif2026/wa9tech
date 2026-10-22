@@ -19,8 +19,12 @@ import 'fiche_page.dart' show ouvrir;
 /// Centre par défaut quand la position du téléphone n'est pas disponible : Tunis.
 const _tunis = LatLng(36.8065, 10.1815);
 
-/// « Autour de moi » : carte des événements proches. La recherche se fait autour du centre de la carte,
-/// dans un rayon qui couvre la zone affichée (1 à 100 km).
+/// Toute la Tunisie (pour le bouton « Toute la Tunisie »).
+final _tunisie = LatLngBounds(const LatLng(30.2, 7.5), const LatLng(37.55, 11.6));
+
+/// « Autour de moi » : tous les événements de la période sont chargés en une fois et posés sur la carte ;
+/// en déplaçant la carte on voit ceux de n'importe quelle région. La bande du bas liste ceux de la zone
+/// visible, du plus proche au plus lointain (depuis votre position, sinon depuis le centre de la carte).
 class AutourPage extends ConsumerStatefulWidget {
   const AutourPage({super.key});
 
@@ -33,10 +37,11 @@ class _AutourPageState extends ConsumerState<AutourPage> {
   bool _cartePrete = false;
   LatLng? _position; // position du téléphone, si connue
   Periode _periode = Periode.semaine;
-  List<Proche> _resultats = [];
-  int _rayon = 0;
-  bool _chargement = false, _erreur = false, _zoneModifiee = false;
-  int _jeton = 0; // ignore les réponses d'une recherche dépassée
+  List<Proche> _tous = []; // toute la Tunisie, pour la période
+  List<Proche> _visibles = []; // ceux de la zone affichée, triés par distance
+  bool _chargement = false, _erreur = false;
+  int _jeton = 0; // ignore les réponses d'un chargement dépassé
+  Timer? _attenteDeplacement;
 
   @override
   void initState() {
@@ -46,6 +51,7 @@ class _AutourPageState extends ConsumerState<AutourPage> {
 
   @override
   void dispose() {
+    _attenteDeplacement?.cancel();
     _carte.dispose();
     super.dispose();
   }
@@ -70,50 +76,38 @@ class _AutourPageState extends ConsumerState<AutourPage> {
     final p = await _obtenirPosition();
     if (!mounted) return;
     if (p == null) {
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(SnackBar(content: Text(T.of(context).positionIndisponible)));
-      // Premier affichage sans position : on cherche autour de Tunis (centre initial)
-      if (automatique && _cartePrete) unawaited(_rechercher());
+      if (!automatique) {
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(SnackBar(content: Text(T.of(context).positionIndisponible)));
+      }
       return;
     }
     setState(() => _position = p);
     if (_cartePrete) {
-      _carte.move(p, 13);
-      unawaited(_rechercher());
+      _carte.move(p, 12);
+      _majVisibles();
     }
   }
 
   void _surCartePrete() {
     _cartePrete = true;
-    if (_position != null) _carte.move(_position!, 13);
-    unawaited(_rechercher());
+    if (_position != null) _carte.move(_position!, 12);
+    unawaited(_charger());
   }
 
-  /// Rayon (km) qui couvre la zone visible : distance du centre au coin de la carte.
-  int _rayonVisible() {
-    final camera = _carte.camera;
-    final km = const Distance().as(LengthUnit.Kilometer, camera.center, camera.visibleBounds.northEast);
-    return km.ceil().clamp(1, 100);
-  }
-
-  Future<void> _rechercher() async {
-    if (!_cartePrete) return;
+  /// Charge tous les événements de la période, partout en Tunisie.
+  Future<void> _charger() async {
     final jeton = ++_jeton;
-    final centre = _carte.camera.center;
-    final rayon = _rayonVisible();
     setState(() {
       _chargement = true;
       _erreur = false;
-      _zoneModifiee = false;
     });
     try {
-      final r = await ref.read(depotProvider).proches(lat: centre.latitude, lng: centre.longitude, rayonKm: rayon, periode: _periode);
+      final r = await ref.read(depotProvider).proches(lat: 34.0, lng: 9.5, rayonKm: 1000, periode: _periode, limite: 1000);
       if (!mounted || jeton != _jeton) return;
-      setState(() {
-        _resultats = r;
-        _rayon = rayon;
-      });
+      _tous = r;
+      _majVisibles();
     } catch (_) {
       if (mounted && jeton == _jeton) setState(() => _erreur = true);
     } finally {
@@ -121,16 +115,45 @@ class _AutourPageState extends ConsumerState<AutourPage> {
     }
   }
 
+  /// Après un déplacement de la carte (attente courte pour ne pas recalculer à chaque image).
+  void _surDeplacement() {
+    _attenteDeplacement?.cancel();
+    _attenteDeplacement = Timer(const Duration(milliseconds: 250), _majVisibles);
+  }
+
+  void _majVisibles() {
+    if (!mounted || !_cartePrete) return;
+    final camera = _carte.camera;
+    final reference = _position ?? camera.center;
+    const d = Distance();
+    final liste = [
+      for (final p in _tous)
+        if (camera.visibleBounds.contains(LatLng(p.lat, p.lng)))
+          p.avecDistance(d.as(LengthUnit.Meter, reference, LatLng(p.lat, p.lng)) / 1000),
+    ]..sort((a, b) => a.distanceKm.compareTo(b.distanceKm));
+    setState(() => _visibles = liste);
+  }
+
+  void _toutLePays() {
+    _carte.fitCamera(CameraFit.bounds(bounds: _tunisie, padding: const EdgeInsets.fromLTRB(24, 140, 24, 200)));
+    _majVisibles();
+  }
+
   /// Un repère par lieu (plusieurs événements peuvent avoir lieu au même endroit).
   Map<String, List<Proche>> get _parLieu {
     final m = <String, List<Proche>>{};
-    for (final p in _resultats) {
+    for (final p in _tous) {
       (m['${p.lat},${p.lng}'] ??= []).add(p);
     }
     return m;
   }
 
   void _ouvrirLieu(List<Proche> evenements) {
+    // Distances recalculées depuis la position (ou le centre de la carte)
+    final reference = _position ?? _carte.camera.center;
+    evenements = [
+      for (final p in evenements) p.avecDistance(const Distance().as(LengthUnit.Meter, reference, LatLng(p.lat, p.lng)) / 1000),
+    ];
     final premier = evenements.first;
     _carte.move(LatLng(premier.lat, premier.lng), _carte.camera.zoom);
     showModalBottomSheet<void>(
@@ -153,13 +176,11 @@ class _AutourPageState extends ConsumerState<AutourPage> {
           options: MapOptions(
             initialCenter: _tunis,
             initialZoom: 12,
-            minZoom: 6,
+            minZoom: 5,
             maxZoom: 18,
             interactionOptions: const InteractionOptions(flags: InteractiveFlag.all & ~InteractiveFlag.rotate),
             onMapReady: _surCartePrete,
-            onPositionChanged: (camera, geste) {
-              if (geste && !_zoneModifiee) setState(() => _zoneModifiee = true);
-            },
+            onPositionChanged: (camera, geste) => _surDeplacement(),
           ),
           children: [
             TileLayer(urlTemplate: Config.tuilesUrl, userAgentPackageName: 'tn.wa9tech.wa9tech'),
@@ -225,7 +246,7 @@ class _AutourPageState extends ConsumerState<AutourPage> {
                                   labelStyle: TextStyle(color: _periode == p ? Couleurs.sable : Couleurs.encre, fontWeight: FontWeight.w600),
                                   onSelected: (_) {
                                     setState(() => _periode = p);
-                                    _rechercher();
+                                    _charger();
                                   },
                                 ),
                               ),
@@ -236,15 +257,6 @@ class _AutourPageState extends ConsumerState<AutourPage> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                if (_zoneModifiee)
-                  Center(
-                    child: FilledButton.icon(
-                      style: FilledButton.styleFrom(backgroundColor: Couleurs.encre, foregroundColor: Couleurs.sable),
-                      icon: const Icon(Icons.search, size: 18),
-                      label: Text(t.rechercherZone),
-                      onPressed: _rechercher,
-                    ),
-                  ),
                 if (_chargement) const Center(child: Padding(padding: EdgeInsets.all(8), child: CircularProgressIndicator())),
               ],
             ),
@@ -265,17 +277,30 @@ class _AutourPageState extends ConsumerState<AutourPage> {
                 alignment: AlignmentDirectional.centerEnd,
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
-                  child: FloatingActionButton.small(
-                    heroTag: 'ma-position',
-                    tooltip: t.maPosition,
-                    backgroundColor: Colors.white,
-                    foregroundColor: Couleurs.bleu,
-                    onPressed: _localiser,
-                    child: const Icon(Icons.my_location),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      FloatingActionButton.small(
+                        heroTag: 'tunisie',
+                        tooltip: t.voirTunisie,
+                        backgroundColor: Colors.white,
+                        foregroundColor: Couleurs.bleu,
+                        onPressed: _toutLePays,
+                        child: const Icon(Icons.public),
+                      ),
+                      FloatingActionButton.small(
+                        heroTag: 'ma-position',
+                        tooltip: t.maPosition,
+                        backgroundColor: Colors.white,
+                        foregroundColor: Couleurs.bleu,
+                        onPressed: _localiser,
+                        child: const Icon(Icons.my_location),
+                      ),
+                    ],
                   ),
                 ),
               ),
-              if (!_chargement && _cartePrete) _Bande(resultats: _resultats, rayon: _rayon, erreur: _erreur, surReessayer: _rechercher),
+              if (!_chargement && _cartePrete) _Bande(resultats: _visibles, total: _tous.length, erreur: _erreur, surReessayer: _charger),
             ],
           ),
         ),
@@ -329,9 +354,9 @@ class _PointPosition extends StatelessWidget {
 
 /// Bande du bas : nombre d'événements et cartes compactes, du plus proche au plus lointain.
 class _Bande extends StatelessWidget {
-  const _Bande({required this.resultats, required this.rayon, required this.erreur, required this.surReessayer});
+  const _Bande({required this.resultats, required this.total, required this.erreur, required this.surReessayer});
   final List<Proche> resultats;
-  final int rayon;
+  final int total;
   final bool erreur;
   final VoidCallback surReessayer;
 
@@ -357,13 +382,18 @@ class _Bande extends StatelessWidget {
         TextButton(onPressed: surReessayer, child: Text(t.reessayer)),
       ]));
     }
-    if (resultats.isEmpty) return pastille(Text(t.aucunAutour, textAlign: TextAlign.center));
+    if (resultats.isEmpty) {
+      return pastille(Text(
+        total == 0 ? t.aucunAutour : '${t.aucunAutour}\n${t.nbTunisie(total)}',
+        textAlign: TextAlign.center,
+      ));
+    }
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        pastille(Text(t.nbAutour(resultats.length, rayon), style: const TextStyle(fontWeight: FontWeight.w700))),
+        pastille(Text(t.nbZone(resultats.length), style: const TextStyle(fontWeight: FontWeight.w700))),
         const SizedBox(height: 8),
         SizedBox(
           height: 96,

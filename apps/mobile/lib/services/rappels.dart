@@ -1,3 +1,5 @@
+import 'dart:ui' show Color;
+
 import 'package:flutter/foundation.dart' show kIsWeb, defaultTargetPlatform, TargetPlatform;
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,7 +25,7 @@ class Rappels {
     if (!disponible) return;
     try {
       await _plugin.initialize(
-        settings: const InitializationSettings(android: AndroidInitializationSettings('@mipmap/ic_launcher')),
+        settings: const InitializationSettings(android: AndroidInitializationSettings('@drawable/ic_notification')),
         onDidReceiveNotificationResponse: (r) {
           if ((r.payload ?? '').isNotEmpty) surToucher(r.payload!);
         },
@@ -69,6 +71,7 @@ class Rappels {
           channelDescription: ar ? 'تذكير قبل الفعاليات التي اخترتها' : 'Rappels avant les événements que vous avez choisis',
           importance: Importance.high,
           priority: Priority.high,
+          color: Color(0xFFB5452B), // terracotta de la charte
         ),
       );
 

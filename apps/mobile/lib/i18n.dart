@@ -71,7 +71,6 @@ class T {
       _t('Notification de test dans 30 secondes environ (parfois 1 à 2 minutes).', 'إشعار تجريبي بعد 30 ثانية تقريبًا (أحيانًا دقيقة أو دقيقتين).');
   String get sansDate => _t('Pas de date à venir', 'لا يوجد موعد قادم');
   String get autourDeMoi => _t('Autour de moi', 'حولي');
-  String get rechercherZone => _t('Rechercher dans cette zone', 'ابحث في هذه المنطقة');
   String get maPosition => _t('Ma position', 'موقعي');
   String get positionIndisponible =>
       _t('Position indisponible : la carte est centrée sur Tunis.', 'الموقع غير متاح: الخريطة على تونس العاصمة.');
@@ -80,9 +79,9 @@ class T {
   String distance(double km) => ar
       ? '${km < 10 ? km.toStringAsFixed(1) : km.round()} كم'
       : '${km < 10 ? km.toStringAsFixed(1).replaceAll('.', ',') : km.round()} km';
-  String nbAutour(int n, int km) => ar
-      ? '$n فعالية على بعد $km كم'
-      : '$n ${n > 1 ? 'événements' : 'événement'} à moins de $km km';
+  String nbZone(int n) => ar ? '$n فعالية في هذه المنطقة' : '$n ${n > 1 ? 'événements' : 'événement'} dans cette zone';
+  String nbTunisie(int n) => ar ? '$n فعالية في كامل البلاد' : '$n ${n > 1 ? 'événements' : 'événement'} en Tunisie';
+  String get voirTunisie => _t('Toute la Tunisie', 'كلّ تونس');
   // Proposer un événement (mêmes textes que le site)
   String get proposer => _t('Proposer un événement', 'اقترح فعالية');
   String get proposerCourt => _t('Proposer', 'اقترح');
