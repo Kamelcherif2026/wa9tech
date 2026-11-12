@@ -40,9 +40,12 @@ jobs:
           distribution: temurin
           java-version: "17"
 
+      # Même version de Flutter que sur le PC de développement (une version plus récente peut
+      # exiger d'autres versions d'outils Android). À changer ici quand on met Flutter à jour.
       - uses: subosito/flutter-action@v2
         with:
           channel: stable
+          flutter-version: 3.47.2
           cache: true
 
       - name: Dépendances
