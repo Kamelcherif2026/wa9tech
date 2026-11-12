@@ -9,6 +9,7 @@ import 'theme.dart';
 import 'ui/pages/accueil_page.dart';
 import 'ui/pages/agenda_page.dart';
 import 'ui/pages/autour_page.dart';
+import 'ui/pages/compte_page.dart';
 import 'ui/pages/fiche_page.dart';
 import 'ui/pages/liste_page.dart';
 import 'ui/pages/proposer_page.dart';
@@ -36,6 +37,7 @@ final routeur = GoRouter(
       ],
     ),
     GoRoute(path: '/proposer', builder: (context, s) => const ProposerPage()),
+    GoRoute(path: '/compte', builder: (context, s) => const ComptePage()),
     GoRoute(path: '/evenement/:slug', builder: (context, s) => FichePage(slug: s.pathParameters['slug']!)),
     GoRoute(path: '/ville/:slug', builder: (context, s) => PageVille(slug: s.pathParameters['slug']!)),
     GoRoute(path: '/categorie/:id', builder: (context, s) => PageCategorie(id: int.parse(s.pathParameters['id']!))),

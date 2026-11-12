@@ -131,7 +131,12 @@ class _Ouverture extends ConsumerWidget {
                   icon: const Icon(Icons.add, size: 18),
                   label: Text(t.proposerCourt, style: const TextStyle(fontWeight: FontWeight.w700)),
                 ),
-                const SizedBox(width: 8),
+                IconButton(
+                  onPressed: () => context.push('/compte'),
+                  tooltip: t.monCompte,
+                  visualDensity: VisualDensity.compact,
+                  icon: const Icon(Icons.person_outline, color: Couleurs.encre),
+                ),
                 OutlinedButton(
                   onPressed: () => ref.read(langueProvider.notifier).basculer(),
                   style: OutlinedButton.styleFrom(

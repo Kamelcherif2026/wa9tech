@@ -49,14 +49,20 @@ async function Contenu({ l }: { l: Langue }) {
       organisateur: { nom: string; statut_compte: string; confiance: boolean } | null;
     }>();
 
-  const nom = profil?.nom || (claims.user_metadata as { full_name?: string } | undefined)?.full_name || (claims.email as string);
+  // Nom affiché : profil, sinon celui fourni par Google (aussi pour un compte créé avant par e-mail)
+  type Meta = { full_name?: string; name?: string } | undefined;
+  const { data: u } = await supabase.auth.getUser();
+  const nomFourni = [u.user?.user_metadata as Meta, ...(u.user?.identities ?? []).map((i) => i.identity_data as Meta)]
+    .map((m) => m?.full_name || m?.name)
+    .find((n) => !!n?.trim());
+  const nom = profil?.nom || nomFourni || "";
   const staff = profil?.role === "admin" || profil?.role === "moderateur";
 
   return (
     <div className="grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
       <section className="space-y-6">
         <div className="rounded-3xl bg-card p-6 ring-1 ring-border">
-          <p className="text-2xl font-extrabold">{d.bonjour} {nom}</p>
+          <p className="text-2xl font-extrabold">{nom ? `${d.bonjour} ${nom}` : d.bonjour}</p>
           <p className="mt-1 text-sm text-muted-foreground" dir="ltr">{claims.email as string}</p>
         </div>
 

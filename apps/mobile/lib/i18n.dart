@@ -100,6 +100,30 @@ class T {
   String get champMessage => _t('Informations complémentaires (facultatif)', 'معلومات إضافية (اختياري)');
   String get aideMessage =>
       _t('Prix, réservation, lien de la billetterie, précisions sur le lieu…', 'السعر، الحجز، رابط التذاكر، تفاصيل عن المكان…');
+  // Compte (connexion Google)
+  String get monCompte => _t('Mon compte', 'حسابي');
+  String get connexionTitre => _t('Connexion', 'تسجيل الدخول');
+  String get connexionSurtitre => _t('Organisateurs, artistes, lieux, public', 'منظّمون، فنانون، فضاءات، جمهور');
+  String get connexionIntro => _t("Connectez-vous pour gérer vos événements, votre structure et vos sorties. C'est gratuit.",
+      'سجّل الدخول لإدارة فعالياتك وهيكلك وخرجاتك. مجانًا.');
+  String get continuerGoogle => _t('Continuer avec Google', 'المتابعة بحساب Google');
+  String get erreurConnexion => _t("La connexion n'a pas abouti. Réessayez.", 'لم يتمّ تسجيل الدخول. أعد المحاولة.');
+  String get conditionsConnexion => _t('En vous connectant, vous acceptez que WA9TECH conserve votre adresse e-mail pour gérer votre compte.',
+      'بتسجيل الدخول، توافق على أن تحتفظ وقتاش ببريدك الإلكتروني لإدارة حسابك.');
+  String get bonjour => _t('Bonjour', 'مرحبًا');
+  String get seDeconnecter => _t('Se déconnecter', 'تسجيل الخروج');
+  String get devenirOrganisateur => _t('Vous organisez des événements ?', 'تنظّم فعاليات؟');
+  String get devenirOrganisateurTexte => _t(
+      'Créez votre structure (salle, troupe, festival, artiste…) ou revendiquez-la si elle existe déjà sur WA9TECH, puis publiez vos événements vous-même.',
+      'أنشئ هيكلك (قاعة، فرقة، مهرجان، فنان…) أو اطلب إدارته إن كان موجودًا على وقتاش، ثمّ انشر فعالياتك بنفسك.');
+  String get bientotDisponible => _t('Bientôt disponible', 'قريبًا');
+  String get maStructure => _t('Ma structure', 'هيكلي');
+  String get structureEnAttente => _t('En attente de validation', 'في انتظار المصادقة');
+  String get badgeConfiance => _t('Structure de confiance', 'هيكل موثوق');
+  String get accesBackOffice => _t('Ouvrir le back-office', 'فتح لوحة الإدارة');
+  String get sortiesSurTelephone => _t('Vos sorties et vos rappels restent enregistrés sur ce téléphone.',
+      'خرجاتك وتذكيراتك تبقى محفوظة على هذا الهاتف.');
+
   String get champNom => _t('Votre nom ou celui de la structure', 'اسمك أو اسم الهيكل');
   String get champContact => _t('Téléphone ou e-mail', 'الهاتف أو البريد الإلكتروني');
   String get aideContact =>
