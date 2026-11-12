@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import Link from "next/link";
-import { Plus } from "lucide-react";
+import { Download, Plus } from "lucide-react";
 import { autreLangue, t, type Langue } from "@/lib/i18n";
 import { ChangerLangue } from "./changer-langue";
 import { Etoile } from "./motifs";
@@ -23,6 +23,7 @@ export function Entete({ l }: { l: Langue }) {
           <Link href={`/${l}/evenements`} className={lien}>{d.agenda}</Link>
           <Link href={`/${l}#disciplines`} className={`${lien} hidden sm:block`}>{d.navCategories}</Link>
           <Link href={`/${l}#villes`} className={`${lien} hidden sm:block`}>{d.navVilles}</Link>
+          <Link href={`/${l}/application`} className={`${lien} hidden md:block`}>{d.application}</Link>
           <Link
             href={`/${l}/proposer`}
             className="ms-1 inline-flex items-center gap-1 rounded-full bg-primary px-2.5 py-1.5 sm:gap-1.5 sm:px-3.5 font-bold text-primary-foreground transition hover:bg-encre"
@@ -64,6 +65,9 @@ export function PiedDePage({ l }: { l: Langue }) {
             <p className="mt-4 max-w-sm text-lg font-semibold">{d.slogan}</p>
             <Link href={`/${l}/proposer`} className="mt-3 inline-flex items-center gap-2 rounded-full bg-safran px-4 py-2 text-sm font-bold text-encre transition hover:bg-white">
               <Plus className="size-4" strokeWidth={2.5} /> {d.soumettre}
+            </Link>
+            <Link href={`/${l}/application`} className="ms-2 mt-3 inline-flex items-center gap-2 rounded-full border-2 border-white/70 px-4 py-1.5 text-sm font-bold transition hover:bg-white hover:text-bleu">
+              <Download className="size-4" /> {d.telecharger}
             </Link>
           </div>
           <nav className="grid content-start gap-2 text-sm">

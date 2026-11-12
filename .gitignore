@@ -15,3 +15,8 @@ apps/mobile/.dart_tool/
 
 # Banc d essai IA
 scripts/benchmark-ia/resultats/
+
+# Clé de signature Android : JAMAIS dans le dépôt (public)
+*.jks
+*.keystore
+apps/mobile/android/key.properties

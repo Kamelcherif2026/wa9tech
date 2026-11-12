@@ -1,7 +1,18 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
+}
+
+// Clé de signature officielle : lue dans android/key.properties (jamais dans le dépôt).
+// Sur votre PC : fichier écrit à la main. Sur GitHub : écrit par le workflow à partir des secrets.
+// Sans ce fichier, l'APK est signée avec la clé de débogage (tests seulement).
+val cleSignature = Properties().apply {
+    val f = rootProject.file("key.properties")
+    if (f.exists()) FileInputStream(f).use { load(it) }
 }
 
 android {
@@ -32,11 +43,20 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        create("officielle") {
+            if (!cleSignature.isEmpty) {
+                storeFile = file(cleSignature.getProperty("storeFile"))
+                storePassword = cleSignature.getProperty("storePassword")
+                keyAlias = cleSignature.getProperty("keyAlias")
+                keyPassword = cleSignature.getProperty("keyPassword")
+            }
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = if (cleSignature.isEmpty) signingConfigs.getByName("debug") else signingConfigs.getByName("officielle")
             // Pas de réduction R8 : elle supprimait des fonctions natives appelées par
             // shared_preferences (NoSuchMethodError ... SharedPreferencesApiRegistrar.getAll)
             // et l'application ne démarrait pas. Coût : APK un peu plus lourde.

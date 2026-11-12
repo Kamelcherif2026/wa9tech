@@ -20,5 +20,9 @@ class Config {
     defaultValue: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
   );
 
+  /// Dernière version de l'application, publiée automatiquement par GitHub (en attendant le Play Store).
+  static const telechargementApk = 'https://github.com/Kamelcherif2026/wa9tech/releases/latest/download/wa9tech.apk';
+  static const versionUrl = 'https://github.com/Kamelcherif2026/wa9tech/releases/latest/download/version.json';
+
   static bool get estConfigure => supabaseUrl.isNotEmpty && supabaseCle.isNotEmpty;
 }

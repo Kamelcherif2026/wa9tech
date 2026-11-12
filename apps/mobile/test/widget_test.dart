@@ -8,6 +8,7 @@ import 'package:wa9tech/data/dates.dart';
 import 'package:wa9tech/data/favoris.dart';
 import 'package:wa9tech/data/modeles.dart';
 import 'package:wa9tech/data/proposition.dart';
+import 'package:wa9tech/services/mise_a_jour.dart';
 import 'package:wa9tech/services/rappels.dart';
 
 void main() {
@@ -150,5 +151,11 @@ void main() {
 
     final pasImage = await envoyerProposition(affiche: Uint8List.fromList([1, 2, 3]), nom: 'Kamel', contact: '55550505');
     expect(pasImage.erreur, ErreurProposition.image);
+  });
+
+  test('mise à jour : numéro de build sans le décalage du processeur', () {
+    expect(buildSansProcesseur(2105), 105); // APK arm64
+    expect(buildSansProcesseur(1105), 105); // APK 32 bits
+    expect(buildSansProcesseur(1), 1); // build local
   });
 }

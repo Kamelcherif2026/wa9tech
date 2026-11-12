@@ -4,11 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'app.dart';
 import 'config.dart';
 import 'data/favoris.dart';
+import 'i18n.dart';
 import 'providers.dart';
+import 'services/mise_a_jour.dart';
 import 'services/rappels.dart';
 
 Future<void> main() async {
@@ -55,8 +58,35 @@ Future<void> _demarrer() async {
   final slug = rappels.slugAuDemarrage;
   if (slug != null) routeur.push('/evenement/$slug');
 
+  // Nouvelle version publiée sur GitHub ? (en attendant le Play Store)
+  unawaited(_proposerMiseAJour());
+
   // Dates à jour des sorties enregistrées et rappels reprogrammés, en arrière-plan
   unawaited(conteneur.read(favorisProvider.notifier).synchroniser(conteneur.read(langueProvider)));
+}
+
+/// Bandeau « Nouvelle version disponible » : « Mettre à jour » ouvre le téléchargement de l'APK
+/// (Android demande ensuite de confirmer l'installation).
+Future<void> _proposerMiseAJour() async {
+  final nouvelle = await chercherMiseAJour();
+  final m = messager.currentState;
+  final contexte = messager.currentContext;
+  if (nouvelle == null || m == null || contexte == null || !contexte.mounted) return;
+  final t = T.of(contexte);
+  m.showMaterialBanner(MaterialBanner(
+    leading: const Icon(Icons.system_update),
+    content: Text('${t.nouvelleVersion} (${nouvelle.version})'),
+    actions: [
+      TextButton(onPressed: m.hideCurrentMaterialBanner, child: Text(t.plusTard)),
+      FilledButton(
+        onPressed: () {
+          m.hideCurrentMaterialBanner();
+          launchUrl(Uri.parse(Config.telechargementApk), mode: LaunchMode.externalApplication);
+        },
+        child: Text(t.mettreAJour),
+      ),
+    ],
+  ));
 }
 
 /// Écran affiché si le démarrage échoue : le message aide à trouver la cause (capture d'écran).

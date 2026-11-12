@@ -127,6 +127,9 @@ class T {
         'أرسلت عدّة معلّقات: يرجى المحاولة بعد ساعة.',
       );
   String get erreurServeur => _t("L'envoi n'a pas abouti. Réessayez dans un instant.", 'لم يتمّ الإرسال. أعد المحاولة بعد قليل.');
+  String get nouvelleVersion => _t('Une nouvelle version de WA9TECH est disponible.', 'نسخة جديدة من وقتاش متوفّرة.');
+  String get mettreAJour => _t('Mettre à jour', 'حدّث');
+  String get plusTard => _t('Plus tard', 'لاحقًا');
   String nbEvenements(int n) => ar ? '$n فعالية' : (n > 1 ? '$n événements' : '$n événement');
 
   String periode(int i) => [

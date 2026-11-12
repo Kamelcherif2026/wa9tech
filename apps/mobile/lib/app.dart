@@ -15,6 +15,9 @@ import 'ui/pages/proposer_page.dart';
 import 'ui/pages/sorties_page.dart';
 
 /// Routeur de l'application (aussi utilisé pour ouvrir une fiche depuis un rappel).
+/// Pour afficher des messages hors d'une page (ex. « Nouvelle version disponible »).
+final messager = GlobalKey<ScaffoldMessengerState>();
+
 final routeur = GoRouter(
   routes: [
     ShellRoute(
@@ -59,6 +62,7 @@ class WaApp extends ConsumerWidget {
       ],
       theme: construireTheme(arabe: langue == 'ar'),
       routerConfig: routeur,
+      scaffoldMessengerKey: messager,
     );
   }
 }

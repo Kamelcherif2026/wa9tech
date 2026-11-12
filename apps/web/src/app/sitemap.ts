@@ -15,6 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     entree("", 1),
     entree("/evenements", 0.9),
+    entree("/application", 0.6),
     ...villes.map((v) => entree(`/ville/${v.slug}`, 0.8)),
     ...categories.map((c) => entree(`/categorie/${c.slug}`, 0.7)),
     ...evenements.map((e) => entree(`/evenement/${e.slug}`, 0.8, e.modifie_le)),

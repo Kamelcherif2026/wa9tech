@@ -108,6 +108,22 @@ const fr = {
   prochainesDates: "Prochaines dates",
   aucuneDateArtiste: "Aucune date annoncée pour le moment. Revenez bientôt !",
   siteArtiste: "Site / réseaux",
+  application: "Application",
+  applicationTitre: "WA9TECH sur votre téléphone",
+  applicationSurtitre: "Android",
+  applicationIntro: "Tout l'agenda dans votre poche : vos sorties en favoris, des rappels avant le spectacle, la carte des événements autour de vous.",
+  telecharger: "Télécharger l'application",
+  telechargerAncien: "Ancien téléphone ? Version 32 bits",
+  scannerQr: "Sur ordinateur ? Scannez ce code avec votre téléphone.",
+  installationTitre: "Installer en 3 étapes",
+  installationEtapes: [
+    "Touchez « Télécharger l'application » depuis votre téléphone Android.",
+    "Ouvrez le fichier wa9tech.apk téléchargé.",
+    "Si Android le demande, autorisez l'installation depuis cette source, puis touchez « Installer ».",
+  ],
+  miseAJourAuto: "L'application vous préviendra elle-même de chaque nouvelle version.",
+  bientotPlayStore: "Bientôt sur Google Play.",
+  iphone: "Sur iPhone : utilisez le site, il s'adapte à votre écran.",
 };
 
 type Dictionnaire = typeof fr;
@@ -215,6 +231,22 @@ const ar: Dictionnaire = {
   prochainesDates: "المواعيد القادمة",
   aucuneDateArtiste: "لا توجد مواعيد معلنة حاليًا. عُد قريبًا!",
   siteArtiste: "الموقع / الشبكات",
+  application: "التطبيق",
+  applicationTitre: "وقتاش على هاتفك",
+  applicationSurtitre: "أندرويد",
+  applicationIntro: "كلّ الأجندة في جيبك: خرجاتك المفضّلة، تذكير قبل العرض، وخريطة الفعاليات من حولك.",
+  telecharger: "حمّل التطبيق",
+  telechargerAncien: "هاتف قديم؟ نسخة 32 بت",
+  scannerQr: "على الحاسوب؟ امسح هذا الرمز بهاتفك.",
+  installationTitre: "التثبيت في 3 خطوات",
+  installationEtapes: [
+    "اضغط على « حمّل التطبيق » من هاتفك الأندرويد.",
+    "افتح الملف wa9tech.apk الذي تمّ تحميله.",
+    "إذا طلب أندرويد ذلك، اسمح بالتثبيت من هذا المصدر ثمّ اضغط « تثبيت ».",
+  ],
+  miseAJourAuto: "سيُعلمك التطبيق بنفسه بكلّ نسخة جديدة.",
+  bientotPlayStore: "قريبًا على Google Play.",
+  iphone: "على آيفون: استعمل الموقع، فهو يتلاءم مع شاشتك.",
 };
 
 export const dictionnaires: Record<Langue, Dictionnaire> = { fr, ar };
