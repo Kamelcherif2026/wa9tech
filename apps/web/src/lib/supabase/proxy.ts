@@ -2,10 +2,10 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 /**
- * Rafraîchit la session Supabase à chaque requête /admin
- * et redirige vers /admin/login si l'utilisateur n'est pas connecté.
+ * Rafraîchit la session Supabase (cookies) et indique si l'utilisateur est connecté.
+ * Utilisé pour le back-office et pour les pages de compte du site.
  */
-export async function updateSession(request: NextRequest) {
+export async function rafraichirSession(request: NextRequest) {
   let response = NextResponse.next({ request });
 
   const supabase = createServerClient(
@@ -32,7 +32,22 @@ export async function updateSession(request: NextRequest) {
 
   // Ne rien placer entre createServerClient et getClaims (recommandation Supabase).
   const { data } = await supabase.auth.getClaims();
-  const connecte = Boolean(data?.claims);
+  return { connecte: Boolean(data?.claims), response: () => response };
+}
+
+/** Redirection qui conserve les cookies de session rafraîchis. */
+export function rediriger(depuis: NextResponse, url: URL) {
+  const r = NextResponse.redirect(url);
+  depuis.cookies.getAll().forEach((c) => r.cookies.set(c));
+  return r;
+}
+
+/**
+ * Back-office : rafraîchit la session à chaque requête /admin
+ * et redirige vers /admin/login si l'utilisateur n'est pas connecté.
+ */
+export async function updateSession(request: NextRequest) {
+  const { connecte, response } = await rafraichirSession(request);
 
   const chemin = request.nextUrl.pathname;
   const pageLogin = chemin.startsWith("/admin/login");
@@ -41,15 +56,32 @@ export async function updateSession(request: NextRequest) {
     const url = request.nextUrl.clone();
     url.pathname = "/admin/login";
     url.search = `?suite=${encodeURIComponent(chemin)}`;
-    return NextResponse.redirect(url);
+    return rediriger(response(), url);
   }
 
   if (connecte && pageLogin) {
     const url = request.nextUrl.clone();
     url.pathname = "/admin";
     url.search = "";
-    return NextResponse.redirect(url);
+    return rediriger(response(), url);
   }
 
-  return response;
+  return response();
+}
+
+/**
+ * Espace personnel du site (/fr/espace, /ar/espace) : connexion obligatoire.
+ * Page de connexion et retour de Google (/auth/…) : session rafraîchie seulement.
+ */
+export async function sessionCompte(request: NextRequest) {
+  const { connecte, response } = await rafraichirSession(request);
+  const chemin = request.nextUrl.pathname;
+  const espace = /^\/(fr|ar)\/espace(\/|$)/.exec(chemin);
+  if (espace && !connecte) {
+    const url = request.nextUrl.clone();
+    url.pathname = `/${espace[1]}/connexion`;
+    url.search = `?suite=${encodeURIComponent(chemin + request.nextUrl.search)}`;
+    return rediriger(response(), url);
+  }
+  return response();
 }

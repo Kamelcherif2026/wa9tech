@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import Link from "next/link";
-import { Download, Plus } from "lucide-react";
+import { Download, Plus, UserRound } from "lucide-react";
 import { autreLangue, t, type Langue } from "@/lib/i18n";
 import { ChangerLangue } from "./changer-langue";
 import { Etoile } from "./motifs";
@@ -20,7 +20,7 @@ export function Entete({ l }: { l: Langue }) {
           <img src="/marque/logo-wa9tech.svg" alt="WA9TECH" width={150} height={36} className="h-8 w-auto sm:h-11" />
         </Link>
         <nav className="flex items-center gap-0.5 text-sm">
-          <Link href={`/${l}/evenements`} className={lien}>{d.agenda}</Link>
+          <Link href={`/${l}/evenements`} className={`${lien} hidden min-[400px]:block`}>{d.agenda}</Link>
           <Link href={`/${l}#disciplines`} className={`${lien} hidden sm:block`}>{d.navCategories}</Link>
           <Link href={`/${l}#villes`} className={`${lien} hidden sm:block`}>{d.navVilles}</Link>
           <Link href={`/${l}/application`} className={`${lien} hidden md:block`}>{d.application}</Link>
@@ -31,6 +31,9 @@ export function Entete({ l }: { l: Langue }) {
             <Plus className="size-4" strokeWidth={2.5} />
             <span className="hidden sm:inline">{d.proposer}</span>
             <span className="sm:hidden">{d.proposerCourt}</span>
+          </Link>
+          <Link href={`/${l}/espace`} aria-label={d.monCompte} title={d.monCompte} className="ms-1 rounded-full p-2 transition hover:bg-encre/5 hover:text-primary">
+            <UserRound className="size-5" />
           </Link>
           <span className="ms-1 sm:ms-1.5">
             <Suspense
